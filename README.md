@@ -1,1 +1,3 @@
-# group4_powerapi
+# CityScoop
+
+"One search to get it all"
