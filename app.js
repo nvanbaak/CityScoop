@@ -87,6 +87,26 @@ function searchCities() {
             console.log(response);
             
             console.log("THE STATE ABBREVIATION IS: " + abbreviateState(response.full_name));
+
+            //var to get the state from the previous ajax requests
+            var covidState =  abbreviateState(response.full_name)
+
+            // Ajax for all states data
+            $.ajax({
+                url:"https://api.covidtracking.com/v1/states/current.json",
+                method:"GET"
+            }).then( function(response) {
+                // running through all states and only return the state that the inputted city is within
+                for (i = 0; i < 55; i++){
+                    if (response[i].state===covidState){
+                        //returning specific data about the state's COVID status
+                        console.log("Data quality grade: " + response[i].dataQualityGrade)
+                        console.log("Negative cases: " + response[i].negative)
+                        console.log("Positive cases: " + response[i].positive)
+                        console.log("Total test cases: " + response[i].total)
+                        console.log("Total Deaths Confirmed: " + response[i].deathConfirmed)
+                    }};
+            })
             
             // Get url for urban areas
             var urbanURL = response._links["city:urban_area"].href;
@@ -114,13 +134,7 @@ function searchCities() {
                 console.log("******************************************");
                 console.log(response);
             })
-        })
-
-        //var to get the state from the previous ajax requests
-        var covidState = "WA"
-
-        // Query URL for the covid data
-        var covidURL = "https://api.covidtracking.com/v1/states/current.json" 
+            
             
             // Urban area "salaries" pull
             $.ajax({
@@ -145,33 +159,16 @@ function searchCities() {
                 console.log("******************************************");
                 console.log(response);
             })
-
-
-        // Ajax for all states data
-        $.ajax({
-            url:covidURL,
-            method:"GET"
-        }).then( function(response) {
-            // running through all states and only return the state that the inputted city is within
-            for (i = 0; i < 55; i++){
-                if (response[i].state.indexOf("WA")!==-1){
-                    //returning specific data about the state's COVID status
-                    console.log(response)
-                    console.log("Data quality grade: " + response[i].dataQualityGrade)
-                    console.log("Negative cases: " + response[i].negative)
-                    console.log("Positive cases: " + response[i].positive)
-                    console.log("Total test cases: " + response[i].total)
-                    console.log("Total Deaths Confirmed: " + response[i].deathConfirmed)
-                }};
         })
 
     })
 
+    
 }
 
 function abbreviateState(fullname) {
-// Takes a string where the state is the second in a comma-separated list of locations and returns the two-letter abbreviation for that state
-
+    // Takes a string where the state is the second in a comma-separated list of locations and returns the two-letter abbreviation for that state
+    
     // Split the string into component locations
     fullname = fullname.split(",")
     // Grab the state and remove excess whitespace
