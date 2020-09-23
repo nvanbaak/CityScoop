@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 288 119.97" style="enable-background:new 0 0 288 119.97;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{clip-path:url(#SVGID_4_);fill:#CF1717;}
+	.st2{fill:#CF1717;}
+	.st3{fill:#FFFFFF;}
+	.st4{font-family:'Pacifico-Bold';}
+	.st5{font-size:43.0259px;}
+</style>
+<g>
+	<g>
+		<defs>
+			<polygon id="SVGID_1_" points="25.77,106.66 115.21,106.66 115.21,13.31 25.77,13.31 25.77,106.66 			"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<g class="st0">
+			<defs>
+				<polygon id="SVGID_3_" points="25.77,106.66 115.21,106.66 115.21,13.31 25.77,13.31 25.77,106.66 				"/>
+			</defs>
+			<clipPath id="SVGID_4_">
+				<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st1" d="M70.48,59.31c-6.37,0-11.47-5.32-11.47-11.97c0-6.65,5.1-11.97,11.47-11.97s11.47,5.32,11.47,11.97
+				C81.95,53.99,76.85,59.31,70.48,59.31L70.48,59.31z M70.48,26.92c-6.43,0-12.48,3.31-16.11,8.95
+				c-3.63,5.54-4.38,12.64-2.05,18.96l8.85,20.42l7.64,16.73c0.28,0.68,0.93,1.07,1.68,1.07c0.75,0,1.4-0.39,1.68-1.07l7.64-16.73
+				l8.85-20.42c2.33-6.32,1.58-13.42-2.05-18.96C82.96,30.23,76.91,26.92,70.48,26.92L70.48,26.92z"/>
+		</g>
+	</g>
+	<path class="st2" d="M70.49,52.93c-2.83,0-5.1-2.37-5.1-5.32c0-2.96,2.27-5.32,5.1-5.32c2.83,0,5.1,2.37,5.1,5.32
+		C75.59,50.57,73.32,52.93,70.49,52.93L70.49,52.93z"/>
+</g>
+<text transform="matrix(1 0 0 1 95.7447 69.1939)" class="st3 st4 st5">CityScoop</text>
+</svg>

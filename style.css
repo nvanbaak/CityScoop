@@ -12,6 +12,13 @@ body, html {
     background-color: #111111; 
 }
 
+.brand-logo {
+    font-family: 'Pacifico', cursive;
+}
+
+.logo-svg {
+    height: 100%;
+}
 
 /* The hero image */
 .hero-image {
