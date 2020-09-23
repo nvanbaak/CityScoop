@@ -1,3 +1,6 @@
+/* =========================================
+GLOBAL STYLING
+ =========================================*/
 *{
     margin: 0;
     padding: 0;
@@ -5,11 +8,61 @@
 
 body{
     background: #252525;
-    height: 50rem;
-    display: flex;
+}
+
+
+/* =========================================
+NAV BAR STYLING
+ =========================================*/
+ .nav-wrapper {
+    background-color: #111111;
+ }
+ 
+ .brand-logo {
+    height: 100%;
+}
+
+.logo-svg {
+    height: 100%;
+}
+
+/* =========================================
+HERO IMAGE STYLING
+ =========================================*/
+.hero-image {
+    /* Apply dark filter on image */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://assetfunders.org/wp-content/uploads/seattle.jpeg");
+    
+    /* Set a specific height */
+    height: 250px;
+    
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+    font-family: 'Anton', sans-serif;
+    padding-top: 25px;
+    text-align: center;
+    color: white;
+  word-wrap: break-word;
+}
+
+/* =========================================
+SEARCH BAR STYLING
+ =========================================*/
+.brand {
+    width:100%;
+    height:100%;
+    display:flex;
     justify-content: center;
     align-items: center;
 }
+
 
 input{
     background: seashell;
@@ -20,38 +73,6 @@ input{
     border: none;
     border-radius: 15px;
     transition: all .6s;
-}
-
-.brand-logo {
-    height: 100%;
-}
-
-.logo-svg {
-    height: 100%;
-}
-
-/* The hero image */
-.hero-image {
-  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://assetfunders.org/wp-content/uploads/seattle.jpeg");
-
-  /* Set a specific height */
-  height: 250px;
-
-  /* Position and center the image to scale nicely on all screens */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
-
-/* Place text in the middle of the image */
-.hero-text {
-  font-family: 'Anton', sans-serif;
-  padding-top: 25px;
-  text-align: center;
-  color: white;
-  word-wrap: break-word;
 }
 
 .icon{
@@ -78,7 +99,7 @@ input{
     text-align: center;
 }
 
-li{
+.filter li{
     margin: 1.3rem !important;
     width: 60px !important;
     height: 60px !important;
@@ -95,3 +116,15 @@ li{
 .hide{
     display: none;
 }
+
+.search-area {
+    display: flex;
+}
+
+#search-bar {
+    display:flex;
+}
+
+/* .search-column {
+    width: 100%
+} */

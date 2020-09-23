@@ -1,27 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css" integrity="sha512-t38vG/f94E72wz6pCsuuhcOPJlHKwPy+PY+n1+tJFzdte3hsIgYE7iEpgg/StngunGszVMrRfvwZinrza0vMTA==" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="style.css">
-    <title>cityScoop</title>
-</head>
-<body>
-    <div class="brand">
 
-    </div>
-    <input type="text place" placeholder="find a city">
-    <div class="search-area">
-        <span class="icon waves-effect waves-light btn">&#9906</span>
-    </div>
-    <div class="filter-list-div">
-        <ul class="filter">
-            
-        </ul>
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css"
+        integrity="sha512-t38vG/f94E72wz6pCsuuhcOPJlHKwPy+PY+n1+tJFzdte3hsIgYE7iEpgg/StngunGszVMrRfvwZinrza0vMTA=="
+        crossorigin="anonymous" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <title>CityScoop</title>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col s12 center-align brand">
+                <!-- Input bar -->
+                <input type="text place" placeholder="find a city" id="search-bar">
+
+                <!-- Search icon -->
+                <div class="search-area">
+                    <span class="icon waves-effect waves-light btn">&#9906</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 center-align">
+                <!-- List of filters -->
+                <div class="filter-list-div">
+                    <ul class="filter">
         
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js" integrity="sha512-m2PhLxj2N91eYrIGU2cmIu2d0SkaE4A14bCjVb9zykvp6WtsdriFCiXQ/8Hdj0kssUB/Nz0dMBcoLsJkSCto0Q==" crossorigin="anonymous"></script>
+
+    <!-- Materialize Links -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"
+        integrity="sha512-m2PhLxj2N91eYrIGU2cmIu2d0SkaE4A14bCjVb9zykvp6WtsdriFCiXQ/8Hdj0kssUB/Nz0dMBcoLsJkSCto0Q=="
+        crossorigin="anonymous"></script>
+
+    <!-- Javascript Link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- App functionality -->
     <script src="app.js"></script>
 </body>
+
 </html>

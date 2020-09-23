@@ -1,76 +1,72 @@
-//initial variables
+// Get references to main page elements
 const icon = document.querySelector('.icon');
-const searchBar = document.querySelector('input');
+const searchBar = document.getElementById("search-bar");
 const filterListDiv = document.querySelector('.filter-list-div');
 const filter = document.querySelector('.filter');
 const filterArray = [1, 2, 3];
 
+// Populate filters
+for(let i = 0; i < filterArray.length; i++) {
 
+    // Create list elements for each index: filterArray
+    let filterItems = document.createElement('li');
+    filterItems.setAttribute('class', 'filterArg waves-effect waves-light btn');
+    filterItems.textContent = filterArray[i];
 
-//adding classes
+    // Append to filter list
+    filter.appendChild(filterItems);
+}
 
+// This variable toggles the search button behavior
+var searchBarActive = false;
 
-//append initial variables to DOM
+// Dynamic search bar
+icon.addEventListener('click', function(event){
+    event.preventDefault();
 
+    // If this is the first time the button's been clicked,
+    if (!searchBarActive) {
+        // Show the search bar
+        searchBar.classList.toggle('active');
+        //Hide the filter options
+        filterItems.classList.remove('hide');
+        
+        // Toggle hide on filter items
+        let filterArgArray = document.querySelectorAll('.filterArg');
+        for(let i =0; i < filterArray.length; i++){
+            filterArgArray[i].classList.toggle('hide');
+        }
 
+        // Flag that the search bar is active
+        searchBarActive = true;
 
-//dynamic search bar
-icon.addEventListener('click', function(){
-    searchBar.classList.toggle('active');
-    let testItems = document.querySelectorAll('.test');
-    for(let i =0; i < filterArray.length; i++){
-        testItems[i].classList.toggle('hide');
+        // Otherwise we search
+    } else {
+        // But only if there's something in the search bar
+        if (searchBar.value) {
+            searchCities();
+        }
     }
 });
 
 
-
-//populate filters
-for(let i = 0; i < filterArray.length; i++){
-    //create list elements for each index: filterArray
-    let filterItems = document.createElement('li');
-    filterItems.setAttribute('class', 'test waves-effect waves-light btn hide');
-    filterItems.textContent = filterArray[i];
-
-    //function to initiate search using 'Enter' key
-    searchBar.addEventListener('keypress', function(e){
-        if(e.key === 'Enter'){
-            //code to search
-        }
-        });
-
-    //randomly generate filterItems background color
-    function getRandomColor(){
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
+//function to initiate search using 'Enter' key
+searchBar.addEventListener('keypress', function(e){
+    if(e.key === 'Enter' && searchBar.value) {
+        searchCities();
     }
+});
 
-    function applyBackgroundColor(){
-        filterItems.style.backgroundColor = getRandomColor();
-    }
-
-        filter.appendChild(filterItems);
-}
-
-
-
-
-
-
-// Search Button functionality
-$("#search-button").on("click", function(event) {
-    event.preventDefault();
+// Search function
+function searchCities() {
+    // This function is called by the search bar event listeners to get the database information the app needs
 
     // Grab city name from input bar
     var cityName = $("#search-bar").val();
 
     // Create query URL
     var queryURL = "https://api.teleport.org/api/cities/?search=" + cityName;
-
+    
     // Use query URL to make first AJAX request
     $.ajax({
         url:queryURL,
@@ -92,6 +88,26 @@ $("#search-button").on("click", function(event) {
             console.log(response);
             
             console.log("THE STATE ABBREVIATION IS: " + abbreviateState(response.full_name));
+
+            //var to get the state from the previous ajax requests
+            var covidState =  abbreviateState(response.full_name)
+
+            // Ajax for all states data
+            $.ajax({
+                url:"https://api.covidtracking.com/v1/states/current.json",
+                method:"GET"
+            }).then( function(response) {
+                // running through all states and only return the state that the inputted city is within
+                for (i = 0; i < 55; i++){
+                    if (response[i].state===covidState){
+                        //returning specific data about the state's COVID status
+                        console.log("Data quality grade: " + response[i].dataQualityGrade)
+                        console.log("Negative cases: " + response[i].negative)
+                        console.log("Positive cases: " + response[i].positive)
+                        console.log("Total test cases: " + response[i].total)
+                        console.log("Total Deaths Confirmed: " + response[i].deathConfirmed)
+                    }};
+            })
             
             // Get url for urban areas
             var urbanURL = response._links["city:urban_area"].href;
@@ -120,6 +136,7 @@ $("#search-button").on("click", function(event) {
                 console.log(response);
             })
             
+            
             // Urban area "salaries" pull
             $.ajax({
                 url:`${urbanURL+"salaries"}`,
@@ -143,17 +160,16 @@ $("#search-button").on("click", function(event) {
                 console.log("******************************************");
                 console.log(response);
             })
-
         })
+
     })
 
-})
-
-
+    
+}
 
 function abbreviateState(fullname) {
-// Takes a string where the state is the second in a comma-separated list of locations and returns the two-letter abbreviation for that state
-
+    // Takes a string where the state is the second in a comma-separated list of locations and returns the two-letter abbreviation for that state
+    
     // Split the string into component locations
     fullname = fullname.split(",")
     // Grab the state and remove excess whitespace
