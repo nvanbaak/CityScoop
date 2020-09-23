@@ -1,8 +1,3 @@
-
-
-
-
-
 body, html {
     height: 100%;
 }
@@ -37,9 +32,11 @@ body, html {
 
 /* Place text in the middle of the image */
 .hero-text {
+  font-family: 'Anton', sans-serif;
   padding-top: 25px;
   text-align: center;
   color: white;
+  word-wrap: break-word;
 }
 
 .container {
