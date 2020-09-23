@@ -125,6 +125,23 @@ input{
     display:flex;
 }
 
-/* .search-column {
-    width: 100%
-} */
+/* =========================================
+Results Containers Styling
+ =========================================*/
+
+ .results-container{
+     padding: 0 50px 20px 50px;
+ }
+
+ .container-lightGray {
+     background-color: lightgray;
+ }
+
+ .container-darkGray {
+     background-color: darkgray;
+ }
+
+
+ .container-white {
+     background-color: white;
+ }

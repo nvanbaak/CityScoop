@@ -8,6 +8,7 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -17,7 +18,7 @@
         <div class="nav-wrapper">
             <a href="#" class="brand-logo">
 
-                <img src="assets/img/logo-white-accent.png" class="logo-svg" alt="cityScoop">
+                <img src="assets/img/logo-white-accent.png" class="logo-svg" alt="CityScoop">
 
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -35,20 +36,105 @@
             </div>
         </div>
 
-        <!-- Results -->
-        <div class="container results-container">
-            <!-- append a new row + cols to .results-container to add data -->
+        <div id="data-containers" class="container-fluid">
 
-            <!-- start dummy data -->
-            <div class="row">
-                <div class="col s12 m3 center city-img-container">
-                    <img src="https://via.placeholder.com/200" class="city-img" alt="" srcset="">
+
+            <!-- Sample Basic Info Container -->
+            <!-- BACKEND: use the results-container class when creating new divs. Add container-[white,lightGray,darkGray] for color. Append to #data-containers -->
+            <div class="container-fluid results-container container-lightGray" id="basic-info">
+                <div class="row">
+                    <div class="col s12 center">
+                        <h2>Basic Info</h2>
+                        <hr>
+                        <br>
+                        <p><em>"[URBAN AREA / SCORES.summary] Seattle, Washington, is among the top cities with a
+                                <b>free business environment</b>.
+                                According to our city rankings, this is a good place to live with high ratings in
+                                <b>startups</b>, <b>venture capital</b> and <b>environmental quality"</b></em>.
+                        </p>
+                    </div>
                 </div>
-                <div class="col s12 m9">STATS1</div>
-                <div class="col s12 m12">STATS2</div>
+                <div class="row">
+                    <div class="col s12 m6">
+                        <p class="valign-wrapper"><i class="medium material-icons">cloud</i> Weather</p>
+                    </div>
+                    <div class="col s12 m6">
+                        <p class="valign-wrapper"><i class="medium material-icons">directions_transit</i> Public
+                            Transportation</p>
+                    </div>
+                    <div class="col s12 m6">
+                        <p class="valign-wrapper"><i class="medium material-icons">flight</i> Travel</p>
+                    </div>
+                    <div class="col s12 m6">
+                        <p class="valign-wrapper"><i class="medium material-icons">local_hospital</i> City Healthcare
+                        </p>
+                    </div>
+                    <div class="col s12 m6">
+                        <p class="valign-wrapper"><i class="medium material-icons">local_pizza</i> Local Food</p>
+                    </div>
+                    <div class="col s12 m6">
+                        <p class="valign-wrapper"><i class="medium material-icons">lock_outline</i> Safety</p>
+                    </div>
+                </div>
             </div>
-            <!-- end dummy data -->
 
+            <!-- Sample Specific Info Container -->
+            <!-- BACKEND: use the results-container class when creating new divs. Add container-[white,lightGray,darkGray] for color. Append to #data-containers -->
+            <div class="container-fluid results-container container-white">
+                <div class="row">
+                    <div class="col s12 center">
+                        <h3>WEATHER & CLIMATE</h3>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row center">
+                    <div class="col s12 m3">
+                        <h1>12</h1>
+                        <p class="">AVG DAY LENGTH (Hours)</p>
+                    </div>
+                    <div class="col s12 m3">
+                        <h1>56</h1>
+                        <p class="">AVG NUMBER OF CLEAR DAYS PER YEAR</p>
+                    </div>
+                    <div class="col s12 m3">
+                        <h1>78</h1>
+                        <p class="">AVERAGE HIGH TEMP</p>
+                    </div>
+                    <div class="col s12 m3">
+                        <h1>42</h1>
+                        <p class="">AVERAGE LOW TEMP</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Specific Info Container. Use  -->
+            <!-- BACKEND: use the results-container class when creating new divs. Add container-[white,lightGray,darkGray] for color. Append to #data-containers -->
+            <div class="container-fluid results-container container-darkGray">
+                <div class="row">
+                    <div class="col s12 center">
+                        <h3>EDUCATION</h3>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row center">
+                    <div class="col s12 m3">
+                        <h1>9900</h1>
+                        <p class="">STUDENTS</p>
+                    </div>
+                    <div class="col s12 m3">
+                        <h1>1400</h1>
+                        <p class="">AVG SAT</p>
+                    </div>
+                    <div class="col s12 m3">
+                        <h1>92%</h1>
+                        <p class="">COLLEGE ACCEPTANCE RATE</p>
+                    </div>
+                    <div class="col s12 m3">
+                        <h1>08%</h1>
+                        <p class="">DROP OUT</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
