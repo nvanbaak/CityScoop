@@ -87,8 +87,6 @@ $("#search-button").on("click", function(event) {
 
 })
 
-
-
 function abbreviateState(fullname) {
 // Takes a string where the state is the second in a comma-separated list of locations and returns the two-letter abbreviation for that state
 
