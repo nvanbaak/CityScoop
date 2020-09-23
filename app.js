@@ -8,7 +8,7 @@ $("#search-button").on("click", function(event) {
 
     // Create query URL
     var queryURL = "https://api.teleport.org/api/cities/?search=" + cityName;
-
+    
     // Use query URL to make first AJAX request
     $.ajax({
         url:queryURL,
@@ -40,9 +40,34 @@ $("#search-button").on("click", function(event) {
     
     
             })
-            
-
         })
+
+        //var to get the state from the previous ajax requests
+        var covidState = "WA"
+
+        // Query URL for the covid data
+        var covidURL = "https://api.covidtracking.com/v1/states/current.json" 
+
+
+        // Ajax for all states data
+        $.ajax({
+            url:covidURL,
+            method:"GET"
+        }).then( function(response) {
+            // running through all states and only return the state that the inputted city is within
+            for (i = 0; i < 55; i++){
+                if (response[i].state.indexOf("WA")!==-1){
+                    //returning specific data about the state's COVID status
+                    console.log(response)
+                    console.log("Data quality grade: " + response[i].dataQualityGrade)
+                    console.log("Negative cases: " + response[i].negative)
+                    console.log("Positive cases: " + response[i].positive)
+                    console.log("Total test cases: " + response[i].total)
+                    console.log("Total Deaths Confirmed: " + response[i].deathConfirmed)
+                }};
+        })
+
     })
+
 
 })
