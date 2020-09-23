@@ -10,7 +10,7 @@ for(let i = 0; i < filterArray.length; i++) {
 
     // Create list elements for each index: filterArray
     let filterItems = document.createElement('li');
-    filterItems.setAttribute('class', 'filterArg waves-effect waves-light btn hide');
+    filterItems.setAttribute('class', 'filterArg waves-effect waves-light btn');
     filterItems.textContent = filterArray[i];
 
     // Append to filter list
@@ -28,6 +28,8 @@ icon.addEventListener('click', function(event){
     if (!searchBarActive) {
         // Show the search bar
         searchBar.classList.toggle('active');
+        //Hide the filter options
+        filterItems.classList.remove('hide');
         
         // Toggle hide on filter items
         let filterArgArray = document.querySelectorAll('.filterArg');
