@@ -24,21 +24,36 @@ icon.addEventListener('click', function(){
 });
 
 
-//function to initiate search using 'Enter' key
-searchBar.addEventListener('keypress', function(e){
-    if(e.key === 'Enter'){
-        //code to search
-    }
-});
-
 
 //populate filters
 for(let i = 0; i < filterArray.length; i++){
     //create list elements for each index: filterArray
     let filterItems = document.createElement('li');
-    filterItems.setAttribute('class', 'test waves-effect waves-light btn hide')
+    filterItems.setAttribute('class', 'test waves-effect waves-light btn hide');
     filterItems.textContent = filterArray[i];
-    filter.appendChild(filterItems);
+
+    //function to initiate search using 'Enter' key
+    searchBar.addEventListener('keypress', function(e){
+        if(e.key === 'Enter'){
+            //code to search
+        }
+        });
+
+    //randomly generate filterItems background color
+    function getRandomColor(){
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    function applyBackgroundColor(){
+        filterItems.style.backgroundColor = getRandomColor();
+    }
+
+        filter.appendChild(filterItems);
 }
 
 
