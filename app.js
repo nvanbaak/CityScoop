@@ -41,7 +41,7 @@ icon.addEventListener('click', function(event){
         // Otherwise we search
     } else {
         // But only if there's something in the search bar
-        if (searchBar.val()) {
+        if (searchBar.value) {
             searchCities();
         }
     }
@@ -50,7 +50,7 @@ icon.addEventListener('click', function(event){
 
 //function to initiate search using 'Enter' key
 searchBar.addEventListener('keypress', function(e){
-    if(e.key === 'Enter' && searchBar.val()){
+    if(e.key === 'Enter' && searchBar.value) {
         searchCities();
     }
 });
@@ -61,7 +61,7 @@ function searchCities() {
     // This function is called by the search bar event listeners to get the database information the app needs
 
     // Grab city name from input bar
-    var cityName = searchBar.val();
+    var cityName = $("#search-bar").val();
 
     // Create query URL
     var queryURL = "https://api.teleport.org/api/cities/?search=" + cityName;
