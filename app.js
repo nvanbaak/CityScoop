@@ -55,7 +55,6 @@ searchBar.addEventListener('keypress', function(e){
     }
 });
 
-
 // Search function
 function searchCities() {
     // This function is called by the search bar event listeners to get the database information the app needs
