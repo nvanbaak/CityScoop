@@ -24,23 +24,60 @@ $("#search-button").on("click", function(event) {
             method:"GET"
         }).then( function(response) {
     
+            console.log("******************************************");
+            console.log("CITY");
+            console.log("******************************************");
             console.log(response);
-        
             // Get url for urban areas
             var urbanURL = response._links["city:urban_area"].href;
-
-            // Lord have mercy, it's AJAX number 3
+            
+            // Urban area "details" pull
             $.ajax({
-                url:urbanURL,
+                url:`${urbanURL+"details"}`,
                 method:"GET"
             }).then( function(response) {
-        
+                
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS");
+                console.log("******************************************");
                 console.log(response);
-            
-    
-    
             })
             
+            // Urban area "images" pull
+            $.ajax({
+                url:`${urbanURL+"images"}`,
+                method:"GET"
+            }).then( function(response) {
+                
+                console.log("******************************************");
+                console.log("URBAN AREA / IMAGES");
+                console.log("******************************************");
+                console.log(response);
+            })
+            
+            // Urban area "salaries" pull
+            $.ajax({
+                url:`${urbanURL+"salaries"}`,
+                method:"GET"
+            }).then( function(response) {
+                
+                console.log("******************************************");
+                console.log("URBAN AREA / SALARIES");
+                console.log("******************************************");
+                console.log(response);
+            })
+            
+            // Urban area "scores" pull
+            $.ajax({
+                url:`${urbanURL+"scores"}`,
+                method:"GET"
+            }).then( function(response) {
+                
+                console.log("******************************************");
+                console.log("URBAN AREA / SCORES");
+                console.log("******************************************");
+                console.log(response);
+            })
 
         })
     })
