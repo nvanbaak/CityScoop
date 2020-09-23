@@ -1,62 +1,66 @@
-
-
-
-
-
-body, html {
-    height: 100%;
+*{
+    margin: 0;
+    padding: 0;
 }
 
-.nav-wrapper {
+body{
+    background: #252525;
+    height: 50rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    background: seashell;
+    font-size: 3rem;
+    width: 0;
+    outline: none;
     padding-left: 15px;
-    background-color: #111111; 
-}
-
-
-/* The hero image */
-.hero-image {
-  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://assetfunders.org/wp-content/uploads/seattle.jpeg");
-
-  /* Set a specific height */
-  height: 250px;
-
-  /* Position and center the image to scale nicely on all screens */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
-
-/* Place text in the middle of the image */
-.hero-text {
-  padding-top: 25px;
-  text-align: center;
-  color: white;
-}
-
-.container {
-    margin-top: 25px;
+    border: none;
+    border-radius: 15px;
+    transition: all .6s;
 
 }
 
-/* for testing */
-.row, .col {
-    border: 1px black solid;
-    padding: 0rem 0rem;
+.icon{
+    width: 60px;
+    height: 60px;
+    background: rgb(70, 197, 236);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    color: #ffffff;
+    cursor: pointer;
+    transform: translateX(-30px) rotate(-45deg);
 }
 
-.col {
-    height:  250px;
-    margin-top: 25px;
+.active{
+    display: block;
+    width: 45%;
 }
 
-.city-img {
-    height: 100%;
-    width: 100%;
-    margin: 0px;
+.filter{
+    justify-content: center;
+    text-align: center;
 }
 
+li{
+    margin: 1.3rem !important;
+    width: 60px !important;
+    height: 60px !important;
+    background: rgb(70, 197, 236) !important;
+    border-radius: 40% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-size: 1.8rem;
+    color: #ffffff !important;
+    cursor: pointer !important;
+}
 
-
-
+.hide{
+    display: none;
+}
