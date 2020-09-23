@@ -1,54 +1,64 @@
-//initial variables
+// Get references to main page elements
 const icon = document.querySelector('.icon');
-const searchBar = document.querySelector('input');
+const searchBar = document.getElementById("search-bar");
 const filterListDiv = document.querySelector('.filter-list-div');
 const filter = document.querySelector('.filter');
 const filterArray = [1, 2, 3];
 
+// Populate filters
+for(let i = 0; i < filterArray.length; i++) {
 
+    // Create list elements for each index: filterArray
+    let filterItems = document.createElement('li');
+    filterItems.setAttribute('class', 'filterArg waves-effect waves-light btn hide');
+    filterItems.textContent = filterArray[i];
 
-//adding classes
+    // Append to filter list
+    filter.appendChild(filterItems);
+}
 
+// This variable toggles the search button behavior
+var searchBarActive = false;
 
-//append initial variables to DOM
+// Dynamic search bar
+icon.addEventListener('click', function(event){
+    event.preventDefault();
 
+    // If this is the first time the button's been clicked,
+    if (!searchBarActive) {
+        // Show the search bar
+        searchBar.classList.toggle('active');
+        
+        // Toggle hide on filter items
+        let filterArgArray = document.querySelectorAll('.filterArg');
+        for(let i =0; i < filterArray.length; i++){
+            filterArgArray[i].classList.toggle('hide');
+        }
 
+        // Flag that the search bar is active
+        searchBarActive = true;
 
-//dynamic search bar
-icon.addEventListener('click', function(){
-    searchBar.classList.toggle('active');
-    let testItems = document.querySelectorAll('.test');
-    for(let i =0; i < filterArray.length; i++){
-        testItems[i].classList.toggle('hide');
+        // Otherwise we search
+    } else {
+        // But only if there's something in the search bar
+        if (searchBar.value) {
+            searchCities();
+        }
     }
 });
 
 
 //function to initiate search using 'Enter' key
 searchBar.addEventListener('keypress', function(e){
-    if(e.key === 'Enter'){
-        //code to search
+    if(e.key === 'Enter' && searchBar.value) {
+        searchCities();
     }
 });
 
 
-//populate filters
-for(let i = 0; i < filterArray.length; i++){
-    //create list elements for each index: filterArray
-    let filterItems = document.createElement('li');
-    filterItems.setAttribute('class', 'test waves-effect waves-light btn hide')
-    filterItems.textContent = filterArray[i];
-    filter.appendChild(filterItems);
-}
-
-
-
-
-
-
-// Search Button functionality
-$("#search-button").on("click", function(event) {
-    event.preventDefault();
+// Search function
+function searchCities() {
+    // This function is called by the search bar event listeners to get the database information the app needs
 
     // Grab city name from input bar
     var cityName = $("#search-bar").val();
@@ -132,9 +142,7 @@ $("#search-button").on("click", function(event) {
         })
     })
 
-})
-
-
+}
 
 function abbreviateState(fullname) {
 // Takes a string where the state is the second in a comma-separated list of locations and returns the two-letter abbreviation for that state
