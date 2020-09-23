@@ -26,8 +26,23 @@ $("#search-button").on("click", function(event) {
     
             console.log(response);
         
-        })
+            // Get url for urban areas
+            var urbanURL = response._links["city:urban_area"].href;
+
+            // Lord have mercy, it's AJAX number 3
+            $.ajax({
+                url:urbanURL,
+                method:"GET"
+            }).then( function(response) {
+        
+                console.log(response);
+            
     
+    
+            })
+            
+
+        })
     })
 
 })
