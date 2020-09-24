@@ -79,7 +79,7 @@ function searchCities() {
             console.log(response);
             
             // Update city name
-            $(".city-name").text(response.name);
+            $(".city-name").text((response.name).toUpperCase());
 
 
             console.log("THE STATE ABBREVIATION IS: " + abbreviateState(response.full_name));

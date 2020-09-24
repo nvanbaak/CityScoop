@@ -145,3 +145,11 @@ Results Containers Styling
  .p-large {
     font-size: 3em;
  }
+
+ /* =========================================
+FOOTER STYLING
+ =========================================*/
+
+ .page-footer {
+     background-color: #252525;
+ }
