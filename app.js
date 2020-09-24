@@ -44,6 +44,12 @@ icon.addEventListener('click', function(event){
     } else {
         // But only if there's something in the search bar
         if (searchBar.value) {
+
+            // Toggle which page is visible
+            document.querySelector(".start-page-wrap").classList.toggle("hide");
+            document.querySelector(".results-page-wrap").classList.toggle("hide");
+            
+            // Run the search
             searchCities();
         }
     }
@@ -53,6 +59,12 @@ icon.addEventListener('click', function(event){
 //function to initiate search using 'Enter' key
 searchBar.addEventListener('keypress', function(e){
     if(e.key === 'Enter' && searchBar.value) {
+
+        // Toggle which page is visible
+        document.querySelector(".start-page-wrap").classList.toggle("hide");
+        document.querySelector(".results-page-wrap").classList.toggle("hide");
+        
+        // Search
         searchCities();
     }
 });
@@ -129,11 +141,9 @@ function searchCities() {
                 url:`${urbanURL+"images"}`,
                 method:"GET"
             }).then( function(response) {
-                
-                console.log("******************************************");
-                console.log("URBAN AREA / IMAGES");
-                console.log("******************************************");
-                console.log(response);
+
+                heroImg = response.photos[0].image.web; 
+                $(".hero-image").css("background-image", `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${heroImg})`);
             })
             
             
