@@ -79,10 +79,7 @@ function searchCities() {
             console.log(response);
             
             // Update city name
-            $(".city-name").text(response.name);
-
-
-            console.log("THE STATE ABBREVIATION IS: " + abbreviateState(response.full_name));
+            $(".city-name").text((response.name).toUpperCase());
 
             //var to get the state from the previous ajax requests
             var covidState =  abbreviateState(response.full_name)
@@ -135,11 +132,55 @@ function searchCities() {
                 url:`${urbanURL+"salaries"}`,
                 method:"GET"
             }).then( function(response) {
+
+                // SALARY PANEL
+
+                // Grab salary data
+                var salaryData = response.salaries;
                 
-                console.log("******************************************");
-                console.log("URBAN AREA / SALARIES");
-                console.log("******************************************");
-                console.log(response);
+                // Create an option for each job title
+                var dropdown = $("#dropdown1")
+
+                for (i in salaryData) {
+                    // Create option
+                    var newLink = $("<a>",{"data-salary-index":i}).text(salaryData[i].job.title);
+                    // Append to list element
+                    var newListEl = $("<li>").append(newLink);
+                    // Append list element to list
+                    dropdown.append(newListEl);
+                }
+
+                // Dropdown reponds to clicking one of the options
+                dropdown.on("click", function(event) {
+
+                    // Only fire if we're clicking on a link icon
+                    if ( event.target.matches("a") ) {
+
+                        // Get the data index from the target element
+                        var sIndex = event.target.dataset.salaryIndex;
+
+                        // Parse salary data for 25th %ile
+                        var salary25 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_25);
+                        salary25 = insertCommasIntoNumbers(salary25);
+
+                        // Update display
+                        $(".salary-25").text("$" + salary25);
+                        
+                        // Parse salary data for 50th %ile
+                        var salary50 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_50);
+                        salary50 = insertCommasIntoNumbers(salary50);
+
+                        // Update display
+                        $(".salary-50").text("$" + salary50);
+                        
+                        // Parse salary data for 75th %ile
+                        var salary75 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_75);
+                        salary75 = insertCommasIntoNumbers(salary75);
+
+                        // Update display
+                        $(".salary-75").text("$" + salary75);
+                    };
+                });
             })
             
             // Urban area "scores" pull
@@ -154,10 +195,7 @@ function searchCities() {
                 console.log(response);
             })
         })
-
     })
-
-    
 }
 
 function abbreviateState(fullname) {
@@ -276,3 +314,45 @@ function abbreviateState(fullname) {
             break;
     }
 }
+
+function roundToTenThousand(num) {
+    // This function rounds the given number to the nearest ten thousands
+    return Math.round(num / 1000) * 1000
+}
+
+
+
+
+function insertCommasIntoNumbers(num) {
+    // This function takes a number and inserts commas every three digits
+
+    var oldNum = num.toString();
+    var transitionNum = "";
+    var newNum = "";
+    var numIndex = 0;
+
+    // Run through each digit of the number in reverse (so starting with the ones digit)
+    for (i = oldNum.length-1; i > -1; i--) {
+
+        transitionNum = transitionNum + oldNum[i];
+
+        // Count up
+        numIndex++;
+        // If this is the third number add a comma and reset
+        // We also don't adda comma if this is the first number in the string
+        if (numIndex === 3 && i > 0) {
+            transitionNum += ",";
+            numIndex = 0;
+        }
+    }
+
+    // Then reverse the transition number to get the final result
+    for (i = transitionNum.length-1; i > -1; i--) {
+        newNum += transitionNum[i];
+    }
+
+    // Return number
+    return newNum;
+}
+
+console.log(insertCommasIntoNumbers(10000000000));

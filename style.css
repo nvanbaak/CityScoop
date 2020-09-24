@@ -156,4 +156,13 @@ Results Containers Styling
      background-color: lightgrey;
      font: white;
      font-weight: bold;
+    font-size: 3em;
+ }
+
+ /* =========================================
+FOOTER STYLING
+ =========================================*/
+
+ .page-footer {
+     background-color: #252525;
  }
