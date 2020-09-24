@@ -81,9 +81,6 @@ function searchCities() {
             // Update city name
             $(".city-name").text(response.name);
 
-
-            console.log("THE STATE ABBREVIATION IS: " + abbreviateState(response.full_name));
-
             //var to get the state from the previous ajax requests
             var covidState =  abbreviateState(response.full_name)
 
@@ -147,18 +144,22 @@ function searchCities() {
                 var salaryData = response.salaries;
                 
                 // Create an option for each job title
-
                 var dropdown = $("#dropdown1")
 
                 for (i in salaryData) {
-                    
-                    console.log(salaryData[i].job.title);
                     // Create option
-                    // var newJob = $("<option>",{"value":salaryData[i].job.title});
-
-
+                    // var newLink = $("<a>",{"href":"#!"}).text(salaryData[i].job.title);
+                    var newLink = $("<a>",{"data-salary-index":i}).text(salaryData[i].job.title);
+                    // Append to list element
+                    var newListEl = $("<li>").append(newLink);
+                    // Append list element to list
+                    dropdown.append(newListEl);
                 }
 
+                dropdown.on("click", function(event) {
+
+
+                });
 
             })
             
