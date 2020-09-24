@@ -218,6 +218,10 @@ function searchCities() {
                         )
                     )
                     
+                    // Append to panel
+                    salaryPanelContainer.append(dataRow);
+
+                    // Append panel to page
                     $("#data-containers").append(salaryPanelContainer);
 
                 })
