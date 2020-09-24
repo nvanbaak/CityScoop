@@ -67,7 +67,7 @@
             <div class="hero-image">
                 <div class="hero-text">
                     <!-- use .city-name class to update user input city -->
-                    <h1 class="hero-text city-name">SEATTLE</h1>
+                    <h1 class="hero-text city-name"></h1>
                 </div>
             </div>
 
@@ -82,27 +82,97 @@
                             <h2>BASIC INFO</h2>
                             <hr>
                             <br>
-                            <p><em>"[URBAN AREA / SCORES.summary] Seattle, Washington, is among the top cities with a
+                            <p class="flow-text"><em>"[URBAN AREA / SCORES.summary] Seattle, Washington, is among the
+                                    top cities with a
                                     <b>free business environment</b>.
                                     According to our city rankings, this is a good place to live with high ratings in
                                     <b>startups</b>, <b>venture capital</b> and <b>environmental quality"</b></em>.
                             </p>
                         </div>
                     </div>
-                    
+
 
                     <ul class="collapsible popout">
+                        <!-- JOB & SALARY COLLAPSIBLE DIV -->
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>WEATHER & CLIMATE</div>
-                            <!-- Sample Specific Info Container -->
-                            <!-- BACKEND: use the results-container class when creating new divs. Add container-[white,lightGray,darkGray] for color. Append to #data-containers -->
-                            <div class="container-fluid results-container container-white collapsible-body">
+                            <div class="collapsible-header"><i class="material-icons">work</i>JOB & SALARY</div>
+                            <!-- Sample Specific Info Container. Use  -->
+                            <div class="container-fluid  container-white center collapsible-body">
                                 <div class="row">
                                     <div class="col s12 center">
+                                        <h3>JOB & SALARY</h3>
+                                        <hr>
+                                    </div>
+                                </div>
+
+                                <!-- Job and Salary Descriptive Text -->
+                                <p class="flow-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                                    sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde
+                                    quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
+                                <br>
+
+                                <!-- Job and Salary Descriptive Text -->
+                                <p class="flow-text">Salary Percentiles:</p>
+                                <br>
+
+                                <!-- Job Title Dropdown Trigger -->
+                                <a class='dropdown-trigger btn center' href='#' data-target='dropdown1'>Select a Job
+                                    Title</a>
+
+                                <!-- Job Title Dropdown Structure -->
+                                <ul id='dropdown1' class='dropdown-content'>
+                                    <li><a href="#!">AWS Engineer</a></li>
+                                    <li><a href="#!">Back End Web Developer</a></li>
+                                    <li><a href="#!">Business Analyst</a></li>
+                                    <li><a href="#!">Electrical Engineer</a></li>
+                                    <li><a href="#!">Front End Web Developer</a></li>
+                                    <li><a href="#!">Full Stack Web Developer</a></li>
+                                    <li><a href="#!">Program Manager</a></li>
+                                    <li><a href="#!">Project Manager</a></li>
+                                    <li><a href="#!">Systems Analyst</a></li>
+                                    <li><a href="#!">UX Designer</a></li>
+                                    <li><a href="#!">Web Developer</a></li>
+                                </ul>
+
+                                <br>
+                                <br>
+
+                                <!-- Percentile Data -->
+                                <div class="row center">
+                                    <div class="col s12 m4">
+                                        <p class="p-medium salary-25">choose</p>
+                                        <p class="">25th %</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium salary-50">a</p>
+                                        <p class="">50th %</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium salary-75">job</p>
+                                        <p class="">75th %</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- WEATHER & CLIMATE COLLAPSIBLE DIV -->
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>WEATHER & CLIMATE
+                            </div>
+                            <!-- Sample Specific Info Container -->
+                            <div class="container-fluid  container-white collapsible-body">
+                                <div class="row">
+                                    <div class="col s12 center-align center">
                                         <h3>WEATHER & CLIMATE</h3>
                                         <hr>
                                     </div>
                                 </div>
+
+                                <!-- Job and Salary Descriptive Text -->
+                                <p class="flow-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                                    sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde
+                                    quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
+                                <br>
+
                                 <div class="row center">
                                     <div class="col s12 m3">
                                         <p class="p-medium">12</p>
@@ -123,17 +193,24 @@
                                 </div>
                             </div>
                         </li>
+                        <!-- EDUCATION COLLAPSIBLE DIV -->
                         <li>
                             <div class="collapsible-header"><i class="material-icons">school</i>EDUCATION</div>
                             <!-- Sample Specific Info Container. Use  -->
-                            <!-- BACKEND: use the results-container class when creating new divs. Add container-[white,lightGray,darkGray] for color. Append to #data-containers -->
-                            <div class="container-fluid results-container container-white collapsible-body">
+                            <div class="container-fluid  container-white collapsible-body">
                                 <div class="row">
                                     <div class="col s12 center">
                                         <h3>EDUCATION</h3>
                                         <hr>
                                     </div>
                                 </div>
+
+                                <!-- Job and Salary Descriptive Text -->
+                                <p class="flow-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                                    sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde
+                                    quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
+                                <br>
+
                                 <div class="row center">
                                     <div class="col s12 m3">
                                         <p class="p-medium">9900</p>
@@ -154,17 +231,25 @@
                                 </div>
                             </div>
                         </li>
+                        <!-- HEALTH & SAFETY COLLAPSIBLE DIV -->
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">local_hospital</i>HEALTH & SAFETY</div>
+                            <div class="collapsible-header"><i class="material-icons">local_hospital</i>HEALTH & SAFETY
+                            </div>
                             <!-- Sample Specific Info Container. Use  -->
-                            <!-- BACKEND: use the results-container class when creating new divs. Add container-[white,lightGray,darkGray] for color. Append to #data-containers -->
-                            <div class="container-fluid results-container container-white collapsible-body">
+                            <div class="container-fluid  container-white collapsible-body">
                                 <div class="row">
                                     <div class="col s12 center">
                                         <h3>HEALTH & SAFETY</h3>
                                         <hr>
                                     </div>
                                 </div>
+
+                                <!-- Job and Salary Descriptive Text -->
+                                <p class="flow-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                                    sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde
+                                    quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
+                                <br>
+
                                 <div class="row center">
                                     <div class="col s12 m4">
                                         <p class="p-medium">9900</p>
@@ -195,17 +280,16 @@
                         </li>
                     </ul>
                 </div>
-
             </div>
+        </main>
+        <footer class="page-footer">
+            <div class="footer-copyright">
+                <div class="container">
+                    <p class="grey-text text-lighten-4 center">© 2020 Copyright Team 4</p>
+                </div>
+            </div>
+        </footer>
     </div>
-    </div>
-    </main>
-
-
-
-
-
-
     <!-- Materialize Links -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"
         integrity="sha512-m2PhLxj2N91eYrIGU2cmIu2d0SkaE4A14bCjVb9zykvp6WtsdriFCiXQ/8Hdj0kssUB/Nz0dMBcoLsJkSCto0Q=="
@@ -214,11 +298,16 @@
     <!-- Javascript Link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-   var elems = document.querySelectorAll('.collapsible');
-   var instances = M.Collapsible.init(elems, {accordion: false});
-});
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.collapsible');
+            var instances = M.Collapsible.init(elems, { accordion: false });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.dropdown-trigger');
+            var instances = M.Dropdown.init(elems, { alignment: "center" });
+        });
     </script>
 
     <!-- App functionality -->
