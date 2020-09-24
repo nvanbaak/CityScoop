@@ -102,24 +102,6 @@ input{
     width: 45%;
 }
 
-.filter{
-    justify-content: center;
-    text-align: center;
-}
-
-.filter li{
-    margin: 1.3rem !important;
-    width: 60px !important;
-    height: 60px !important;
-    /* background: rgb(70, 197, 236) !important; */
-    border-radius: 40% !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    font-size: 1.8rem;
-    color: #ffffff !important;
-    cursor: pointer !important;
-}
 
 .hide{
     display: none;
