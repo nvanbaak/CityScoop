@@ -63,7 +63,6 @@ function searchCities() {
         url:queryURL,
         method:"GET"
     }).then( function(response) {
-
         // Get url with geoname ID
         var geonameURL = response._embedded["city:search-results"][0]._links["city:item"].href;
 
@@ -92,12 +91,18 @@ function searchCities() {
                 // running through all states and only return the state that the inputted city is within
                 for (i = 0; i < 55; i++){
                     if (response[i].state===covidState){
-                        //returning specific data about the state's COVID status
-                        console.log("Data quality grade: " + response[i].dataQualityGrade)
-                        console.log("Negative cases: " + response[i].negative)
-                        console.log("Positive cases: " + response[i].positive)
-                        console.log("Total test cases: " + response[i].total)
-                        console.log("Total Deaths Confirmed: " + response[i].deathConfirmed)
+
+                        console.log("******************************************");
+                        console.log("COVID DATA BY STATE");
+                        console.log("******************************************");
+                        console.log(response);
+
+                        console.log("Last date updated: " + response[i].dateModified);
+                        console.log("Curently Hospitalized cases: " + response[i].hospitalizedCurrently);
+                        console.log("Total test cases: " + response[i].total);
+                        console.log("Negative cases: " + response[i].negative);
+                        console.log("Positive cases: " + response[i].positive);
+                        console.log("Total Deaths Confirmed: " + response[i].deathConfirmed);
                     }};
             })
             
@@ -114,6 +119,36 @@ function searchCities() {
                 console.log("URBAN AREA / DETAILS");
                 console.log("******************************************");
                 console.log(response);
+
+                //Healthcare related data
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / Healthcare");
+                console.log("Healthcare Cost: " + response.categories[7].data[0].float_value)
+                //The life-expectincy is a national number and doesn't change per city (recomend removing)
+                console.log("Life-Expectancy: " + response.categories[7].data[1].float_value)
+                console.log("Healthcare Quality: " + response.categories[7].data[3].float_value)
+                
+                
+                console.log("******************************************");
+
+                //Leisure/Culture data
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / Culture-Leisure");
+                console.log("Art Galleries: " + response.categories[4].data[1].int_value)
+                console.log("Cinemas: " + response.categories[4].data[3].int_value)
+                console.log("Concerts: " + response.categories[4].data[7].int_value)
+                console.log("Historical Sites: " + response.categories[4].data[9].int_value)
+                console.log("Museums: " + response.categories[4].data[11].int_value)
+                console.log("Performing Arts: " + response.categories[4].data[13].int_value)
+                console.log("Sports Venue: " + response.categories[4].data[15].int_value)
+                console.log("Zoos: " + response.categories[4].data[17].int_value)
+                console.log("******************************************");
+
+                //Traffic data
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / Traffic");
+                console.log("******************************************");
+               
             })
             
             // Urban area "images" pull
