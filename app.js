@@ -28,9 +28,6 @@ icon.addEventListener('click', function(event){
     if (!searchBarActive) {
         // Show the search bar
         searchBar.classList.toggle('search-active');
-        
-        // Toggle hide on filter items
-        filter.classList.remove('hide');
 
         // Flag that the search bar is active
         searchBarActive = true;
