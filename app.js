@@ -78,6 +78,10 @@ function searchCities() {
             console.log("******************************************");
             console.log(response);
             
+            // Update city name
+            $(".city-name").text(response.name);
+
+
             console.log("THE STATE ABBREVIATION IS: " + abbreviateState(response.full_name));
 
             //var to get the state from the previous ajax requests
