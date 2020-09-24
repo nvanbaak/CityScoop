@@ -51,14 +51,14 @@
     <div class="results-page-wrap hide">
         <nav>
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo">
+                <a href="index.html" class="brand-logo">
 
                     <img src="assets/img/logo-white-accent.png" class="logo-svg" alt="CityScoop">
 
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <!-- replace with Chris's search bar -->
-                    <li><a href="#">Back to Search</a></li>
+                    <li><a href="index.html">Back to Search</a></li>
                 </ul>
             </div>
         </nav>
@@ -120,7 +120,8 @@
                                     Title</a>
 
                                 <!-- Job Title Dropdown Structure -->
-                                <ul id='dropdown1' class='dropdown-content'></ul>
+                                <ul id='dropdown1' class='dropdown-content'>
+                                </ul>
 
                                 <br>
                                 <br>
@@ -128,59 +129,21 @@
                                 <!-- Percentile Data -->
                                 <div class="row center">
                                     <div class="col s12 m4">
-                                        <p class="p-medium salary-25">choose</p>
+                                        <p class="p-medium salary-25">NA</p>
                                         <p class="">25th %</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium salary-50">a</p>
+                                        <p class="p-medium salary-50">NA</p>
                                         <p class="">50th %</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium salary-75">job</p>
+                                        <p class="p-medium salary-75">NA</p>
                                         <p class="">75th %</p>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <!-- WEATHER & CLIMATE COLLAPSIBLE DIV -->
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>WEATHER & CLIMATE
-                            </div>
-                            <!-- Sample Specific Info Container -->
-                            <div class="container-fluid  container-white collapsible-body">
-                                <div class="row">
-                                    <div class="col s12 center-align center">
-                                        <h3>WEATHER & CLIMATE</h3>
-                                        <hr>
-                                    </div>
-                                </div>
-
-                                <!-- Job and Salary Descriptive Text -->
-                                <p class="flow-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-                                    sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde
-                                    quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
-                                <br>
-
-                                <div class="row center">
-                                    <div class="col s12 m3">
-                                        <p class="p-medium">12</p>
-                                        <p class="">AVG DAY LENGTH (Hours)</p>
-                                    </div>
-                                    <div class="col s12 m3">
-                                        <p class="p-medium">56</p>
-                                        <p class="">AVG NUMBER OF CLEAR DAYS PER YEAR</p>
-                                    </div>
-                                    <div class="col s12 m3">
-                                        <p class="p-medium">78</p>
-                                        <p class="">AVERAGE HIGH TEMP</p>
-                                    </div>
-                                    <div class="col s12 m3">
-                                        <p class="p-medium">42</p>
-                                        <p class="">AVERAGE LOW TEMP</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                        
                         <!-- EDUCATION COLLAPSIBLE DIV -->
                         <li>
                             <div class="collapsible-header"><i class="material-icons">school</i>EDUCATION</div>
@@ -221,8 +184,7 @@
                         </li>
                         <!-- HEALTH & SAFETY COLLAPSIBLE DIV -->
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">local_hospital</i>HEALTH & SAFETY
-                            </div>
+                            <div class="collapsible-header"><i class="material-icons">local_hospital</i>HEALTHCARE<span class="covid-header"> +COVID-19</span></div>
                             <!-- Sample Specific Info Container. Use  -->
                             <div class="container-fluid  container-white collapsible-body">
                                 <div class="row">
@@ -239,6 +201,10 @@
                                 <br>
 
                                 <div class="row center">
+                                    <div class="col s12 m12">
+                                        <H4>GENERAL HEALTHCARE DATA</H4>
+                                        <hr>
+                                    </div>
                                     <div class="col s12 m4">
                                         <p class="p-medium">9900</p>
                                         <p class="">STUDENTS</p>
@@ -262,6 +228,132 @@
                                     <div class="col s12 m4">
                                         <p class="p-medium">08%</p>
                                         <p class="">DROP OUT</p>
+                                    </div>
+                                </div>
+                                <div class="row center">
+                                    <div class="col s12 m12">
+                                        <H4>COVID-19 DATA</H4>
+                                        <hr>
+                                        <P>LAST UPDATED: <span id="covid-update-date">sample time</span></P>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium">170,000</p>
+                                        <p class="">TOTAL TESTS</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium">93,000</p>
+                                        <p class="">TOTAL POSITIVE CASES</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium">168,000</p>
+                                        <p class="">TOTAL NEGATIVE CASES</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium">112</p>
+                                        <p class="">CURRENTLY HOSPITALIZED</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium">8%</p>
+                                        <p class="">% POSITIVE CASES</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium">3020</p>
+                                        <p class="">TOTAL DEATHS</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- WEATHER & CLIMATE COLLAPSIBLE DIV -->
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>WEATHER & CLIMATE
+                            </div>
+                            <!-- Sample Specific Info Container -->
+                            <div class="container-fluid  container-white collapsible-body">
+                                <div class="row">
+                                    <div class="col s12 center-align center">
+                                        <h3>WEATHER & CLIMATE</h3>
+                                        <hr>
+                                    </div>
+                                </div>
+
+                                <!-- Job and Salary Descriptive Text -->
+                                <p class="flow-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                                    sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde
+                                    quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
+                                <br>
+
+                                <div class="row center">
+                                    <div class="col s12 m3">
+                                        <p class="p-medium">12</p>
+                                        <p class="">AVG DAY LENGTH (Hours)</p>
+                                    </div>
+                                    <div class="col s12 m3">
+                                        <p class="p-medium">56</p>
+                                        <p class="">AVG NUMBER OF CLEAR DAYS PER YEAR</p>
+                                    </div>
+                                    <div class="col s12 m3">
+                                        <p class="p-medium">78</p>
+                                        <p class="">AVERAGE HIGH TEMP</p>
+                                    </div>
+                                    <div class="col s12 m3">
+                                        <p class="p-medium">42</p>
+                                        <p class="">AVERAGE LOW TEMP</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- CULTURE & LEISURE COLLAPSIBLE DIV -->
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">local_activity</i>CULTURE & LEISURE</div>
+                            <!-- Sample Specific Info Container. Use  -->
+                            <div class="container-fluid  container-white collapsible-body">
+                                <div class="row">
+                                    <div class="col s12 center">
+                                        <h3>CULTURE & LEISURE</h3>
+                                        <hr>
+                                    </div>
+                                </div>
+
+                                <!-- Job and Salary Descriptive Text -->
+                                <p class="flow-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                                    sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde
+                                    quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
+                                <br>
+
+                                <div class="row center">
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">100</p>
+                                        <p class="">ART GALLERIES</p>
+                                    </div>
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">150</p>
+                                        <p class="">CINEMAS</p>
+                                    </div>
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">81</p>
+                                        <p class="">CONCERTS</p>
+                                    </div>
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">83</p>
+                                        <p class="">HISTORICAL SITES</p>
+                                    </div>
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">1</p>
+                                        <p class="">MUSEUMS</p>
+                                    </div>
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">45</p>
+                                        <p class="">PERFORMING ARTS</p>
+                                    </div>
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">111</p>
+                                        <p class="">SPORTS VENUES</p>
+                                    </div>
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">19</p>
+                                        <p class="">ZOOS</p>
                                     </div>
                                 </div>
                             </div>
