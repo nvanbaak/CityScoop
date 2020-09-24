@@ -172,11 +172,12 @@ function searchCities() {
                     // Add heading to container
                     var sHeaderRow = $("<div>", {"class":"row"});
                     var sHeaderCol = $("<div>", {"class":"col s12 m3"});
-                    var sHeader = $("<h1>").text("SALARY");
+                    var sHeader = $("<h3>").text("SALARY");
 
                     sHeaderCol.append(sHeader);
                     sHeaderCol.append($("<hr>"));
                     sHeaderRow.append(sHeaderCol);
+                    salaryPanelContainer.append(sHeaderRow);
 
                     // Create dropdown for data
                     var salaryData = response.salaries;
@@ -186,9 +187,38 @@ function searchCities() {
                     for (i in salaryData) {
 
                         // Create option
-                        var newOption = $("<option>",{"value":salaryData[i].job.title})
+                        var newOption = $("<option>",{"value":salaryData[i].job.title});
+                        sDropdown.append(newOption);
 
                     }
+
+
+                    var dataRow = $("<div>",{"class":"row center"});
+                    
+                    dataRow.append(
+                        $("<div>",{"class":"col s12 m3"}).append(sDropdown)
+                    );
+
+                    dataRow.append(
+                        $("<div>",{"class":"col s12 m3"}).append(
+                            $("<h1>").text(salaryData[0].salary_percentiles.percentile_25),
+                            $("<p>").text("AVG SALARY (25th PERCENTILE)")
+                        )
+                    )
+                    dataRow.append(
+                        $("<div>",{"class":"col s12 m3"}).append(
+                            $("<h1>").text(salaryData[0].salary_percentiles.percentile_50),
+                            $("<p>").text("AVG SALARY (50th PERCENTILE)")
+                        )
+                    )
+                    dataRow.append(
+                        $("<div>",{"class":"col s12 m3"}).append(
+                            $("<h1>").text(salaryData[0].salary_percentiles.percentile_75),
+                            $("<p>").text("AVG SALARY (75th PERCENTILE)")
+                        )
+                    )
+                    
+                    $("#data-containers").append(salaryPanelContainer);
 
                 })
             }
