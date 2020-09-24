@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-                </div>
+    </div>
 
     <!-- ***************** RESULTS PAGE **************** -->
 
@@ -92,10 +92,64 @@
 
 
                     <ul class="collapsible popout">
+                        <!-- JOB & SALARY COLLAPSIBLE DIV -->
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>WEATHER & CLIMATE</div>
+                            <div class="collapsible-header"><i class="material-icons">work</i>JOB & SALARY</div>
+                            <!-- Sample Specific Info Container. Use  -->
+                            <div class="container-fluid results-container container-white center collapsible-body">
+                                <div class="row">
+                                    <div class="col s12 center">
+                                        <h3>JOB & SALARY</h3>
+                                        <hr>
+                                    </div>
+                                </div>
+                                
+                                <!-- Job and Salary Descriptive Text -->
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
+                                <br>
+
+                                <!-- Job Title Dropdown Trigger -->
+                                <a class='dropdown-trigger btn center' href='#' data-target='dropdown1'>Select a Job Title</a>
+
+                                <!-- Job Title Dropdown Structure -->
+                                <ul id='dropdown1' class='dropdown-content'>
+                                    <li><a href="#!">AWS Engineer</a></li>
+                                    <li><a href="#!">Back End Web Developer</a></li>
+                                    <li><a href="#!">Business Analyst</a></li>
+                                    <li><a href="#!">Electrical Engineer</a></li>
+                                    <li><a href="#!">Front End Web Developer</a></li>
+                                    <li><a href="#!">Full Stack Web Developer</a></li>
+                                    <li><a href="#!">Program Manager</a></li>
+                                    <li><a href="#!">Project Manager</a></li>
+                                    <li><a href="#!">Systems Analyst</a></li>
+                                    <li><a href="#!">UX Designer</a></li>
+                                    <li><a href="#!">Web Developer</a></li>
+                                
+                                <br>
+
+                                <!-- Percentile Data -->
+                                </ul>
+                                <div class="row center">
+                                    <div class="col s12 m4">
+                                        <p class="p-medium">$56,000</p>
+                                        <p class="">25TH</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium">$82,000</p>
+                                        <p class="">50TH</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium">$105,000</p>
+                                        <p class="">75TH</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- WEATHER & CLIMATE COLLAPSIBLE DIV -->
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>WEATHER & CLIMATE
+                            </div>
                             <!-- Sample Specific Info Container -->
-                            <!-- BACKEND: use the results-container class when creating new divs. Add container-[white,lightGray,darkGray] for color. Append to #data-containers -->
                             <div class="container-fluid results-container container-white collapsible-body">
                                 <div class="row">
                                     <div class="col s12 center">
@@ -123,10 +177,10 @@
                                 </div>
                             </div>
                         </li>
+                        <!-- EDUCATION COLLAPSIBLE DIV -->
                         <li>
                             <div class="collapsible-header"><i class="material-icons">school</i>EDUCATION</div>
                             <!-- Sample Specific Info Container. Use  -->
-                            <!-- BACKEND: use the results-container class when creating new divs. Add container-[white,lightGray,darkGray] for color. Append to #data-containers -->
                             <div class="container-fluid results-container container-white collapsible-body">
                                 <div class="row">
                                     <div class="col s12 center">
@@ -154,10 +208,11 @@
                                 </div>
                             </div>
                         </li>
+                        <!-- HEALTH & SAFETY COLLAPSIBLE DIV -->
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">local_hospital</i>HEALTH & SAFETY</div>
+                            <div class="collapsible-header"><i class="material-icons">local_hospital</i>HEALTH & SAFETY
+                            </div>
                             <!-- Sample Specific Info Container. Use  -->
-                            <!-- BACKEND: use the results-container class when creating new divs. Add container-[white,lightGray,darkGray] for color. Append to #data-containers -->
                             <div class="container-fluid results-container container-white collapsible-body">
                                 <div class="row">
                                     <div class="col s12 center">
@@ -210,6 +265,11 @@
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.collapsible');
             var instances = M.Collapsible.init(elems, { accordion: false });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.dropdown-trigger');
+            var instances = M.Dropdown.init(elems, { alignment: "center" });
         });
     </script>
 
