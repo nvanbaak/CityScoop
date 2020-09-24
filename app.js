@@ -79,7 +79,7 @@ function searchCities() {
             console.log(response);
             
             // Update city name
-            $(".city-name").text(response.name);
+            $(".city-name").text((response.name).toUpperCase());
 
             //var to get the state from the previous ajax requests
             var covidState =  abbreviateState(response.full_name)
