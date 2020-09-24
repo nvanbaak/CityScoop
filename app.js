@@ -148,7 +148,6 @@ function searchCities() {
 
                 for (i in salaryData) {
                     // Create option
-                    // var newLink = $("<a>",{"href":"#!"}).text(salaryData[i].job.title);
                     var newLink = $("<a>",{"data-salary-index":i}).text(salaryData[i].job.title);
                     // Append to list element
                     var newListEl = $("<li>").append(newLink);
@@ -156,8 +155,25 @@ function searchCities() {
                     dropdown.append(newListEl);
                 }
 
+                // Dropdown reponds to clicking one of the options
                 dropdown.on("click", function(event) {
 
+                    // Only fire if we're clicking on a link icon
+                    if ( event.target.matches("a") ) {
+
+                        // Get the data index from the target element
+                        var sIndex = event.target.dataset.salaryIndex;
+
+                        // Update 25th percentile
+                        $(".salary-25").text(salaryData[sIndex].salary_percentiles.percentile_25);
+
+                        // Update 50th percentile
+                        $(".salary-50").text(salaryData[sIndex].salary_percentiles.percentile_50);
+
+                        // Update 75th percentile
+                        $(".salary-75").text(salaryData[sIndex].salary_percentiles.percentile_75);
+
+                    };
 
                 });
 
