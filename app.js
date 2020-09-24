@@ -1,21 +1,6 @@
 // Get references to main page elements
 const icon = document.querySelector('.icon');
 const searchBar = document.getElementById("search-bar");
-const filterListDiv = document.querySelector('.filter-list-div');
-const filter = document.querySelector('.filter');
-const filterArray = [1, 2, 3];
-
-// Populate filters
-for(let i = 0; i < filterArray.length; i++) {
-
-    // Create list elements for each index: filterArray
-    let filterItems = document.createElement('li');
-    filterItems.setAttribute('class', 'filterArg waves-effect waves-light btn');
-    filterItems.textContent = filterArray[i];
-
-    // Append to filter list
-    filter.appendChild(filterItems);
-}
 
 // This variable toggles the search button behavior
 var searchBarActive = false;
