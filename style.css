@@ -38,9 +38,9 @@ HERO IMAGE STYLING
     
     /* Position and center the image to scale nicely on all screens */
     background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }
 
 /* Place text in the middle of the image */
@@ -53,8 +53,12 @@ HERO IMAGE STYLING
 }
 
 /* =========================================
-SEARCH BAR STYLING
+SEARCH BAR STYLING & Logo
  =========================================*/
+.mt-logo{
+    margin-top: 200px;
+}
+
 .brand {
     width:100%;
     height:100%;
@@ -125,6 +129,23 @@ input{
     display:flex;
 }
 
-/* .search-column {
-    width: 100%
-} */
+/* =========================================
+Results Containers Styling
+ =========================================*/
+
+ .results-container{
+     padding: 0 50px 20px 50px;
+ }
+
+ .container-lightGray {
+     background-color: lightgray;
+ }
+
+ .container-darkGray {
+     background-color: darkgray;
+ }
+
+
+ .container-white {
+     background-color: white;
+ }
