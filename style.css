@@ -10,6 +10,10 @@ body{
     background: #252525;
 }
 
+p, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+}
+
 
 /* =========================================
 NAV BAR STYLING
@@ -34,7 +38,7 @@ HERO IMAGE STYLING
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://assetfunders.org/wp-content/uploads/seattle.jpeg");
     
     /* Set a specific height */
-    height: 250px;
+    height: 400px;
     
     /* Position and center the image to scale nicely on all screens */
     background-position: center;
@@ -46,7 +50,7 @@ HERO IMAGE STYLING
 /* Place text in the middle of the image */
 .hero-text {
     font-family: 'Anton', sans-serif;
-    padding-top: 25px;
+    padding-top: 60px;
     text-align: center;
     color: white;
   word-wrap: break-word;
@@ -144,4 +148,14 @@ Results Containers Styling
 
  .container-white {
      background-color: white;
+ }
+
+ .p-small {
+    font-size: .5em;
+ }
+ .p-medium {
+    font-size: 5em;
+ }
+ .p-large {
+    font-size: 3em;
  }
