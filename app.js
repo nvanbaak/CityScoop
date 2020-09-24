@@ -1,21 +1,6 @@
 // Get references to main page elements
 const icon = document.querySelector('.icon');
 const searchBar = document.getElementById("search-bar");
-const filterListDiv = document.querySelector('.filter-list-div');
-const filter = document.querySelector('.filter');
-const filterArray = [1, 2, 3];
-
-// Populate filters
-for(let i = 0; i < filterArray.length; i++) {
-
-    // Create list elements for each index: filterArray
-    let filterItems = document.createElement('li');
-    filterItems.setAttribute('class', 'filterArg waves-effect waves-light btn hide');
-    filterItems.textContent = filterArray[i];
-
-    // Append to filter list
-    filter.appendChild(filterItems);
-}
 
 
 // Temp variables that will be replaced by the filters once those are active
@@ -35,13 +20,7 @@ icon.addEventListener('click', function(event){
     // If this is the first time the button's been clicked,
     if (!searchBarActive) {
         // Show the search bar
-        searchBar.classList.toggle('active');
-        
-        // Toggle hide on filter items
-        let filterArgArray = document.querySelectorAll('.filterArg');
-        for(let i =0; i < filterArray.length; i++){
-            filterArgArray[i].classList.toggle('hide');
-        }
+        searchBar.classList.toggle('search-active');
 
         // Flag that the search bar is active
         searchBarActive = true;
@@ -70,8 +49,10 @@ searchBar.addEventListener('keypress', function(e){
         document.querySelector(".start-page-wrap").classList.toggle("hide");
         document.querySelector(".results-page-wrap").classList.toggle("hide");
         
+
         // Search
         searchCities();
+
     }
 });
 
