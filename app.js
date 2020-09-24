@@ -132,11 +132,6 @@ function searchCities() {
                 url:`${urbanURL+"salaries"}`,
                 method:"GET"
             }).then( function(response) {
-                
-                console.log("******************************************");
-                console.log("URBAN AREA / SALARIES");
-                console.log("******************************************");
-                console.log(response);
 
                 // SALARY PANEL
 
@@ -164,8 +159,6 @@ function searchCities() {
                         // Get the data index from the target element
                         var sIndex = event.target.dataset.salaryIndex;
 
-                        console.log();
-
                         // Parse salary data for 25th %ile
                         var salary25 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_25);
                         salary25 = insertCommasIntoNumbers(salary25);
@@ -187,11 +180,8 @@ function searchCities() {
                         // Update display
                         $(".salary-75").text("$" + salary75);
                     };
-
                 });
-
             })
-            
             
             // Urban area "scores" pull
             $.ajax({
