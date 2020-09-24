@@ -17,6 +17,14 @@ for(let i = 0; i < filterArray.length; i++) {
     filter.appendChild(filterItems);
 }
 
+
+// Temp variables that will be replaced by the filters once those are active
+var salaryPanel = true;
+
+
+
+
+
 // This variable toggles the search button behavior
 var searchBarActive = false;
 
@@ -146,16 +154,44 @@ function searchCities() {
             
             
             // Urban area "salaries" pull
-            $.ajax({
-                url:`${urbanURL+"salaries"}`,
-                method:"GET"
-            }).then( function(response) {
-                
-                console.log("******************************************");
-                console.log("URBAN AREA / SALARIES");
-                console.log("******************************************");
-                console.log(response);
-            })
+            if (salaryPanel) {
+
+                $.ajax({
+                    url:`${urbanURL+"salaries"}`,
+                    method:"GET"
+                }).then( function(response) {
+                    
+                    console.log("******************************************");
+                    console.log("URBAN AREA / SALARIES");
+                    console.log("******************************************");
+                    console.log(response);
+
+                    // Create container
+                    var salaryPanelContainer = $("<div>", {"class":"container-fluid results-container container-white"});
+
+                    // Add heading to container
+                    var sHeaderRow = $("<div>", {"class":"row"});
+                    var sHeaderCol = $("<div>", {"class":"col s12 m3"});
+                    var sHeader = $("<h1>").text("SALARY");
+
+                    sHeaderCol.append(sHeader);
+                    sHeaderCol.append($("<hr>"));
+                    sHeaderRow.append(sHeaderCol);
+
+                    // Create dropdown for data
+                    var salaryData = response.salaries;
+                    var sDropdown = $("<select>",{"name":"Salaries","id":"salary-dropdown"});
+
+                    // Create an option for each job title
+                    for (i in salaryData) {
+
+                        // Create option
+                        var newOption = $("<option>",{"value":salaryData[i].job.title})
+
+                    }
+
+                })
+            }
             
             // Urban area "scores" pull
             $.ajax({
@@ -169,10 +205,7 @@ function searchCities() {
                 console.log(response);
             })
         })
-
     })
-
-    
 }
 
 function abbreviateState(fullname) {
