@@ -165,8 +165,7 @@ function searchCities() {
                         var sIndex = event.target.dataset.salaryIndex;
 
                         // Update 25th percentile
-                        var salary25 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_25)
-
+                        var salary25 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_25);
 
                         $(".salary-25").text(salary25);
 
@@ -319,3 +318,36 @@ function roundToTenThousand(num) {
     // This function rounds the given number to the nearest ten thousands
     return Math.round(num / 1000) * 1000
 }
+
+
+
+
+function insertCommasIntoNumbers(num) {
+    // This function takes a number and inserts commas every three digits
+
+    var oldNum = num.toString();
+    var transitionNum;
+    var newNum;
+    var numIndex = 0;
+
+    // Run through each digit of the number in reverse (so starting with the ones digit)
+    for (i = oldNum.length(); i > -1; i--) {
+
+        transitionNum = transitionNum + oldNum[i];
+
+        // Count up
+        numIndex++;
+        // If this is the third number add a comma and reset
+        // We also don't adda comma if this is the first number in the string
+        if (numIndex === 3 && i > 0) {
+            transitionNum += ",";
+            numIndex = 0;
+        }
+    }
+
+    // Then reverse the transition number to get the final result
+
+}
+
+
+console.log(insertCommasIntoNumbers(100,000));
