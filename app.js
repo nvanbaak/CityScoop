@@ -164,17 +164,28 @@ function searchCities() {
                         // Get the data index from the target element
                         var sIndex = event.target.dataset.salaryIndex;
 
-                        // Update 25th percentile
+                        console.log();
+
+                        // Parse salary data for 25th %ile
                         var salary25 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_25);
+                        salary25 = insertCommasIntoNumbers(salary25);
 
-                        $(".salary-25").text(salary25);
+                        // Update display
+                        $(".salary-25").text("$" + salary25);
+                        
+                        // Parse salary data for 50th %ile
+                        var salary50 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_50);
+                        salary50 = insertCommasIntoNumbers(salary50);
 
-                        // Update 50th percentile
-                        $(".salary-50").text(roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_50));
+                        // Update display
+                        $(".salary-50").text("$" + salary50);
+                        
+                        // Parse salary data for 75th %ile
+                        var salary75 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_75);
+                        salary75 = insertCommasIntoNumbers(salary75);
 
-                        // Update 75th percentile
-                        $(".salary-75").text(roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_75));
-
+                        // Update display
+                        $(".salary-75").text("$" + salary75);
                     };
 
                 });
@@ -326,12 +337,12 @@ function insertCommasIntoNumbers(num) {
     // This function takes a number and inserts commas every three digits
 
     var oldNum = num.toString();
-    var transitionNum;
-    var newNum;
+    var transitionNum = "";
+    var newNum = "";
     var numIndex = 0;
 
     // Run through each digit of the number in reverse (so starting with the ones digit)
-    for (i = oldNum.length(); i > -1; i--) {
+    for (i = oldNum.length-1; i > -1; i--) {
 
         transitionNum = transitionNum + oldNum[i];
 
@@ -346,8 +357,12 @@ function insertCommasIntoNumbers(num) {
     }
 
     // Then reverse the transition number to get the final result
+    for (i = transitionNum.length-1; i > -1; i--) {
+        newNum += transitionNum[i];
+    }
 
+    // Return number
+    return newNum;
 }
 
-
-console.log(insertCommasIntoNumbers(100,000));
+console.log(insertCommasIntoNumbers(10000000000));
