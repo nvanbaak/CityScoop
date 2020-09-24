@@ -150,11 +150,17 @@ Results Containers Styling
 
  .collapsible-header {
      background-color: white;
+     font-size: larger;
  }
 
  .collapsible-header:hover {
      background-color: lightgrey;
      font: white;
+     font-weight: bold;
+ }
+
+ .covid-header {
+     color: red;
      font-weight: bold;
  }
 
