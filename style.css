@@ -97,7 +97,7 @@ input{
     transform: translateX(-30px) rotate(-45deg);
 }
 
-.active{
+.search-active{
     display: block;
     width: 45%;
 }
@@ -124,7 +124,7 @@ Results Containers Styling
  }
 
  .container-lightGray {
-     background-color: lightgray;
+     background-color: rgb(241, 241, 241);
  }
 
  .container-darkGray {

@@ -12,7 +12,7 @@ icon.addEventListener('click', function(event){
     // If this is the first time the button's been clicked,
     if (!searchBarActive) {
         // Show the search bar
-        searchBar.classList.toggle('active');
+        searchBar.classList.toggle('search-active');
 
         // Flag that the search bar is active
         searchBarActive = true;
@@ -41,8 +41,10 @@ searchBar.addEventListener('keypress', function(e){
         document.querySelector(".start-page-wrap").classList.toggle("hide");
         document.querySelector(".results-page-wrap").classList.toggle("hide");
         
+
         // Search
         searchCities();
+
     }
 });
 
