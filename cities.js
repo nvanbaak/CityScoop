@@ -198264,7 +198264,7 @@ var citiesArr= [
 ];
 
 // filter for array to narrow down city id, findCities returns a single object, run a find() to get the city ID
-var findCities = citiesArr.filter(city=> (city.name === "Bethel" && city.state === "AK"));
+var findCities = citiesArr.filter(city=> (city.name === "seattle" && city.state === "WA"));
 console.log("find cities", findCities)
 var cityId = findCities[0].id
 console.log("cityId" , cityId)

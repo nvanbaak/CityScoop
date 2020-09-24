@@ -28,12 +28,7 @@ icon.addEventListener('click', function(event){
     if (!searchBarActive) {
         // Show the search bar
         searchBar.classList.toggle('active');
-<<<<<<< HEAD
-        //Hide the filter options
-        
-=======
->>>>>>> dev
-        
+
         // Toggle hide on filter items
         filter.classList.remove('hide');
 
