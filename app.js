@@ -42,6 +42,12 @@ icon.addEventListener('click', function(event){
     } else {
         // But only if there's something in the search bar
         if (searchBar.value) {
+
+            // Toggle which page is visible
+            document.querySelector(".start-page-wrap").classList.toggle("hide");
+            document.querySelector(".results-page-wrap").classList.toggle("hide");
+            
+            // Run the search
             searchCities();
         }
     }
@@ -51,6 +57,12 @@ icon.addEventListener('click', function(event){
 //function to initiate search using 'Enter' key
 searchBar.addEventListener('keypress', function(e){
     if(e.key === 'Enter' && searchBar.value) {
+
+        // Toggle which page is visible
+        document.querySelector(".start-page-wrap").classList.toggle("hide");
+        document.querySelector(".results-page-wrap").classList.toggle("hide");
+        
+        // Search
         searchCities();
     }
 });
