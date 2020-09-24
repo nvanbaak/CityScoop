@@ -29,7 +29,7 @@ icon.addEventListener('click', function(event){
         // Show the search bar
         searchBar.classList.toggle('active');
         //Hide the filter options
-        filterItems.classList.remove('hide');
+        
         
         // Toggle hide on filter items
         let filterArgArray = document.querySelectorAll('.filterArg');
