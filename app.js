@@ -139,11 +139,9 @@ function searchCities() {
                 url:`${urbanURL+"images"}`,
                 method:"GET"
             }).then( function(response) {
-                
-                console.log("******************************************");
-                console.log("URBAN AREA / IMAGES");
-                console.log("******************************************");
-                console.log(response);
+
+                heroImg = response.photos[0].image.web; 
+                $(".hero-image").css("background-image", `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${heroImg})`);
             })
             
             
