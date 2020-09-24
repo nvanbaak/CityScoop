@@ -120,7 +120,7 @@ Results Containers Styling
  =========================================*/
 
  .results-container{
-     padding: 0 50px 20px 50px;
+     padding: 0 25px 20px 25px;
  }
 
  .container-lightGray {
@@ -139,10 +139,23 @@ Results Containers Styling
  .p-small {
     font-size: .5em;
  }
+
  .p-medium {
-    font-size: 5em;
+    font-size: 4em;
  }
+
  .p-large {
+    font-size: 4em;
+ }
+
+ .collapsible-header {
+     background-color: white;
+ }
+
+ .collapsible-header:hover {
+     background-color: lightgrey;
+     font: white;
+     font-weight: bold;
     font-size: 3em;
  }
 
