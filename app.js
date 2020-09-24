@@ -2,14 +2,6 @@
 const icon = document.querySelector('.icon');
 const searchBar = document.getElementById("search-bar");
 
-
-// Temp variables that will be replaced by the filters once those are active
-var salaryPanel = true;
-
-
-
-
-
 // This variable toggles the search button behavior
 var searchBarActive = false;
 
@@ -135,78 +127,37 @@ function searchCities() {
             
             
             // Urban area "salaries" pull
-            if (salaryPanel) {
+            $.ajax({
+                url:`${urbanURL+"salaries"}`,
+                method:"GET"
+            }).then( function(response) {
+                
+                console.log("******************************************");
+                console.log("URBAN AREA / SALARIES");
+                console.log("******************************************");
+                console.log(response);
 
-                $.ajax({
-                    url:`${urbanURL+"salaries"}`,
-                    method:"GET"
-                }).then( function(response) {
+                // SALARY PANEL
+
+                // Grab salary data
+                var salaryData = response.salaries;
+                
+                // Create an option for each job title
+
+                var dropdown = $("#dropdown1")
+
+                for (i in salaryData) {
                     
-                    console.log("******************************************");
-                    console.log("URBAN AREA / SALARIES");
-                    console.log("******************************************");
-                    console.log(response);
-
-                    // Create container
-                    var salaryPanelContainer = $("<div>", {"class":"container-fluid results-container container-white"});
-
-                    // Add heading to container
-                    var sHeaderRow = $("<div>", {"class":"row"});
-                    var sHeaderCol = $("<div>", {"class":"col s12 m3"});
-                    var sHeader = $("<h3>").text("SALARY");
-
-                    sHeaderCol.append(sHeader);
-                    sHeaderCol.append($("<hr>"));
-                    sHeaderRow.append(sHeaderCol);
-                    salaryPanelContainer.append(sHeaderRow);
-
-                    // Create dropdown for data
-                    var salaryData = response.salaries;
-                    var sDropdown = $("<select>",{"name":"Salaries","id":"salary-dropdown"});
-
-                    // Create an option for each job title
-                    for (i in salaryData) {
-
-                        // Create option
-                        var newOption = $("<option>",{"value":salaryData[i].job.title});
-                        sDropdown.append(newOption);
-
-                    }
+                    console.log(salaryData[i].job.title);
+                    // Create option
+                    // var newJob = $("<option>",{"value":salaryData[i].job.title});
 
 
-                    var dataRow = $("<div>",{"class":"row center"});
-                    
-                    dataRow.append(
-                        $("<div>",{"class":"col s12 m3"}).append(sDropdown)
-                    );
+                }
 
-                    dataRow.append(
-                        $("<div>",{"class":"col s12 m3"}).append(
-                            $("<h1>").text(salaryData[0].salary_percentiles.percentile_25),
-                            $("<p>").text("AVG SALARY (25th PERCENTILE)")
-                        )
-                    )
-                    dataRow.append(
-                        $("<div>",{"class":"col s12 m3"}).append(
-                            $("<h1>").text(salaryData[0].salary_percentiles.percentile_50),
-                            $("<p>").text("AVG SALARY (50th PERCENTILE)")
-                        )
-                    )
-                    dataRow.append(
-                        $("<div>",{"class":"col s12 m3"}).append(
-                            $("<h1>").text(salaryData[0].salary_percentiles.percentile_75),
-                            $("<p>").text("AVG SALARY (75th PERCENTILE)")
-                        )
-                    )
-                    
-                    // Append to panel
-                    salaryPanelContainer.append(dataRow);
 
-                    // Append panel to page
-                    $("#data-containers").append(salaryPanelContainer);
-
-                })
-            }
+            })
+            
             
             // Urban area "scores" pull
             $.ajax({
