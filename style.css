@@ -53,8 +53,12 @@ HERO IMAGE STYLING
 }
 
 /* =========================================
-SEARCH BAR STYLING
+SEARCH BAR STYLING & Logo
  =========================================*/
+.mt-logo{
+    margin-top: 200px;
+}
+
 .brand {
     width:100%;
     height:100%;
