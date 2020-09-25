@@ -96,10 +96,24 @@ function searchCities() {
                         stateIndex = i;
                     }};
 
-                    console.log("Last date updated: " + response[i].dateModified);
                     // Date modified
                     $("#covid-update-date").text(parseDate(response[stateIndex].dateModified));
-
+                    
+                    // Covid test total (sanitized)
+                    $(".covid-test-total").text(sanitize(response[stateIndex].total,5));
+                    
+                    // Positive covid cases
+                    $(".covid-pos-cases").text(sanitize(response[stateIndex].positive,4));
+                    
+                    console.log("Negative cases: " + response[stateIndex].negative);
+                    $(".covid-neg-cases").text(sanitize(response[stateIndex].negative,4));
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     // console.log("******************************************");
                     // console.log("COVID DATA BY STATE");
                     // console.log("******************************************");
@@ -107,14 +121,8 @@ function searchCities() {
 
                     
 
-                    // console.log("Total test cases: " + response[i].total);
-                    // $(".covid-test-total").text(response[i].total);
                     
-                    // console.log("Positive cases: " + response[i].positive);
-                    // $(".covid-pos-cases").text(response[i].positive);
                     
-                    // console.log("Negative cases: " + response[i].negative);
-                    // $(".covid-neg-cases").text(response[i].negative);
                     
                     // console.log("Curently Hospitalized cases: " + response[i].hospitalizedCurrently);
                     // $(".covid-hosp").text(response[i].hospitalizedCurrently);
@@ -372,10 +380,10 @@ function abbreviateState(fullname) {
     }
 }
 
-function sanitize(num) {
+function sanitize(num,round) {
     // Sanitize takes ugly large numbers and translates them into lovely round numbers with comma separators
 
-    return insertCommasIntoNumbers(roundToTenThousand(num));
+    return insertCommasIntoNumbers(roundToPreDecimal(num,round));
 
 }
 
@@ -383,6 +391,18 @@ function roundToTenThousand(num) {
     // This function rounds the given number to the nearest ten thousands
     return Math.round(num / 1000) * 1000
 }
+
+function roundToPreDecimal(num, dec) {
+    // rounds to the specified digit (e.g. entering 2 means the tens place will be the last non-zero number)
+
+    // Generate order of magnitude
+    var order = 10**(dec-1);
+
+    return Math.round(num / order) * order;
+
+}
+
+
 
 function insertCommasIntoNumbers(num) {
     // This function takes a number and inserts commas every three digits
