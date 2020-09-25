@@ -400,3 +400,72 @@ function insertCommasIntoNumbers(num) {
     // Return number
     return newNum;
 }
+
+function parseDate(uglyDate) {
+    // parseDate takes a date of numericalform YYYYMMDD and translates it into something user-friendly
+
+    var newYear = "";
+    var newMonth = "";
+    var newDay = "";
+
+    // Grab the information from the ugly date
+    for (i = 0; i < uglyDate.length; i++) {
+        
+        // First four numbers assumed to be the year
+        if (i < 4) {
+            newYear += uglyDate[i];
+        } else if (i < 6) {
+            // Next is month
+            newMonth += uglyDate[i];
+        } else {
+            // Day last
+            newDay += uglyDate[i];
+        }
+    }
+
+    // Translate the month into words
+    switch (newMonth) {
+        case 01:
+            newMonth = "January";
+            break;
+        case 02:
+            newMonth = "February";
+            break;
+        case 03:
+            newMonth = "March";
+            break;
+        case 04:
+            newMonth = "April";
+            break;
+        case 05:
+            newMonth = "May";
+            break;
+        case 06:
+            newMonth = "June";
+            break;
+        case 07:
+            newMonth = "July";
+            break;
+        case 08:
+            newMonth = "August";
+            break;
+        case 09:
+            newMonth = "September";
+            break;
+        case 10:
+            newMonth = "October";
+            break;
+        case 11:
+            newMonth = "Novembet";
+            break;
+        case 12:
+            newMonth = "December";
+            break;
+        default:
+            newMonth = "Write your congressmional representative, this isn't a real month";
+            break;
+    }
+
+    return newMonth + " " + newDay + ", " + newYear;
+
+}
