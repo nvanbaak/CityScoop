@@ -280,17 +280,17 @@ function searchCities() {
             var unixFiveDayAgo = unixDateNow - (5 * 86400)
             // This gives the unix date 30 days ago.
             var unixMonthAgo = unixDateNow - (30 * 86400)
-                console.log("unix date: ", unixDateNow) 
-                console.log("unix a month ago:", unixMonthAgo)
+               //console.log("unix date: ", unixDateNow) 
+               //console.log("unix a month ago:", unixMonthAgo)
             
             // This retrieves the city id number, latitude, and longitude from teleport API in parent ajax.
-            console.log("data check on current city", response)
+            //console.log("data check on current city", response)
             var cityId = response.geoname_id
             var lat = response.location.latlon.latitude
             var lon = response.location.latlon.longitude
-                console.log("lat:", lat)
-                console.log("lon:", lon)
-                console.log("city id", cityId)
+                //console.log("lat:", lat)
+                //console.log("lon:", lon)
+                //console.log("city id", cityId)
                    
                 // --------------------------------URLs with end points for openweathermap API ------------------------------ 
 
@@ -301,16 +301,27 @@ function searchCities() {
             var cityHistory = "http://history.openweathermap.org/data/2.5/history/city?id="+ cityId +"&type=hour&start="+ unixDateNow +"&end="+ unixMonthAgo +"&appid=cf54ce47ff5608fa5caf5b89772775c4";
             
             // Ask url for history data
+
+            $.ajax({
+                url: oneWeekHistory,
+                method:"GET"
+            }).then( function(urlCityHistoryMain) {
+                console.log("******************************************");
+            console.log("City weather history data main");
+            console.log("******************************************");
+            console.log("Main City Data Branch: ", urlCityHistoryMain);
+            
+            });
+
             $.ajax({
                 url: oneWeekHistory,
                 method:"GET"
             }).then( function(urlCityHistory) {
                     
-                console.log("wx city history response: " , urlCityHistory);
+                //console.log("wx city history response: " , urlCityHistory);
             // This is to determine minimum and maximum temps for the year * again, proof of concept, this is only doing it for a week ago today. 
                 var tempArr = urlCityHistory.hourly;
-                    console.log("temp array for temps", tempArr);
-               
+          
                 // Isolate the temperature array and extract the portion we need
                 for(var i = 0; i < tempArr.length; i++){
                     tempArr[i] = tempArr[i].temp
@@ -318,19 +329,18 @@ function searchCities() {
                 
                 // Use these variables to identify the largest and smallest temps in the array
                 var highestTemp = Math.max.apply(Math, tempArr);
-                    console.log("highest temp recorded", highestTemp);
-               
-                    var lowestTemp = Math.min.apply(Math, tempArr);
-                    console.log("lowest temp recorded", lowestTemp);
-                
-                // Yearly high average, and Yearly low average || Populate the appropriate elements in DOM
-                var highTempEl =  document.querySelector("#data-containers > div:nth-child(2) > div.row.center > div:nth-child(3) > p.p-medium");
-                var lowTempEl = document.querySelector("#data-containers > div:nth-child(2) > div.row.center > div:nth-child(4) > p.p-medium");
-
-                highTempEl.innerHTML = Math.floor(highestTemp) ;
-                lowTempEl.innerHTML = Math.floor(lowestTemp) -8;
-            
-            // This is to determine average rainfall for the period selected - nearly the same method as above 
+                var lowestTemp = Math.min.apply(Math, tempArr);
+                    
+                // Yearly high average, and Yearly low average rounded down || Populate the appropriate elements in DOM
+                $(".average-high-temp").text(Math.floor(highestTemp));
+                $(".average-low-temp").text(Math.floor(lowestTemp) -8);
+                          
+             
+            console.log("******************************************");
+            console.log("Weather data / average year high&low");
+            console.log("******************************************");
+            console.log("Year average high temp: ", Math.floor(highestTemp));
+            console.log("year average low temp: ", Math.floor(lowestTemp) -8)
                 
             });
                    
