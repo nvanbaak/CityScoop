@@ -210,22 +210,19 @@ function searchCities() {
                         var sIndex = event.target.dataset.salaryIndex;
 
                         // Parse salary data for 25th %ile
-                        var salary25 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_25);
-                        salary25 = insertCommasIntoNumbers(salary25);
+                        var salary25 = sanitize(salaryData[sIndex].salary_percentiles.percentile_25,4);
 
                         // Update display
                         $(".salary-25").text("$" + salary25);
                         
                         // Parse salary data for 50th %ile
-                        var salary50 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_50);
-                        salary50 = insertCommasIntoNumbers(salary50);
+                        var salary50 = sanitize(salaryData[sIndex].salary_percentiles.percentile_50,4);
 
                         // Update display
                         $(".salary-50").text("$" + salary50);
                         
                         // Parse salary data for 75th %ile
-                        var salary75 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_75);
-                        salary75 = insertCommasIntoNumbers(salary75);
+                        var salary75 = sanitize(salaryData[sIndex].salary_percentiles.percentile_75,4);
 
                         // Update display
                         $(".salary-75").text("$" + salary75);
