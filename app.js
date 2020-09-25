@@ -138,11 +138,15 @@ function searchCities() {
                 //Healthcare related data
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Healthcare");
-                console.log("Healthcare Cost: " + response.categories[7].data[0].float_value)
-                //The life-expectincy is a national number and doesn't change per city (recomend removing)
-                console.log("Life-Expectancy: " + response.categories[7].data[1].float_value)
-                console.log("Healthcare Quality: " + response.categories[7].data[3].float_value)
+                console.log(response);
+
+                // Healthcare cost
+                $(".health-cost").text(Math.floor(response.categories[7].data[0].float_value * 10) + "/10");
                 
+                // Healthcare Quality
+                $(".health-quality").text(Math.floor(response.categories[7].data[3].float_value * 10) + "/10");
+                
+                $(".life-exp").text(Math.floor(response.categories[7].data[1].float_value));
                 
                 console.log("******************************************");
 
