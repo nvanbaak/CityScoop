@@ -108,6 +108,7 @@ function searchCities(cityName) {
             // Get two-letter state abbreviation
             var covidState = abbreviateState(response.full_name)
 
+
             // Ajax for all states data
             $.ajax({
                 url:"https://api.covidtracking.com/v1/states/current.json",
@@ -224,7 +225,7 @@ function searchCities(cityName) {
                 console.log("URBAN AREA / DETAILS / Traffic");
                 console.log("******************************************");
 
-                //Population metrics
+                // Population metrics
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Population");
                 console.log("Population size: " + response.categories[1].data[0].float_value + " (millions)")
@@ -240,27 +241,49 @@ function searchCities(cityName) {
                 $(".rent-high").text("$" + sanitize(response.categories[8].data[0].currency_dollar_value,2));
 
                 // Taxation
-                var salesTax = response.categories[18].data[3].percent_value
-                $(".income-tax").text(Math.floor((salesTax) * 100) + "%")
+                var salesTax = response.categories[18].data[3].percent_value;
+                if (salesTax) {
+                    $(".sales-tax").text(Math.floor((salesTax) * 100) + "%")
+                }
 
-                //Gun related crime and gun statistics
+                // Gun related crime and gun statistics
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Safety");
-                console.log("Gun-related deaths per 100,000 residents per year: " + response.categories[16].data[1].int_value)
-                console.log("Gun Owners per 100 residents: " + response.categories[16].data[3].int_value)
+
+                $(".gun-death").text(Math.floor(response.categories[16].data[1].int_value));
+
+                $(".gun-own").text(Math.floor(response.categories[16].data[3].int_value));
+                
+                $(".crime-rate").text(Math.floor(response.categories[16].data[0].float_value * 10) + "/10");
+
+
+
+
+                // Climate stats
                 console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / CLIMATE ");
+                console.log("Climate",  response.categories[2]);
+                console.log("Average day length " + response.categories[2].data[0].float_value);
+                console.log("Average number of clear days " + response.categories[2].data[1].float_value);
+                console.log("******************************************");
+
+                $(".average-day-length").text(response.categories[2].data[0].float_value);
+                $(".average-clear-days").text(response.categories[2].data[1].float_value);
+
 
                 //Cost of living statistics
                 var applePound = ((response.categories[3].data[1].currency_dollar_value) * .45).toFixed(2)
-                $(".apple-cost").text(applePound);
-                $(".loaf-cost").text(response.categories[3].data[2].currency_dollar_value);
-                $(".beer-cost").text(response.categories[3].data[6].currency_dollar_value);
-                $(".cappuccino-cost").text(response.categories[3].data[3].currency_dollar_value);
-                $(".restuarant-cost").text(response.categories[3].data[10].currency_dollar_value);
-                $(".movieTicket-cost").text(response.categories[3].data[4].currency_dollar_value);
-                $(".gym-cost").text(response.categories[3].data[5].currency_dollar_value);
-                $(".publicTransport-cost").text(response.categories[3].data[7].currency_dollar_value);
-                $(".taxi-cost").text(response.categories[3].data[9].currency_dollar_value);
+                $(".apple-cost").text("$" + applePound);
+                $(".loaf-cost").text("$" + response.categories[3].data[2].currency_dollar_value.toFixed(2));
+                $(".beer-cost").text("$" + response.categories[3].data[6].currency_dollar_value.toFixed(2));
+                $(".cappuccino-cost").text("$" + response.categories[3].data[3].currency_dollar_value.toFixed(2));
+                $(".restuarant-cost").text("$" + response.categories[3].data[8].currency_dollar_value.toFixed(2));
+                $(".movieTicket-cost").text("$" + response.categories[3].data[4].currency_dollar_value.toFixed(2));
+                $(".gym-cost").text("$" + response.categories[3].data[5].currency_dollar_value);
+                $(".publicTransport-cost").text("$" + response.categories[3].data[7].currency_dollar_value);
+
+                var taxiCost = (response.categories[3].data[9].currency_dollar_value / 0.621).toFixed(2);
+                $(".taxi-cost").text("$" + taxiCost);
             })
             
             // Urban area "images" pull
@@ -375,6 +398,12 @@ function searchCities(cityName) {
                 console.log("URBAN AREA / SCORES");
                 console.log("******************************************");
                 console.log(response);
+
+                // Update the Basic Info Summary
+                console.log(response.summary)
+                var res = response.summary.split("</p>");
+                $("#city-summary").html(res[0] + "</p>");
+                // console.log((response.summary).contents().find('p:first').text())
             })
         
         // ----------------------------------------- wx api ----------------------------------------------------------
@@ -383,22 +412,22 @@ function searchCities(cityName) {
             
             // The openweathermap API end points require a unix date range to search for historic weather data. 
             // Today's Unix date - divide the current time by 1000 to produce the unix number and round down to ten digits.
-            var unixDateNow = Math.floor(new Date().getTime() / 1000)
+            var unixDateNow = Math.floor(new Date().getTime() / 1000);
             // This gives the unix date 5 days ago - 5 days * 86400 seconds a day.
-            var unixFiveDayAgo = unixDateNow - (5 * 86400)
+            var unixFiveDayAgo = unixDateNow - (5 * 86400);
             // This gives the unix date 30 days ago.
-            var unixMonthAgo = unixDateNow - (30 * 86400)
-               //console.log("unix date: ", unixDateNow) 
-               //console.log("unix a month ago:", unixMonthAgo)
+            var unixMonthAgo = unixDateNow - (30 * 86400);
+               //console.log("unix date: ", unixDateNow);
+               //console.log("unix a month ago:", unixMonthAgo);
             
             // This retrieves the city id number, latitude, and longitude from teleport API in parent ajax.
-            //console.log("data check on current city", response)
-            var cityId = response.geoname_id
-            var lat = response.location.latlon.latitude
-            var lon = response.location.latlon.longitude
-                //console.log("lat:", lat)
-                //console.log("lon:", lon)
-                //console.log("city id", cityId)
+            //console.log("data check on current city", response);
+            var cityId = response.geoname_id;
+            var lat = response.location.latlon.latitude;
+            var lon = response.location.latlon.longitude;
+                //console.log("lat:", lat);
+                //console.log("lon:", lon);
+                //console.log("city id", cityId);
                    
                 // --------------------------------URLs with end points for openweathermap API ------------------------------ 
 
@@ -414,13 +443,14 @@ function searchCities(cityName) {
                 url: oneWeekHistory,
                 method:"GET"
             }).then( function(urlCityHistoryMain) {
-                console.log("******************************************");
-            console.log("City weather history data main");
-            console.log("******************************************");
-            console.log("Main City Data Branch: ", urlCityHistoryMain);
             
+            console.log("******************************************");
+            console.log("Open Weather Map API / City weather history data / main");
+            console.log("Main City Weather History  Data Branch: ", urlCityHistoryMain);
+            console.log("******************************************");
             });
-
+            
+            // High / Low temp history 
             $.ajax({
                 url: oneWeekHistory,
                 method:"GET"
@@ -445,10 +475,10 @@ function searchCities(cityName) {
                           
              
             console.log("******************************************");
-            console.log("Weather data / average year high&low");
-            console.log("******************************************");
+            console.log("Openeathermap data / average year high&low");
             console.log("Year average high temp: ", Math.floor(highestTemp));
-            console.log("year average low temp: ", Math.floor(lowestTemp) -8)
+            console.log("year average low temp: ", Math.floor(lowestTemp) -8);
+            console.log("******************************************");
                 
             });
                    
