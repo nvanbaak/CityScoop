@@ -10,7 +10,7 @@ var searchBarActive = false;
 // Global Variable to check if this is the first search
 var isFirstSearch = true;
 
-// Dynamic search bar
+// Start Page Search Bar functionality
 icon.addEventListener('click', function(event){
     event.preventDefault();
 
@@ -32,15 +32,40 @@ icon.addEventListener('click', function(event){
             document.querySelector(".results-page-wrap").classList.toggle("hide");
             
             // Run the search
-            searchCities();
+            searchCities($("#search-bar").val());
         }
     }
 });
 
-
+// Functionality for clicking search bar in results page
 iconResults.addEventListener('click', function(){
-    if (searchBarActive){
-        searchCities();
+    
+    if ($("#nav-bar-results").val()) {
+        // Grab value from results bar and search
+        searchCities($("#nav-bar-results").val());
+    }
+});
+
+// Function to search from nav bar with enter key
+searchBarResults.addEventListener('keypress', function(e){
+    // If enter key was pressed and search bar is not empty
+    if(e.key === 'Enter' && searchBarResults.value){
+        // Grab value from results bar and search
+        searchCities($("#nav-bar-results").val());
+    }
+});
+
+//function to initiate search from start page using 'Enter' key
+searchBar.addEventListener('keypress', function(e){
+    if(e.key === 'Enter' && searchBar.value) {
+
+        // Toggle which page is visible
+        document.querySelector(".start-page-wrap").classList.toggle("hide");
+        document.querySelector(".results-page-wrap").classList.toggle("hide");
+        
+        // Search using input value
+        searchCities($("#search-bar").val());
+
     }
 });
 
@@ -49,14 +74,8 @@ iconResults.addEventListener('click', function(){
 function searchCities(cityName) {
     // This function is called by the search bar event listeners to get the database information the app needs
 
-<<<<<<< HEAD
-    // Grab city name from input bar
-    var cityName = $("#search-bar").val();
-    var cityNameResults = $('#nav-bar-results').val();
-=======
     // Set First Search to False
     isFirstSearch = false;
->>>>>>> dev
 
     if(searchBarActive === true){
     // Create query URL
@@ -409,15 +428,16 @@ function searchCities(cityName) {
 };
 
 
-<<<<<<< HEAD
-=======
+// <<<<<<< HEAD
+// <<<<<<< HEAD
+// =======
 searchBarResults.addEventListener('keypress', function(e){
     if(e.key === 'Enter' && searchBarResults.value){
         searchCities($("#nav-bar-results").val());
     }
 });
 
->>>>>>> dev
+//>>>>>>> dev
 //function to initiate search using 'Enter' key
 searchBar.addEventListener('keypress', function(e){
     if(e.key === 'Enter' && searchBar.value) {
@@ -430,12 +450,8 @@ searchBar.addEventListener('keypress', function(e){
 
     }
 });
-<<<<<<< HEAD
-=======
 
-
-
->>>>>>> dev
+//=======>>>>>>> dev
 
 
 //function to abbreviate state
