@@ -246,10 +246,13 @@ function searchCities(cityName) {
                 //Gun related crime and gun statistics
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Safety");
-                console.log("Gun-related deaths per 100,000 residents per year: " + response.categories[16].data[1].int_value)
 
-                $(".gun-own").text(response.categories[16].data[3].int_value);
+                $(".gun-death").text(Math.floor(response.categories[16].data[1].int_value));
+
+                $(".gun-own").text(Math.floor(response.categories[16].data[3].int_value));
                 
+                $(".crime-rate").text(Math.floor(response.categories[16].data[0].float_value * 10) + "/10");
+
 
                 //Cost of living statistics
                 var applePound = ((response.categories[3].data[1].currency_dollar_value) * .45).toFixed(2)
