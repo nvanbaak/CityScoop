@@ -440,40 +440,40 @@ function parseDate(uglyDate) {
 
     // Translate the month into words
     switch (newMonth) {
-        case 01:
+        case "01":
             newMonth = "January";
             break;
-        case 02:
+        case "02":
             newMonth = "February";
             break;
-        case 03:
+        case "03":
             newMonth = "March";
             break;
-        case 04:
+        case "04":
             newMonth = "April";
             break;
-        case 05:
+        case "05":
             newMonth = "May";
             break;
-        case 06:
+        case "06":
             newMonth = "June";
             break;
-        case 07:
+        case "07":
             newMonth = "July";
             break;
-        case 08:
+        case "08":
             newMonth = "August";
             break;
-        case 09:
+        case "09":
             newMonth = "September";
             break;
-        case 10:
+        case "10":
             newMonth = "October";
             break;
-        case 11:
+        case "11":
             newMonth = "Novembet";
             break;
-        case 12:
+        case "12":
             newMonth = "December";
             break;
         default:
