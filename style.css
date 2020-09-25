@@ -97,29 +97,11 @@ input{
     transform: translateX(-30px) rotate(-45deg);
 }
 
-.active{
+.search-active{
     display: block;
     width: 45%;
 }
 
-.filter{
-    justify-content: center;
-    text-align: center;
-}
-
-.filter li{
-    margin: 1.3rem !important;
-    width: 60px !important;
-    height: 60px !important;
-    /* background: rgb(70, 197, 236) !important; */
-    border-radius: 40% !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    font-size: 1.8rem;
-    color: #ffffff !important;
-    cursor: pointer !important;
-}
 
 .hide{
     display: none;
@@ -138,11 +120,11 @@ Results Containers Styling
  =========================================*/
 
  .results-container{
-     padding: 0 50px 20px 50px;
+     padding: 0 25px 20px 25px;
  }
 
  .container-lightGray {
-     background-color: lightgray;
+     background-color: rgb(241, 241, 241);
  }
 
  .container-darkGray {
@@ -157,9 +139,35 @@ Results Containers Styling
  .p-small {
     font-size: .5em;
  }
+
  .p-medium {
-    font-size: 5em;
+    font-size: 4em;
  }
+
  .p-large {
-    font-size: 3em;
+    font-size: 4em;
+ }
+
+ .collapsible-header {
+     background-color: white;
+     font-size: larger;
+ }
+
+ .collapsible-header:hover {
+     background-color: lightgrey;
+     font: white;
+     font-weight: bold;
+ }
+
+ .covid-header {
+     color: red;
+     font-weight: bold;
+ }
+
+ /* =========================================
+FOOTER STYLING
+ =========================================*/
+
+ .page-footer {
+     background-color: #252525;
  }

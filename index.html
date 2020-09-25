@@ -11,7 +11,9 @@
         crossorigin="anonymous" />
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Stylesheet -->
@@ -41,30 +43,22 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12 center-align">
-                <!-- List of filters -->
-                <div class="filter-list-div">
-                    <ul class="filter hide">
-        
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- ***************** RESULTS PAGE **************** -->
+
+
     <div class="results-page-wrap hide">
         <nav>
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo">
+                <a href="index.html" class="brand-logo">
 
                     <img src="assets/img/logo-white-accent.png" class="logo-svg" alt="CityScoop">
 
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <!-- replace with Chris's search bar -->
-                    <li><a href="#">Back to Search</a></li>
+                    <li><a href="index.html">Back to Search</a></li>
                 </ul>
             </div>
         </nav>
@@ -73,7 +67,7 @@
             <div class="hero-image">
                 <div class="hero-text">
                     <!-- use .city-name class to update user input city -->
-                    <h1 class="hero-text city-name">SEATTLE</h1>
+                    <h1 class="hero-text city-name"></h1>
                 </div>
             </div>
 
@@ -88,135 +82,282 @@
                             <h2>BASIC INFO</h2>
                             <hr>
                             <br>
-                            <p><em>"[URBAN AREA / SCORES.summary] Seattle, Washington, is among the top cities with a
+                            <p class="flow-text"><em>"[URBAN AREA / SCORES.summary] Seattle, Washington, is among the
+                                    top cities with a
                                     <b>free business environment</b>.
                                     According to our city rankings, this is a good place to live with high ratings in
                                     <b>startups</b>, <b>venture capital</b> and <b>environmental quality"</b></em>.
                             </p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col s12 m6">
-                            <p class="valign-wrapper"><i class="medium material-icons">cloud</i> Weather</p>
-                        </div>
-                        <div class="col s12 m6">
-                            <p class="valign-wrapper"><i class="medium material-icons">directions_transit</i> Public
-                                Transportation</p>
-                        </div>
-                        <div class="col s12 m6">
-                            <p class="valign-wrapper"><i class="medium material-icons">flight</i> Travel</p>
-                        </div>
-                        <div class="col s12 m6">
-                            <p class="valign-wrapper"><i class="medium material-icons">local_hospital</i> City Healthcare
-                            </p>
-                        </div>
-                        <div class="col s12 m6">
-                            <p class="valign-wrapper"><i class="medium material-icons">local_pizza</i> Local Food</p>
-                        </div>
-                        <div class="col s12 m6">
-                            <p class="valign-wrapper"><i class="medium material-icons">lock_outline</i> Safety</p>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Sample Specific Info Container -->
-                <!-- BACKEND: use the results-container class when creating new divs. Add container-[white,lightGray,darkGray] for color. Append to #data-containers -->
-                <div class="container-fluid results-container container-white">
-                    <div class="row">
-                        <div class="col s12 center">
-                            <h3>WEATHER & CLIMATE</h3>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="row center">
-                        <div class="col s12 m3">
-                            <p class="p-medium">12</p>
-                            <p class="">AVG DAY LENGTH (Hours)</p>
-                        </div>
-                        <div class="col s12 m3">
-                            <p class="p-medium">56</p>
-                            <p class="">AVG NUMBER OF CLEAR DAYS PER YEAR</p>
-                        </div>
-                        <div class="col s12 m3">
-                            <p class="p-medium">78</p>
-                            <p class="">AVERAGE HIGH TEMP</p>
-                        </div>
-                        <div class="col s12 m3">
-                            <p class="p-medium">42</p>
-                            <p class="">AVERAGE LOW TEMP</p>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Sample Specific Info Container. Use  -->
-                <!-- BACKEND: use the results-container class when creating new divs. Add container-[white,lightGray,darkGray] for color. Append to #data-containers -->
-                <div class="container-fluid results-container container-darkGray">
-                    <div class="row">
-                        <div class="col s12 center">
-                            <h3>EDUCATION</h3>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="row center">
-                        <div class="col s12 m3">
-                            <p class="p-medium">9900</p>
-                            <p class="">STUDENTS</p>
-                        </div>
-                        <div class="col s12 m3">
-                            <p class="p-medium">1400</p>
-                            <p class="">AVG SAT</p>
-                        </div>
-                        <div class="col s12 m3">
-                            <p class="p-medium">92%</p>
-                            <p class="">COLLEGE ACCEPTANCE RATE</p>
-                        </div>
-                        <div class="col s12 m3">
-                            <p class="p-medium">08%</p>
-                            <p class="">DROP OUT</p>
-                        </div>
-                    </div>
-                </div>
+                    <ul class="collapsible popout">
+                        <!-- JOB & SALARY COLLAPSIBLE DIV -->
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">work</i>JOB & SALARY</div>
+                            <!-- Sample Specific Info Container. Use  -->
+                            <div class="container-fluid  container-white center collapsible-body">
+                                <div class="row">
+                                    <div class="col s12 center">
+                                        <h3>JOB & SALARY</h3>
+                                        <hr>
+                                    </div>
+                                </div>
 
-                <!-- Sample Specific Info Container. Use  -->
-                <!-- BACKEND: use the results-container class when creating new divs. Add container-[white,lightGray,darkGray] for color. Append to #data-containers -->
-                <div class="container-fluid results-container container-white">
-                    <div class="row">
-                        <div class="col s12 center">
-                            <h3>HEALTH & SAFETY</h3>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="row center">
-                        <div class="col s12 m4">
-                            <p class="p-medium">9900</p>
-                            <p class="">STUDENTS</p>
-                        </div>
-                        <div class="col s12 m4">
-                            <p class="p-medium">1400</p>
-                            <p class="">AVG SAT</p>
-                        </div>
-                        <div class="col s12 m4">
-                            <p class="p-medium">92%</p>
-                            <p class="">COLLEGE ACCEPTANCE RATE</p>
-                        </div>
-                        <div class="col s12 m4">
-                            <p class="p-medium">08%</p>
-                            <p class="">DROP OUT</p>
-                        </div>
-                        <div class="col s12 m4">
-                            <p class="p-medium">08%</p>
-                            <p class="">DROP OUT</p>
-                        </div>
-                        <div class="col s12 m4">
-                            <p class="p-medium">08%</p>
-                            <p class="">DROP OUT</p>
-                        </div>
-                    </div>
+                                <!-- Job and Salary Descriptive Text -->
+                                <p class="flow-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                                    sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde
+                                    quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
+                                <br>
+
+                                <!-- Job and Salary Descriptive Text -->
+                                <p class="flow-text">Salary Percentiles:</p>
+                                <br>
+
+                                <!-- Job Title Dropdown Trigger -->
+                                <a class='dropdown-trigger btn center' href='#' data-target='dropdown1'>Select a Job
+                                    Title</a>
+
+                                <!-- Job Title Dropdown Structure -->
+                                <ul id='dropdown1' class='dropdown-content'>
+                                </ul>
+
+                                <br>
+                                <br>
+
+                                <!-- Percentile Data -->
+                                <div class="row center">
+                                    <div class="col s12 m4">
+                                        <p class="p-medium salary-25">NA</p>
+                                        <p class="">25th %</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium salary-50">NA</p>
+                                        <p class="">50th %</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium salary-75">NA</p>
+                                        <p class="">75th %</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <!-- EDUCATION COLLAPSIBLE DIV -->
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">school</i>EDUCATION</div>
+                            <!-- Sample Specific Info Container. Use  -->
+                            <div class="container-fluid  container-white collapsible-body">
+                                <div class="row">
+                                    <div class="col s12 center">
+                                        <h3>EDUCATION</h3>
+                                        <hr>
+                                    </div>
+                                </div>
+
+                                <!-- Job and Salary Descriptive Text -->
+                                <p class="flow-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                                    sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde
+                                    quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
+                                <br>
+
+                                <div class="row center">
+                                    <div class="col s12 m3">
+                                        <p class="p-medium">9900</p>
+                                        <p class="">STUDENTS</p>
+                                    </div>
+                                    <div class="col s12 m3">
+                                        <p class="p-medium">1400</p>
+                                        <p class="">AVG SAT</p>
+                                    </div>
+                                    <div class="col s12 m3">
+                                        <p class="p-medium">92%</p>
+                                        <p class="">COLLEGE ACCEPTANCE RATE</p>
+                                    </div>
+                                    <div class="col s12 m3">
+                                        <p class="p-medium">08%</p>
+                                        <p class="">DROP OUT</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- HEALTH & SAFETY COLLAPSIBLE DIV -->
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">local_hospital</i>HEALTHCARE<span class="covid-header"> +COVID-19</span></div>
+                            <!-- Sample Specific Info Container. Use  -->
+                            <div class="container-fluid  container-white collapsible-body">
+                                <div class="row">
+                                    <div class="col s12 center">
+                                        <h3>HEALTH & SAFETY</h3>
+                                        <hr>
+                                    </div>
+                                </div>
+
+                                <!-- Job and Salary Descriptive Text -->
+                                <p class="flow-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                                    sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde
+                                    quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
+                                <br>
+
+                                <div class="row center">
+                                    <div class="col s12 m12">
+                                        <H4>HEALTHCARE</H4>
+                                        <hr>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium health-cost">...</p>
+                                        <p class="">COST RATING</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium health-quality">...</p>
+                                        <p class="">QUALITY RATING</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium life-exp">...</p>
+                                        <p class="">LIFE EXPECTANCY (US)</p>
+                                    </div>
+                                </div>
+                                <div class="row center">
+                                    <div class="col s12 m12">
+                                        <H4>COVID-19 DATA (FOR STATE)</H4>
+                                        <hr>
+                                        <P>LAST UPDATED: <span id="covid-update-date">recently</span></P>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium covid-test-total"></p>
+                                        <p class="">TOTAL TESTS</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium covid-pos-cases"></p>
+                                        <p class="">TOTAL POSITIVE CASES</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium covid-neg-cases"></p>
+                                        <p class="">TOTAL NEGATIVE CASES</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium covid-percent"></p>
+                                        <p class="">% POSITIVE CASES</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium covid-hosp"></p>
+                                        <p class="">CURRENTLY HOSPITALIZED</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium covid-total-deaths"></p>
+                                        <p class="">TOTAL DEATHS</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- WEATHER & CLIMATE COLLAPSIBLE DIV -->
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>WEATHER & CLIMATE
+                            </div>
+                            <!-- Sample Specific Info Container -->
+                            <div class="container-fluid  container-white collapsible-body">
+                                <div class="row">
+                                    <div class="col s12 center-align center">
+                                        <h3>WEATHER & CLIMATE</h3>
+                                        <hr>
+                                    </div>
+                                </div>
+
+                                <!-- Job and Salary Descriptive Text -->
+                                <p class="flow-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                                    sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde
+                                    quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
+                                <br>
+
+                                <div class="row center">
+                                    <div class="col s12 m3">
+                                        <p class="p-medium">12</p>
+                                        <p class="">AVG DAY LENGTH (Hours)</p>
+                                    </div>
+                                    <div class="col s12 m3">
+                                        <p class="p-medium">56</p>
+                                        <p class="">AVG NUMBER OF CLEAR DAYS PER YEAR</p>
+                                    </div>
+                                    <div class="col s12 m3">
+                                        <p class="p-medium">78</p>
+                                        <p class="">AVERAGE HIGH TEMP</p>
+                                    </div>
+                                    <div class="col s12 m3">
+                                        <p class="p-medium">42</p>
+                                        <p class="">AVERAGE LOW TEMP</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- CULTURE & LEISURE COLLAPSIBLE DIV -->
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">local_activity</i>CULTURE & LEISURE</div>
+                            <!-- Sample Specific Info Container. Use  -->
+                            <div class="container-fluid  container-white collapsible-body">
+                                <div class="row">
+                                    <div class="col s12 center">
+                                        <h3>CULTURE & LEISURE</h3>
+                                        <hr>
+                                    </div>
+                                </div>
+
+                                <!-- Job and Salary Descriptive Text -->
+                                <p class="flow-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                                    sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde
+                                    quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
+                                <br>
+
+                                <div class="row center">
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">100</p>
+                                        <p class="">ART GALLERIES</p>
+                                    </div>
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">150</p>
+                                        <p class="">CINEMAS</p>
+                                    </div>
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">81</p>
+                                        <p class="">CONCERTS</p>
+                                    </div>
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">83</p>
+                                        <p class="">HISTORICAL SITES</p>
+                                    </div>
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">1</p>
+                                        <p class="">MUSEUMS</p>
+                                    </div>
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">45</p>
+                                        <p class="">PERFORMING ARTS</p>
+                                    </div>
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">111</p>
+                                        <p class="">SPORTS VENUES</p>
+                                    </div>
+                                    <div class="col s12 m6 l3">
+                                        <p class="p-medium">19</p>
+                                        <p class="">ZOOS</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </main>
+        <footer class="page-footer">
+            <div class="footer-copyright">
+                <div class="container">
+                    <p class="grey-text text-lighten-4 center">© 2020 Copyright Team 4</p>
+                </div>
+            </div>
+        </footer>
     </div>
-
     <!-- Materialize Links -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"
         integrity="sha512-m2PhLxj2N91eYrIGU2cmIu2d0SkaE4A14bCjVb9zykvp6WtsdriFCiXQ/8Hdj0kssUB/Nz0dMBcoLsJkSCto0Q=="
@@ -225,9 +366,22 @@
     <!-- Javascript Link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.collapsible');
+            var instances = M.Collapsible.init(elems, { accordion: false });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.dropdown-trigger');
+            var instances = M.Dropdown.init(elems, { alignment: "center" });
+        });
+    </script>
+
     <!-- App functionality -->
     
     <script src="app.js"></script>
+
 </body>
 
 </html>
