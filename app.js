@@ -209,7 +209,13 @@ function searchCities() {
                 console.log("Price of a public transport per month: " + response.categories[3].data[7].currency_dollar_value)
                 console.log("Price of a taxi fare: " + response.categories[3].data[9].currency_dollar_value)
                 console.log("******************************************");
-               
+
+                //Climate stats
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / CLIMATE ");
+                console.log("Average day length " + response.categories[2].data[0].float_value)
+                console.log("Average number of clear days " + response.categories[2].data[1].float_value)
+                console.log("******************************************");
             })
             
             // Urban area "images" pull
