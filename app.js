@@ -108,6 +108,7 @@ function searchCities(cityName) {
             // Get two-letter state abbreviation
             var covidState = abbreviateState(response.full_name)
 
+
             // Ajax for all states data
             $.ajax({
                 url:"https://api.covidtracking.com/v1/states/current.json",
@@ -352,6 +353,12 @@ function searchCities(cityName) {
                 console.log("URBAN AREA / SCORES");
                 console.log("******************************************");
                 console.log(response);
+
+                // Update the Basic Info Summary
+                console.log(response.summary)
+                var res = response.summary.split("</p>");
+                $("#city-summary").html(res[0] + "</p>");
+                // console.log((response.summary).contents().find('p:first').text())
             })
         
         // ----------------------------------------- wx api ----------------------------------------------------------
