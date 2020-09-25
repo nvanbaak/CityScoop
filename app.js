@@ -117,7 +117,6 @@ function searchCities() {
                     // Number hospitalized
                     $(".covid-hosp").text(response[stateIndex].hospitalizedCurrently);
                     
-                    console.log("Total Deaths Confirmed: " + response[stateIndex].deathConfirmed);
                     $(".covid-total-deaths").text(response[stateIndex].deathConfirmed);
 
             })
