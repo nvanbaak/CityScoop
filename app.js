@@ -46,15 +46,8 @@ iconResults.addEventListener('click', function(){
     }
 });
 
-// Function to search from nav bar with enter key
-searchBarResults.addEventListener('keypress', function(e){
-    // If enter key was pressed and search bar is not empty
-    if(e.key === 'Enter' && searchBarResults.value){
-        // Grab value from results bar and search
-        searchCities($("#nav-bar-results").val());
-    }
-});
 
+if(!isFirstSearch){
 //function to initiate search from start page using 'Enter' key
 searchBar.addEventListener('keypress', function(e){
     if(e.key === 'Enter' && searchBar.value) {
@@ -68,6 +61,17 @@ searchBar.addEventListener('keypress', function(e){
 
     }
 });
+}else{
+// Function to search from nav bar with enter key
+searchBarResults.addEventListener('keypress', function(e){
+    // If enter key was pressed and search bar is not empty
+    if(e.key === 'Enter' && searchBarResults.value){
+        // Grab value from results bar and search
+        searchCities($("#nav-bar-results").val());
+    }
+});
+}
+
 
 
 // Search function
