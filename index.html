@@ -11,9 +11,7 @@
         crossorigin="anonymous" />
 
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Stylesheet -->
@@ -46,8 +44,6 @@
     </div>
 
     <!-- ***************** RESULTS PAGE **************** -->
-
-
     <div class="results-page-wrap hide">
         <nav>
             <div class="nav-wrapper">
@@ -57,8 +53,18 @@
 
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <!-- replace with Chris's search bar -->
-                    <li><a href="index.html">Back to Search</a></li>
+                    <!-- Chris's search bar -->
+                    <div class="row">
+                        <div class="col s12 center-align brand">
+                            <!-- Input bar -->
+                            <input type="text place" placeholder="find a city" id="nav-bar-results"> <!-- added 'results' to ID -->
+            
+                            <!-- Search icon -->
+                            <div class="search-area">
+                                <span class="nav-results waves-effect waves-light btn">&#9906</span>
+                            </div>
+                        </div>
+                    </div>
                 </ul>
             </div>
         </nav>
@@ -95,11 +101,17 @@
                     <ul class="collapsible popout">
                         <!-- JOB & SALARY COLLAPSIBLE DIV -->
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">work</i>JOB & SALARY</div>
+                            <div class="collapsible-header"><i class="material-icons">work</i>JOB & SALARY
+                                <!-- BADGE ICON (BACKEND: scale is as follows: 
+                                    (badge-red & white-text): 0 < x < 3, 
+                                    (badge-yellow & black-text): 3 <= x < 7, 
+                                    (badge-green & white-text): 7 <= x <= 10) -->
+                                <span id="salary-score" class="badge badge-yellow black-text hide-on-small-only">4.5 / 10</span>
+                            </div>
                             <!-- Sample Specific Info Container. Use  -->
                             <div class="container-fluid  container-white center collapsible-body">
                                 <div class="row">
-                                    <div class="col s12 center">
+                                    <div class=" s12 center">
                                         <h3>JOB & SALARY</h3>
                                         <hr>
                                     </div>
@@ -146,7 +158,13 @@
                         
                         <!-- EDUCATION COLLAPSIBLE DIV -->
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">school</i>EDUCATION</div>
+                            <div class="collapsible-header"><i class="material-icons">school</i>EDUCATION
+                                <!-- BADGE ICON (BACKEND: scale is as follows: 
+                                    (badge-red & white-text): 0 < x < 3, 
+                                    (badge-yellow & black-text): 3 <= x < 7, 
+                                    (badge-green & white-text): 7 <= x <= 10) -->
+                                <span id="education-score" class="badge badge-green white-text hide-on-small-only">7.2 / 10</span>
+                            </div>
                             <!-- Sample Specific Info Container. Use  -->
                             <div class="container-fluid  container-white collapsible-body">
                                 <div class="row">
@@ -182,9 +200,88 @@
                                 </div>
                             </div>
                         </li>
+
+                        <!-- COST OF LIVING COLLAPSIBLE DIV -->
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">attach_money</i>COST OF LIVING
+                                <!-- BADGE ICON (BACKEND: scale is as follows: 
+                                    (badge-red & white-text): 0 < x < 3, 
+                                    (badge-yellow & black-text): 3 <= x < 7, 
+                                    (badge-green & white-text): 7 <= x <= 10) -->
+                                <span id="cost-of-living-score" class="badge badge-red white-text hide-on-small-only">2.5 / 10</span>                            
+                            </div>
+                            <!-- Sample Specific Info Container. Use  -->
+                            <div class="container-fluid  container-white collapsible-body">
+                                <div class="row">
+                                    <div class="col s12 center">
+                                        <h3>COST OF LIVING</h3>
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div class="row center">
+                                    <div class="col s12 m12">
+                                        <H4>TYPICAL PRICES</H4>
+                                        <hr>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium health-cost">...</p>
+                                        <p class="">COST RATING</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium health-quality">...</p>
+                                        <p class="">QUALITY RATING</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium life-exp">...</p>
+                                        <p class="">LIFE EXPECTANCY (COUNTRY)</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium covid-test-total"></p>
+                                        <p class="">TOTAL TESTS</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium covid-pos-cases"></p>
+                                        <p class="">TOTAL POSITIVE CASES</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium covid-neg-cases"></p>
+                                        <p class="">TOTAL NEGATIVE CASES</p>
+                                    </div>
+                                </div>
+                                <div class="row center">
+                                    <div class="col s12 m12">
+                                        <H4>RENT & TAX</H4>
+                                        <hr>
+                                    </div>
+                                    <div class="col s12 m3">
+                                        <p class="p-medium rent-low"></p>
+                                        <p class="">RENT (SMALL APT)</p>
+                                    </div>
+                                    <div class="col s12 m3">
+                                        <p class="p-medium rent-med"></p>
+                                        <p class="">RENT (MED APT)</p>
+                                    </div>
+                                    <div class="col s12 m3">
+                                        <p class="p-medium rent-high"></p>
+                                        <p class="">RENT (LG APT)</p>
+                                    </div>
+                                    <div class="col s12 m3">
+                                        <p class="p-medium income-tax"></p>
+                                        <p class="">INCOME TAX</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
                         <!-- HEALTH & SAFETY COLLAPSIBLE DIV -->
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">local_hospital</i>HEALTHCARE<span class="covid-header"> +COVID-19</span></div>
+                            <div class="collapsible-header"><i class="material-icons">local_hospital</i>HEALTHCARE<span class="covid-header"> +COVID-19</span>
+                                <!-- BADGE ICON (BACKEND: scale is as follows: 
+                                    (badge-red & white-text): 0 < x < 3, 
+                                    (badge-yellow & black-text): 3 <= x < 7, 
+                                    (badge-green & white-text): 7 <= x <= 10) -->
+                                <span id="health-score" class="badge badge-yellow black-text hide-on-small-only">5 / 10</span>
+                            </div>
                             <!-- Sample Specific Info Container. Use  -->
                             <div class="container-fluid  container-white collapsible-body">
                                 <div class="row">
@@ -215,7 +312,7 @@
                                     </div>
                                     <div class="col s12 m4">
                                         <p class="p-medium life-exp">...</p>
-                                        <p class="">LIFE EXPECTANCY (US)</p>
+                                        <p class="">LIFE EXPECTANCY (COUNTRY)</p>
                                     </div>
                                 </div>
                                 <div class="row center">
@@ -255,6 +352,11 @@
                         <!-- WEATHER & CLIMATE COLLAPSIBLE DIV -->
                         <li>
                             <div class="collapsible-header"><i class="material-icons">filter_drama</i>WEATHER & CLIMATE
+                                <!-- BADGE ICON (BACKEND: scale is as follows: 
+                                    (badge-red & white-text): 0 < x < 3, 
+                                    (badge-yellow & black-text): 3 <= x < 7, 
+                                    (badge-green & white-text): 7 <= x <= 10) -->
+                                    <span id="weather-score" class="badge badge-red white-text hide-on-small-only">1 / 10</span>                            
                             </div>
                             <!-- Sample Specific Info Container -->
                             <div class="container-fluid  container-white collapsible-body">
@@ -294,7 +396,13 @@
 
                         <!-- CULTURE & LEISURE COLLAPSIBLE DIV -->
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">local_activity</i>CULTURE & LEISURE</div>
+                            <div class="collapsible-header"><i class="material-icons">local_activity</i>CULTURE & LEISURE
+                                <!-- BADGE ICON (BACKEND: scale is as follows: 
+                                    (badge-red & white-text): 0 < x < 3, 
+                                    (badge-yellow & black-text): 3 <= x < 7, 
+                                    (badge-green & white-text): 7 <= x <= 10) -->
+                                    <span id="culture-score" class="badge badge-green white-text hide-on-small-only">9.2 / 10</span>                            
+                            </div>
                             <!-- Sample Specific Info Container. Use  -->
                             <div class="container-fluid  container-white collapsible-body">
                                 <div class="row">
@@ -303,44 +411,39 @@
                                         <hr>
                                     </div>
                                 </div>
-
-                                <!-- Job and Salary Descriptive Text -->
-                                <p class="flow-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-                                    sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde
-                                    quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
                                 <br>
 
                                 <div class="row center">
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium">100</p>
+                                        <p class="p-medium culture-art"></p>
                                         <p class="">ART GALLERIES</p>
                                     </div>
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium">150</p>
+                                        <p class="p-medium culture-movies"></p>
                                         <p class="">CINEMAS</p>
                                     </div>
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium">81</p>
-                                        <p class="">CONCERTS</p>
+                                        <p class="p-medium culture-concerts"></p>
+                                        <p class="">YEARLY CONCERTS</p>
                                     </div>
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium">83</p>
+                                        <p class="p-medium"></p>
                                         <p class="">HISTORICAL SITES</p>
                                     </div>
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium">1</p>
+                                        <p class="p-medium"></p>
                                         <p class="">MUSEUMS</p>
                                     </div>
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium">45</p>
+                                        <p class="p-medium"></p>
                                         <p class="">PERFORMING ARTS</p>
                                     </div>
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium">111</p>
+                                        <p class="p-medium"></p>
                                         <p class="">SPORTS VENUES</p>
                                     </div>
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium">19</p>
+                                        <p class="p-medium"></p>
                                         <p class="">ZOOS</p>
                                     </div>
                                 </div>
@@ -381,7 +484,6 @@
     <!-- App functionality -->
     
     <script src="app.js"></script>
-
 </body>
 
 </html>
