@@ -163,6 +163,30 @@ function searchCities() {
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Traffic");
                 console.log("******************************************");
+
+                //Population metrics
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / Population");
+                console.log("Population size: " + response.categories[1].data[0].float_value + " (millions)")
+                var mileFloat = ((response.categories[1].data[1].float_value) / .386).toFixed(0)
+                console.log("Population density: " + mileFloat + " /sq mile")
+                console.log("******************************************");
+
+                //Telescope Weather data?
+
+                //Taxation
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / Taxation");
+                var salesTax = response.categories[18].data[3].percent_value
+                console.log("Sales Tax: " + Math.floor((salesTax) * 100) + "%")
+                console.log("******************************************");
+
+                //Gn related crime and gun statistics
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / Safety");
+                console.log("Gun-related deaths per 100,000 residents per year: " + response.categories[16].data[1].int_value)
+                console.log("Gun Owners per 100 residents: " + response.categories[16].data[3].int_value)
+                console.log("******************************************");
                
             })
             
