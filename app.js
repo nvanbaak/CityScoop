@@ -185,9 +185,9 @@ function searchCities() {
                 // Telescope Weather data?
 
                 // Rent
-                $(".rent-low").text(response.categories[8].data[2]);
-                $(".rent-med").text(response.categories[8].data[1]);
-                $(".rent-high").text(response.categories[8].data[0]);
+                $(".rent-low").text(response.categories[8].data[2].currency_dollar_value);
+                $(".rent-med").text(response.categories[8].data[1].currency_dollar_value);
+                $(".rent-high").text(response.categories[8].data[0].currency_dollar_value);
 
                 // Taxation
                 var salesTax = response.categories[18].data[3].percent_value
