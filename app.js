@@ -10,7 +10,7 @@ var searchBarActive = false;
 // Global Variable to check if this is the first search
 var isFirstSearch = true;
 
-// Dynamic search bar
+// Start Page Search Bar functionality
 icon.addEventListener('click', function(event){
     event.preventDefault();
 
@@ -33,15 +33,40 @@ icon.addEventListener('click', function(event){
             searchBarActive = false;
             
             // Run the search
-            searchCities();
+            searchCities($("#search-bar").val());
         }
     }
 });
 
-
+// Functionality for clicking search bar in results page
 iconResults.addEventListener('click', function(){
-    if (!searchBarActive){
-        searchCitiesResults();
+    
+    if ($("#nav-bar-results").val()) {
+        // Grab value from results bar and search
+        searchCities($("#nav-bar-results").val());
+    }
+});
+
+// Function to search from nav bar with enter key
+searchBarResults.addEventListener('keypress', function(e){
+    // If enter key was pressed and search bar is not empty
+    if(e.key === 'Enter' && searchBarResults.value){
+        // Grab value from results bar and search
+        searchCities($("#nav-bar-results").val());
+    }
+});
+
+//function to initiate search from start page using 'Enter' key
+searchBar.addEventListener('keypress', function(e){
+    if(e.key === 'Enter' && searchBar.value) {
+
+        // Toggle which page is visible
+        document.querySelector(".start-page-wrap").classList.toggle("hide");
+        document.querySelector(".results-page-wrap").classList.toggle("hide");
+        
+        // Search using input value
+        searchCities($("#search-bar").val());
+
     }
 });
 
@@ -400,26 +425,7 @@ function searchCities(cityName) {
 };
 
 
-searchBarResults.addEventListener('keypress', function(e){
-    if(e.key === 'Enter' && searchBarResults.value){
-        searchCities($("#nav-bar-results").val());
-    }
-});
 
-//function to initiate search using 'Enter' key
-searchBar.addEventListener('keypress', function(e){
-    if(e.key === 'Enter' && searchBar.value) {
-
-        // Toggle which page is visible
-        document.querySelector(".start-page-wrap").classList.toggle("hide");
-        document.querySelector(".results-page-wrap").classList.toggle("hide");
-        
-
-        // Search
-        searchCities($("#search-bar").val());
-
-    }
-});
 
 
 
