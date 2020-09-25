@@ -138,11 +138,15 @@ function searchCities() {
                 //Healthcare related data
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Healthcare");
-                console.log("Healthcare Cost: " + response.categories[7].data[0].float_value)
-                //The life-expectincy is a national number and doesn't change per city (recomend removing)
-                console.log("Life-Expectancy: " + response.categories[7].data[1].float_value)
-                console.log("Healthcare Quality: " + response.categories[7].data[3].float_value)
+                console.log(response);
+
+                // Healthcare cost
+                $(".health-cost").text(Math.floor(response.categories[7].data[0].float_value * 10) + "/10");
                 
+                // Healthcare Quality
+                $(".health-quality").text(Math.floor(response.categories[7].data[3].float_value * 10) + "/10");
+                
+                $(".life-exp").text(Math.floor(response.categories[7].data[1].float_value));
                 
                 console.log("******************************************");
 
@@ -210,22 +214,19 @@ function searchCities() {
                         var sIndex = event.target.dataset.salaryIndex;
 
                         // Parse salary data for 25th %ile
-                        var salary25 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_25);
-                        salary25 = insertCommasIntoNumbers(salary25);
+                        var salary25 = sanitize(salaryData[sIndex].salary_percentiles.percentile_25,4);
 
                         // Update display
                         $(".salary-25").text("$" + salary25);
                         
                         // Parse salary data for 50th %ile
-                        var salary50 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_50);
-                        salary50 = insertCommasIntoNumbers(salary50);
+                        var salary50 = sanitize(salaryData[sIndex].salary_percentiles.percentile_50,4);
 
                         // Update display
                         $(".salary-50").text("$" + salary50);
                         
                         // Parse salary data for 75th %ile
-                        var salary75 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_75);
-                        salary75 = insertCommasIntoNumbers(salary75);
+                        var salary75 = sanitize(salaryData[sIndex].salary_percentiles.percentile_75,4);
 
                         // Update display
                         $(".salary-75").text("$" + salary75);
