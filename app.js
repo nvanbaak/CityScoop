@@ -240,15 +240,21 @@ function searchCities(cityName) {
                 $(".rent-high").text("$" + sanitize(response.categories[8].data[0].currency_dollar_value,2));
 
                 // Taxation
-                var salesTax = response.categories[18].data[3].percent_value
-                $(".income-tax").text(Math.floor((salesTax) * 100) + "%")
+                var salesTax = response.categories[18].data[3].percent_value;
+                if (salesTax) {
+                    $(".sales-tax").text(Math.floor((salesTax) * 100) + "%")
+                }
 
                 // Gun related crime and gun statistics
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Safety");
-                console.log("Gun-related deaths per 100,000 residents per year: " + response.categories[16].data[1].int_value)
-                console.log("Gun Owners per 100 residents: " + response.categories[16].data[3].int_value)
-                console.log("******************************************");
+
+                $(".gun-death").text(Math.floor(response.categories[16].data[1].int_value));
+
+                $(".gun-own").text(Math.floor(response.categories[16].data[3].int_value));
+                
+                $(".crime-rate").text(Math.floor(response.categories[16].data[0].float_value * 10) + "/10");
+
 
 
 
@@ -266,16 +272,17 @@ function searchCities(cityName) {
 
                 //Cost of living statistics
                 var applePound = ((response.categories[3].data[1].currency_dollar_value) * .45).toFixed(2)
-                $(".apple-cost").text(applePound);
-                $(".loaf-cost").text(response.categories[3].data[2].currency_dollar_value);
-                $(".beer-cost").text(response.categories[3].data[6].currency_dollar_value);
-                $(".cappuccino-cost").text(response.categories[3].data[3].currency_dollar_value);
-                $(".restuarant-cost").text(response.categories[3].data[10].currency_dollar_value);
-                $(".movieTicket-cost").text(response.categories[3].data[4].currency_dollar_value);
-                $(".gym-cost").text(response.categories[3].data[5].currency_dollar_value);
-                $(".publicTransport-cost").text(response.categories[3].data[7].currency_dollar_value);
-                $(".taxi-cost").text(response.categories[3].data[9].currency_dollar_value);
+                $(".apple-cost").text("$" + applePound);
+                $(".loaf-cost").text("$" + response.categories[3].data[2].currency_dollar_value.toFixed(2));
+                $(".beer-cost").text("$" + response.categories[3].data[6].currency_dollar_value.toFixed(2));
+                $(".cappuccino-cost").text("$" + response.categories[3].data[3].currency_dollar_value.toFixed(2));
+                $(".restuarant-cost").text("$" + response.categories[3].data[8].currency_dollar_value.toFixed(2));
+                $(".movieTicket-cost").text("$" + response.categories[3].data[4].currency_dollar_value.toFixed(2));
+                $(".gym-cost").text("$" + response.categories[3].data[5].currency_dollar_value);
+                $(".publicTransport-cost").text("$" + response.categories[3].data[7].currency_dollar_value);
 
+                var taxiCost = (response.categories[3].data[9].currency_dollar_value / 0.621).toFixed(2);
+                $(".taxi-cost").text("$" + taxiCost);
             })
             
             // Urban area "images" pull
