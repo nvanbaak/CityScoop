@@ -86,34 +86,63 @@ function searchCities() {
                 method:"GET"
             }).then( function(response) {
                 // running through all states and only return the state that the inputted city is within
+                var stateIndex = -1;
+
                 for (i = 0; i < 55; i++){
                     if (response[i].state===covidState){
                         stateIndex = i;
                     }};
 
-                // Date modified
-                $("#covid-update-date").text(parseDate(response[stateIndex].dateModified));
-                
-                // Covid test total (sanitized)
-                $(".covid-test-total").text(sanitize(response[stateIndex].total,5));
-                
-                // Positive covid cases
-                $(".covid-pos-cases").text(sanitize(response[stateIndex].positive,4));
-                
-                // Negative covid cases
-                $(".covid-neg-cases").text(sanitize(response[stateIndex].negative,4));
-                
-                // Percent of tests that come back positive
-                var covPercent = response[stateIndex].positive / (response[stateIndex].positive + response[stateIndex].negative);
-                covPercent = (covPercent * 100).toFixed(2);
+                // If we got a valid state code
+                if (stateIndex >= 0) {
 
-                $(".covid-percent").text(covPercent + "%")
-                
-                // Number hospitalized
-                $(".covid-hosp").text(response[stateIndex].hospitalizedCurrently);
-                
-                $(".covid-total-deaths").text(response[stateIndex].deathConfirmed);
+                    // Date modified
+                    if (response[stateIndex].datemodified) {
+                        $("#covid-update-date").text(parseDate(response[stateIndex].dateModified));
+                    }
 
+                    if (response[stateIndex].total) {
+
+                        // Covid test total (sanitized)
+                        $(".covid-test-total").text(sanitize(response[stateIndex].total,5));
+                    }
+                    
+                    if (response[stateIndex].positive) {
+                    
+                        // Positive covid cases
+                        $(".covid-pos-cases").text(sanitize(response[stateIndex].positive,4));
+                    }
+                        
+                    if (response[stateIndex].negative) {
+                        // Negative covid cases
+                        $(".covid-neg-cases").text(sanitize(response[stateIndex].negative,4));
+                    }
+                        
+                    if (response[stateIndex].positive && response[stateIndex].negative) {
+
+                        // Percent of tests that come back positive
+                        var covPercent = response[stateIndex].positive / (response[stateIndex].positive + response[stateIndex].negative);
+                        covPercent = (covPercent * 100).toFixed(2);
+                        
+                        $(".covid-percent").text(covPercent + "%")
+                    }
+                    
+                    if (response[stateIndex].hospitalizedCurrently) {   
+                        // Number hospitalized
+                        $(".covid-hosp").text(response[stateIndex].hospitalizedCurrently);
+                    }
+                    
+                    if (response[stateIndex].deathConfirmed) {
+
+                        $(".covid-total-deaths").text(response[stateIndex].deathConfirmed);
+                    }
+                    
+                } else {
+                    
+                    // Write error message
+                    $("#covid-update-date").text("(covid data not available outside of US)")
+
+                }
             })
             
             // Get url for urban areas
@@ -141,9 +170,7 @@ function searchCities() {
                 // Life Expectancy
                 $(".life-exp").text(Math.floor(response.categories[7].data[1].float_value));
                 
-                //Leisure/Culture data
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Culture-Leisure");
+                // Leisure/Culture data
 
                 // Number of art galleries
                 $(".culture-art").text(response.categories[4].data[1].int_value);
@@ -164,7 +191,7 @@ function searchCities() {
 
                 $(".cult-zoos").text(response.categories[4].data[17].int_value)
 
-                //Traffic data
+                // Traffic data
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Traffic");
                 console.log("******************************************");
@@ -180,13 +207,13 @@ function searchCities() {
                 // Telescope Weather data?
 
                 // Rent
-                $(".rent-low").text(response.categories[8].data[2].currency_dollar_value);
-                $(".rent-med").text(response.categories[8].data[1].currency_dollar_value);
-                $(".rent-high").text(response.categories[8].data[0].currency_dollar_value);
+                $(".rent-low").text("$" + sanitize(response.categories[8].data[2].currency_dollar_value,2));
+                $(".rent-med").text("$" + sanitize(response.categories[8].data[1].currency_dollar_value,2));
+                $(".rent-high").text("$" + sanitize(response.categories[8].data[0].currency_dollar_value,2));
 
                 // Taxation
                 var salesTax = response.categories[18].data[3].percent_value
-                $(".income-tax").text("Sales Tax: " + Math.floor((salesTax) * 100) + "%")
+                $(".income-tax").text(Math.floor((salesTax) * 100) + "%")
 
                 //Gun related crime and gun statistics
                 console.log("******************************************");
