@@ -11,9 +11,7 @@
         crossorigin="anonymous" />
 
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Stylesheet -->
@@ -46,8 +44,6 @@
     </div>
 
     <!-- ***************** RESULTS PAGE **************** -->
-
-
     <div class="results-page-wrap hide">
         <nav>
             <div class="nav-wrapper">
@@ -57,8 +53,18 @@
 
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <!-- replace with Chris's search bar -->
-                    <li><a href="index.html">Back to Search</a></li>
+                    <!-- Chris's search bar -->
+                    <div class="row">
+                        <div class="col s12 center-align brand">
+                            <!-- Input bar -->
+                            <input type="text place" placeholder="find a city" id="nav-bar-results"> <!-- added 'results' to ID -->
+            
+                            <!-- Search icon -->
+                            <div class="search-area">
+                                <span class="nav-results waves-effect waves-light btn">&#9906</span>
+                            </div>
+                        </div>
+                    </div>
                 </ul>
             </div>
         </nav>
@@ -105,7 +111,7 @@
                             <!-- Sample Specific Info Container. Use  -->
                             <div class="container-fluid  container-white center collapsible-body">
                                 <div class="row">
-                                    <div class="col s12 center">
+                                    <div class=" s12 center">
                                         <h3>JOB & SALARY</h3>
                                         <hr>
                                     </div>
@@ -478,7 +484,6 @@
     <!-- App functionality -->
     
     <script src="app.js"></script>
-
 </body>
 
 </html>
