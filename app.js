@@ -12,8 +12,6 @@ var uaImages; // json containing free-to-use image links for city
 var uaSalary; // json with salary data for city
 var uaScores; // json with score data for city
 var weatherCityHistory; // Weather history for selected city
-var highLowTemps; // Highest and lowest temps for city this year
-
 
 // This variable toggles the search button behavior
 var searchBarActive = false;
@@ -231,6 +229,10 @@ function searchCities(cityName) {
 
                 $(".cult-zoos").text(response.categories[4].data[17].int_value)
 
+                // Traffic data
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / Traffic");
+                console.log("******************************************");
 
                 // Population metrics
                 console.log("******************************************");
@@ -254,13 +256,14 @@ function searchCities(cityName) {
                 }
 
                 // Crime and gun statistics
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / Safety");
 
                 $(".gun-death").text(Math.floor(response.categories[16].data[1].int_value));
 
                 $(".gun-own").text(Math.floor(response.categories[16].data[3].int_value));
                 
                 $(".crime-rate").text(Math.floor(response.categories[16].data[0].float_value * 10) + "/10");
-
 
                 // Climate stats
                 console.log("******************************************");
@@ -415,6 +418,10 @@ function searchCities(cityName) {
             
                 // Save to debug variable
                 weatherCityHistory = urlCityHistoryMain;
+
+            });
+
+
             
             // High / Low temp history 
             $.ajax({
@@ -441,8 +448,8 @@ function searchCities(cityName) {
                           
                 // Save to debug variable
                 highLowTemps = {
-                    high:Math.floor(highestTemp),
-                    low:Math.floor(lowestTemp) -8
+                    high:highestTemp,
+                    low:lowestTemp
                 }
                 
             });
