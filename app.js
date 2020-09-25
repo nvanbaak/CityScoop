@@ -251,20 +251,16 @@ function searchCities(cityName) {
                 console.log("******************************************");
 
                 //Cost of living statistics
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / COST OF LIVING");
                 var applePound = ((response.categories[3].data[1].currency_dollar_value) * .45).toFixed(2)
-                console.log("Price of a pound of apples: " + applePound)
-                console.log("Price of a loaf of bread: " + response.categories[3].data[2].currency_dollar_value)
-                console.log("Price of a beer: " + response.categories[3].data[6].currency_dollar_value)
-                console.log("Price of a cappuccino: " + response.categories[3].data[3].currency_dollar_value)
-                console.log("Price of a meal at a restuarant: " + response.categories[3].data[10].currency_dollar_value)
-                console.log("Price of a movie ticket: " + response.categories[3].data[4].currency_dollar_value)
-                console.log("Price of a gym membership: " + response.categories[3].data[5].currency_dollar_value)
-                console.log("Price of a public transport per month: " + response.categories[3].data[7].currency_dollar_value)
-                console.log("Price of a taxi fare: " + response.categories[3].data[9].currency_dollar_value)
-                console.log("******************************************");
-               
+                $(".apple-cost").text(applePound);
+                $(".loaf-cost").text(response.categories[3].data[2].currency_dollar_value);
+                $(".beer-cost").text(response.categories[3].data[6].currency_dollar_value);
+                $(".cappuccino-cost").text(response.categories[3].data[3].currency_dollar_value);
+                $(".restuarant-cost").text(response.categories[3].data[10].currency_dollar_value);
+                $(".movieTicket-cost").text(response.categories[3].data[4].currency_dollar_value);
+                $(".gym-cost").text(response.categories[3].data[5].currency_dollar_value);
+                $(".publicTransport-cost").text(response.categories[3].data[7].currency_dollar_value);
+                $(".taxi-cost").text(response.categories[3].data[9].currency_dollar_value);
             })
             
             // Urban area "images" pull
