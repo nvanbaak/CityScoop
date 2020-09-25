@@ -164,6 +164,31 @@ Results Containers Styling
      font-weight: bold;
  }
 
+  /* =========================================
+BADGE STYLING
+ =========================================*/
+
+.badge {
+    /* box-shadow: 2px 2px 10px #888888; */
+    border-radius: 20px;
+    width: 75px;
+}
+
+ /* good badge */
+ .badge-green {
+     background-color: #307351;
+ }
+
+ /* medium badge */
+ .badge-yellow {
+     background-color: gold;
+ }
+
+ /* bad badge */
+ .badge-red {
+     background-color: #cf1717;
+ }
+
  /* =========================================
 FOOTER STYLING
  =========================================*/
