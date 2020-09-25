@@ -151,7 +151,8 @@ function searchCities() {
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Population");
                 console.log("Population size: " + response.categories[1].data[0].float_value + " (millions)")
-                console.log("Population density: " + response.categories[1].data[1].float_value + " /sq km")
+                var mileFloat = ((response.categories[1].data[1].float_value) / .386).toFixed(0)
+                console.log("Population density: " + mileFloat + " /sq mile")
                 console.log("******************************************");
 
                 //Telescope Weather data?
@@ -159,7 +160,8 @@ function searchCities() {
                 //Taxation
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Taxation");
-                console.log("Sales Tax: " + response.categories[18].data[3].percent_value)
+                var salesTax = response.categories[18].data[3].percent_value
+                console.log("Sales Tax: " + Math.floor((salesTax) * 100) + "%")
                 console.log("******************************************");
 
                 //Gn related crime and gun statistics
