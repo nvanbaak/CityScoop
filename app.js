@@ -96,28 +96,28 @@ function searchCities() {
                         stateIndex = i;
                     }};
 
-                    // Date modified
-                    $("#covid-update-date").text(parseDate(response[stateIndex].dateModified));
-                    
-                    // Covid test total (sanitized)
-                    $(".covid-test-total").text(sanitize(response[stateIndex].total,5));
-                    
-                    // Positive covid cases
-                    $(".covid-pos-cases").text(sanitize(response[stateIndex].positive,4));
-                    
-                    // Negative covid cases
-                    $(".covid-neg-cases").text(sanitize(response[stateIndex].negative,4));
-                    
-                    // Percent of tests that come back positive
-                    var covPercent = response[stateIndex].positive / (response[stateIndex].positive + response[stateIndex].negative);
-                    covPercent = (covPercent * 100).toFixed(2);
+                // Date modified
+                $("#covid-update-date").text(parseDate(response[stateIndex].dateModified));
+                
+                // Covid test total (sanitized)
+                $(".covid-test-total").text(sanitize(response[stateIndex].total,5));
+                
+                // Positive covid cases
+                $(".covid-pos-cases").text(sanitize(response[stateIndex].positive,4));
+                
+                // Negative covid cases
+                $(".covid-neg-cases").text(sanitize(response[stateIndex].negative,4));
+                
+                // Percent of tests that come back positive
+                var covPercent = response[stateIndex].positive / (response[stateIndex].positive + response[stateIndex].negative);
+                covPercent = (covPercent * 100).toFixed(2);
 
-                    $(".covid-percent").text(covPercent + "%")
-                    
-                    // Number hospitalized
-                    $(".covid-hosp").text(response[stateIndex].hospitalizedCurrently);
-                    
-                    $(".covid-total-deaths").text(response[stateIndex].deathConfirmed);
+                $(".covid-percent").text(covPercent + "%")
+                
+                // Number hospitalized
+                $(".covid-hosp").text(response[stateIndex].hospitalizedCurrently);
+                
+                $(".covid-total-deaths").text(response[stateIndex].deathConfirmed);
 
             })
             
@@ -135,10 +135,7 @@ function searchCities() {
                 console.log("******************************************");
                 console.log(response);
 
-                //Healthcare related data
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Healthcare");
-                console.log(response);
+                // Healthcare related data
 
                 // Healthcare cost
                 $(".health-cost").text(Math.floor(response.categories[7].data[0].float_value * 10) + "/10");
@@ -146,10 +143,9 @@ function searchCities() {
                 // Healthcare Quality
                 $(".health-quality").text(Math.floor(response.categories[7].data[3].float_value * 10) + "/10");
                 
+                // Life Expectancy
                 $(".life-exp").text(Math.floor(response.categories[7].data[1].float_value));
                 
-                console.log("******************************************");
-
                 //Leisure/Culture data
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Culture-Leisure");
