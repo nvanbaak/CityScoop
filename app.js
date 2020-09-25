@@ -150,7 +150,17 @@ function searchCities() {
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Culture-Leisure");
                 console.log("Art Galleries: " + response.categories[4].data[1].int_value)
-                console.log("Cinemas: " + response.categories[4].data[3].int_value)
+
+                // Number of art galleries
+                $(".culture-art").text(response.categories[4].data[1].int_value);
+                
+                // Number of cinemas
+                $(".culture-movies").text(response.categories[4].data[7].int_value);
+                
+                // Number of concerts
+                $(".culture-art").text(response.categories[4].data[7].int_value);
+
+
                 console.log("Concerts: " + response.categories[4].data[7].int_value)
                 console.log("Historical Sites: " + response.categories[4].data[9].int_value)
                 console.log("Museums: " + response.categories[4].data[11].int_value)
