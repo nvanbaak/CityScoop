@@ -149,25 +149,25 @@ function searchCities() {
                 //Leisure/Culture data
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Culture-Leisure");
-                console.log("Art Galleries: " + response.categories[4].data[1].int_value)
 
                 // Number of art galleries
                 $(".culture-art").text(response.categories[4].data[1].int_value);
                 
                 // Number of cinemas
-                $(".culture-movies").text(response.categories[4].data[7].int_value);
+                $(".culture-movies").text(response.categories[4].data[3].int_value);
                 
                 // Number of concerts
-                $(".culture-art").text(response.categories[4].data[7].int_value);
+                $(".culture-concerts").text(response.categories[4].data[7].int_value);
 
+                $(".cult-hist").text(response.categories[4].data[9].int_value);
 
-                console.log("Concerts: " + response.categories[4].data[7].int_value)
-                console.log("Historical Sites: " + response.categories[4].data[9].int_value)
-                console.log("Museums: " + response.categories[4].data[11].int_value)
-                console.log("Performing Arts: " + response.categories[4].data[13].int_value)
-                console.log("Sports Venue: " + response.categories[4].data[15].int_value)
-                console.log("Zoos: " + response.categories[4].data[17].int_value)
-                console.log("******************************************");
+                $(".cult-museums").text(response.categories[4].data[11].int_value);
+
+                $(".cult-perform").text(response.categories[4].data[13].int_value);
+
+                $(".cult-sports").text(response.categories[4].data[15].int_value);
+
+                $(".cult-zoos").text(response.categories[4].data[17].int_value)
 
                 //Traffic data
                 console.log("******************************************");
