@@ -141,7 +141,6 @@ function searchCities() {
                     
                     // Write error message
                     $("#covid-update-date").text("(covid data not available outside of US)")
-
                 }
             })
             
