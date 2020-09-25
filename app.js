@@ -147,25 +147,25 @@ function searchCities(cityName) {
                 //Leisure/Culture data
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Culture-Leisure");
-                console.log("Art Galleries: " + response.categories[4].data[1].int_value)
 
                 // Number of art galleries
                 $(".culture-art").text(response.categories[4].data[1].int_value);
                 
                 // Number of cinemas
-                $(".culture-movies").text(response.categories[4].data[7].int_value);
+                $(".culture-movies").text(response.categories[4].data[3].int_value);
                 
                 // Number of concerts
-                $(".culture-art").text(response.categories[4].data[7].int_value);
+                $(".culture-concerts").text(response.categories[4].data[7].int_value);
 
+                $(".cult-hist").text(response.categories[4].data[9].int_value);
 
-                console.log("Concerts: " + response.categories[4].data[7].int_value)
-                console.log("Historical Sites: " + response.categories[4].data[9].int_value)
-                console.log("Museums: " + response.categories[4].data[11].int_value)
-                console.log("Performing Arts: " + response.categories[4].data[13].int_value)
-                console.log("Sports Venue: " + response.categories[4].data[15].int_value)
-                console.log("Zoos: " + response.categories[4].data[17].int_value)
-                console.log("******************************************");
+                $(".cult-museums").text(response.categories[4].data[11].int_value);
+
+                $(".cult-perform").text(response.categories[4].data[13].int_value);
+
+                $(".cult-sports").text(response.categories[4].data[15].int_value);
+
+                $(".cult-zoos").text(response.categories[4].data[17].int_value)
 
                 //Traffic data
                 console.log("******************************************");
@@ -180,20 +180,37 @@ function searchCities(cityName) {
                 console.log("Population density: " + mileFloat + " /sq mile")
                 console.log("******************************************");
 
-                //Telescope Weather data?
+                // Telescope Weather data?
 
-                //Taxation
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Taxation");
+                // Rent
+                $(".rent-low").text(response.categories[8].data[2].currency_dollar_value);
+                $(".rent-med").text(response.categories[8].data[1].currency_dollar_value);
+                $(".rent-high").text(response.categories[8].data[0].currency_dollar_value);
+
+                // Taxation
                 var salesTax = response.categories[18].data[3].percent_value
-                console.log("Sales Tax: " + Math.floor((salesTax) * 100) + "%")
-                console.log("******************************************");
+                $(".income-tax").text("Sales Tax: " + Math.floor((salesTax) * 100) + "%")
 
-                //Gn related crime and gun statistics
+                //Gun related crime and gun statistics
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Safety");
                 console.log("Gun-related deaths per 100,000 residents per year: " + response.categories[16].data[1].int_value)
                 console.log("Gun Owners per 100 residents: " + response.categories[16].data[3].int_value)
+                console.log("******************************************");
+
+                //Cost of living statistics
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / COST OF LIVING");
+                var applePound = ((response.categories[3].data[1].currency_dollar_value) * .45).toFixed(2)
+                console.log("Price of a pound of apples: " + applePound)
+                console.log("Price of a loaf of bread: " + response.categories[3].data[2].currency_dollar_value)
+                console.log("Price of a beer: " + response.categories[3].data[6].currency_dollar_value)
+                console.log("Price of a cappuccino: " + response.categories[3].data[3].currency_dollar_value)
+                console.log("Price of a meal at a restuarant: " + response.categories[3].data[10].currency_dollar_value)
+                console.log("Price of a movie ticket: " + response.categories[3].data[4].currency_dollar_value)
+                console.log("Price of a gym membership: " + response.categories[3].data[5].currency_dollar_value)
+                console.log("Price of a public transport per month: " + response.categories[3].data[7].currency_dollar_value)
+                console.log("Price of a taxi fare: " + response.categories[3].data[9].currency_dollar_value)
                 console.log("******************************************");
                
             })
@@ -285,17 +302,17 @@ function searchCities(cityName) {
             var unixFiveDayAgo = unixDateNow - (5 * 86400)
             // This gives the unix date 30 days ago.
             var unixMonthAgo = unixDateNow - (30 * 86400)
-                console.log("unix date: ", unixDateNow) 
-                console.log("unix a month ago:", unixMonthAgo)
+               //console.log("unix date: ", unixDateNow) 
+               //console.log("unix a month ago:", unixMonthAgo)
             
             // This retrieves the city id number, latitude, and longitude from teleport API in parent ajax.
-            console.log("data check on current city", response)
+            //console.log("data check on current city", response)
             var cityId = response.geoname_id
             var lat = response.location.latlon.latitude
             var lon = response.location.latlon.longitude
-                console.log("lat:", lat)
-                console.log("lon:", lon)
-                console.log("city id", cityId)
+                //console.log("lat:", lat)
+                //console.log("lon:", lon)
+                //console.log("city id", cityId)
                    
                 // --------------------------------URLs with end points for openweathermap API ------------------------------ 
 
@@ -306,16 +323,27 @@ function searchCities(cityName) {
             var cityHistory = "http://history.openweathermap.org/data/2.5/history/city?id="+ cityId +"&type=hour&start="+ unixDateNow +"&end="+ unixMonthAgo +"&appid=cf54ce47ff5608fa5caf5b89772775c4";
             
             // Ask url for history data
+
+            $.ajax({
+                url: oneWeekHistory,
+                method:"GET"
+            }).then( function(urlCityHistoryMain) {
+                console.log("******************************************");
+            console.log("City weather history data main");
+            console.log("******************************************");
+            console.log("Main City Data Branch: ", urlCityHistoryMain);
+            
+            });
+
             $.ajax({
                 url: oneWeekHistory,
                 method:"GET"
             }).then( function(urlCityHistory) {
                     
-                console.log("wx city history response: " , urlCityHistory);
+                //console.log("wx city history response: " , urlCityHistory);
             // This is to determine minimum and maximum temps for the year * again, proof of concept, this is only doing it for a week ago today. 
                 var tempArr = urlCityHistory.hourly;
-                    console.log("temp array for temps", tempArr);
-               
+          
                 // Isolate the temperature array and extract the portion we need
                 for(var i = 0; i < tempArr.length; i++){
                     tempArr[i] = tempArr[i].temp
@@ -323,19 +351,18 @@ function searchCities(cityName) {
                 
                 // Use these variables to identify the largest and smallest temps in the array
                 var highestTemp = Math.max.apply(Math, tempArr);
-                    console.log("highest temp recorded", highestTemp);
-               
-                    var lowestTemp = Math.min.apply(Math, tempArr);
-                    console.log("lowest temp recorded", lowestTemp);
-                
-                // Yearly high average, and Yearly low average || Populate the appropriate elements in DOM
-                var highTempEl =  document.querySelector("#data-containers > div:nth-child(2) > div.row.center > div:nth-child(3) > p.p-medium");
-                var lowTempEl = document.querySelector("#data-containers > div:nth-child(2) > div.row.center > div:nth-child(4) > p.p-medium");
-
-                highTempEl.innerHTML = Math.floor(highestTemp) ;
-                lowTempEl.innerHTML = Math.floor(lowestTemp) -8;
-            
-            // This is to determine average rainfall for the period selected - nearly the same method as above 
+                var lowestTemp = Math.min.apply(Math, tempArr);
+                    
+                // Yearly high average, and Yearly low average rounded down || Populate the appropriate elements in DOM
+                $(".average-high-temp").text(Math.floor(highestTemp));
+                $(".average-low-temp").text(Math.floor(lowestTemp) -8);
+                          
+             
+            console.log("******************************************");
+            console.log("Weather data / average year high&low");
+            console.log("******************************************");
+            console.log("Year average high temp: ", Math.floor(highestTemp));
+            console.log("year average low temp: ", Math.floor(lowestTemp) -8)
                 
             });
                    
