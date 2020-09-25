@@ -197,7 +197,13 @@
 
                         <!-- COST OF LIVING COLLAPSIBLE DIV -->
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">attach_money</i>COST OF LIVING</div>
+                            <div class="collapsible-header"><i class="material-icons">attach_money</i>COST OF LIVING
+                                <!-- BADGE ICON (BACKEND: scale is as follows: 
+                                    (badge-red & white-text): 0 < x < 3, 
+                                    (badge-yellow & black-text): 3 <= x < 7, 
+                                    (badge-green & white-text): 7 <= x <= 10) -->
+                                <span id="cost-of-living-score" class="badge badge-red white-text hide-on-small-only">2.5 / 10</span>                            
+                            </div>
                             <!-- Sample Specific Info Container. Use  -->
                             <div class="container-fluid  container-white collapsible-body">
                                 <div class="row">
