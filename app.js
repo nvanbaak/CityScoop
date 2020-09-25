@@ -80,8 +80,10 @@ function searchCities() {
             // Update city name
             $(".city-name").text((response.name).toUpperCase());
 
-            //var to get the state from the previous ajax requests
-            var covidState =  abbreviateState(response.full_name)
+            // COVID PANEL
+
+            // Get two-letter state abbreviation
+            var covidState = abbreviateState(response.full_name)
 
             // Ajax for all states data
             $.ajax({
@@ -91,19 +93,32 @@ function searchCities() {
                 // running through all states and only return the state that the inputted city is within
                 for (i = 0; i < 55; i++){
                     if (response[i].state===covidState){
-
-                        console.log("******************************************");
-                        console.log("COVID DATA BY STATE");
-                        console.log("******************************************");
-                        console.log(response);
-
-                        console.log("Last date updated: " + response[i].dateModified);
-                        console.log("Curently Hospitalized cases: " + response[i].hospitalizedCurrently);
-                        console.log("Total test cases: " + response[i].total);
-                        console.log("Negative cases: " + response[i].negative);
-                        console.log("Positive cases: " + response[i].positive);
-                        console.log("Total Deaths Confirmed: " + response[i].deathConfirmed);
+                        stateIndex = i;
                     }};
+
+                    // Date modified
+                    $("#covid-update-date").text(parseDate(response[stateIndex].dateModified));
+                    
+                    // Covid test total (sanitized)
+                    $(".covid-test-total").text(sanitize(response[stateIndex].total,5));
+                    
+                    // Positive covid cases
+                    $(".covid-pos-cases").text(sanitize(response[stateIndex].positive,4));
+                    
+                    // Negative covid cases
+                    $(".covid-neg-cases").text(sanitize(response[stateIndex].negative,4));
+                    
+                    // Percent of tests that come back positive
+                    var covPercent = response[stateIndex].positive / (response[stateIndex].positive + response[stateIndex].negative);
+                    covPercent = (covPercent * 100).toFixed(2);
+
+                    $(".covid-percent").text(covPercent + "%")
+                    
+                    // Number hospitalized
+                    $(".covid-hosp").text(response[stateIndex].hospitalizedCurrently);
+                    
+                    $(".covid-total-deaths").text(response[stateIndex].deathConfirmed);
+
             })
             
             // Get url for urban areas
@@ -368,8 +383,15 @@ function abbreviateState(fullname) {
         case "Wyoming":
             return "WY";
         default:
-            break;
+            return "NO-GO";
     }
+}
+
+function sanitize(num,round) {
+    // Sanitize takes ugly large numbers and translates them into lovely round numbers with comma separators
+
+    return insertCommasIntoNumbers(roundToPreDecimal(num,round));
+
 }
 
 function roundToTenThousand(num) {
@@ -377,6 +399,15 @@ function roundToTenThousand(num) {
     return Math.round(num / 1000) * 1000
 }
 
+function roundToPreDecimal(num, dec) {
+    // rounds to the specified digit (e.g. entering 2 means the tens place will be the last non-zero number)
+
+    // Generate order of magnitude
+    var order = 10**(dec-1);
+
+    return Math.round(num / order) * order;
+
+}
 
 
 
@@ -412,4 +443,71 @@ function insertCommasIntoNumbers(num) {
     return newNum;
 }
 
-console.log(insertCommasIntoNumbers(10000000000));
+function parseDate(uglyDate) {
+    // parseDate takes a date of form YYYY-MM-DD.... and translates it into something user-friendly
+
+    var newYear = "";
+    var newMonth = "";
+    var newDay = "";
+
+    // Grab the information from the ugly date
+    for (i = 0; i < uglyDate.length; i++) {
+        
+        // First four numbers assumed to be the year
+        if (i < 4) {
+            newYear += uglyDate[i];
+        } else if (4 < i && i < 7) {
+            // Next is month
+            newMonth += uglyDate[i];
+        } else if (7 < i && i < 10){
+            // Day last
+            newDay += uglyDate[i];
+        }
+    }
+
+    // Translate the month into words
+    switch (newMonth) {
+        case "01":
+            newMonth = "January";
+            break;
+        case "02":
+            newMonth = "February";
+            break;
+        case "03":
+            newMonth = "March";
+            break;
+        case "04":
+            newMonth = "April";
+            break;
+        case "05":
+            newMonth = "May";
+            break;
+        case "06":
+            newMonth = "June";
+            break;
+        case "07":
+            newMonth = "July";
+            break;
+        case "08":
+            newMonth = "August";
+            break;
+        case "09":
+            newMonth = "September";
+            break;
+        case "10":
+            newMonth = "October";
+            break;
+        case "11":
+            newMonth = "Novembet";
+            break;
+        case "12":
+            newMonth = "December";
+            break;
+        default:
+            newMonth = "Write your congressmional representative, this isn't a real month";
+            break;
+    }
+
+    return newMonth + " " + newDay + ", " + newYear;
+
+}
