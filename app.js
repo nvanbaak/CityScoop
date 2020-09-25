@@ -27,7 +27,6 @@ icon.addEventListener('click', function(event){
             // Toggle which page is visible
             document.querySelector(".start-page-wrap").classList.toggle("hide");
             document.querySelector(".results-page-wrap").classList.toggle("hide");
-            searchBarActive = false;
             
             // Run the search
             searchCities();
@@ -37,8 +36,8 @@ icon.addEventListener('click', function(event){
 
 
 iconResults.addEventListener('click', function(){
-    if (!searchBarActive){
-        searchCitiesResults();
+    if (searchBarActive){
+        searchCities();
     }
 });
 
@@ -49,9 +48,14 @@ function searchCities() {
 
     // Grab city name from input bar
     var cityName = $("#search-bar").val();
+    var cityNameResults = $('#nav-bar-results').val();
 
+    if(searchBarActive === true){
     // Create query URL
-    var queryURL = "https://api.teleport.org/api/cities/?search=" + cityName;
+        var queryURL = "https://api.teleport.org/api/cities/?search=" + cityName;
+    } else{
+        var queryURL = "https://api.teleport.org/api/cities/?search=" + cityNameResults;
+    }
     
     // Use query URL to make first AJAX request
     $.ajax({
@@ -345,205 +349,6 @@ function searchCities() {
 };
 
 
-//Functionality for results page search bar
-function searchCitiesResults() {
-    // This function is called by the search bar event listeners to get the database information the app needs
-
-    // Grab city name from input bar
-    var cityName = $("#nav-bar-results").val();
-
-    // Create query URL
-    var queryURL = "https://api.teleport.org/api/cities/?search=" + cityName;
-    
-    // Use query URL to make first AJAX request
-    $.ajax({
-        url:queryURL,
-        method:"GET"
-    }).then( function(response) {
-        // Get url with geoname ID
-        var geonameURL = response._embedded["city:search-results"][0]._links["city:item"].href;
-
-        // Make AJAX request with new URL
-        $.ajax({
-            url:geonameURL,
-            method:"GET"
-        }).then( function(response) {
-    
-            console.log("******************************************");
-            console.log("CITY");
-            console.log("******************************************");
-            console.log(response);
-            
-            // Update city name
-            $(".city-name").text((response.name).toUpperCase());
-
-            //var to get the state from the previous ajax requests
-            var covidState =  abbreviateState(response.full_name)
-
-            // Ajax for all states data
-            $.ajax({
-                url:"https://api.covidtracking.com/v1/states/current.json",
-                method:"GET"
-            }).then( function(response) {
-                // running through all states and only return the state that the inputted city is within
-                for (i = 0; i < 55; i++){
-                    if (response[i].state===covidState){
-
-                        console.log("******************************************");
-                        console.log("COVID DATA BY STATE");
-                        console.log("******************************************");
-                        console.log(response);
-
-                        console.log("Last date updated: " + response[i].dateModified);
-                        console.log("Curently Hospitalized cases: " + response[i].hospitalizedCurrently);
-                        console.log("Total test cases: " + response[i].total);
-                        console.log("Negative cases: " + response[i].negative);
-                        console.log("Positive cases: " + response[i].positive);
-                        console.log("Total Deaths Confirmed: " + response[i].deathConfirmed);
-                    }};
-            })
-            
-            // Get url for urban areas
-            var urbanURL = response._links["city:urban_area"].href;
-            
-            // Urban area "details" pull
-            $.ajax({
-                url:`${urbanURL+"details"}`,
-                method:"GET"
-            }).then( function(response) {
-                
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS");
-                console.log("******************************************");
-                console.log(response);
-
-                //Healthcare related data
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Healthcare");
-                console.log("Healthcare Cost: " + response.categories[7].data[0].float_value)
-                //The life-expectincy is a national number and doesn't change per city (recomend removing)
-                console.log("Life-Expectancy: " + response.categories[7].data[1].float_value)
-                console.log("Healthcare Quality: " + response.categories[7].data[3].float_value)
-                
-                
-                console.log("******************************************");
-
-                //Leisure/Culture data
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Culture-Leisure");
-                console.log("Art Galleries: " + response.categories[4].data[1].int_value)
-                console.log("Cinemas: " + response.categories[4].data[3].int_value)
-                console.log("Concerts: " + response.categories[4].data[7].int_value)
-                console.log("Historical Sites: " + response.categories[4].data[9].int_value)
-                console.log("Museums: " + response.categories[4].data[11].int_value)
-                console.log("Performing Arts: " + response.categories[4].data[13].int_value)
-                console.log("Sports Venue: " + response.categories[4].data[15].int_value)
-                console.log("Zoos: " + response.categories[4].data[17].int_value)
-                console.log("******************************************");
-
-                //Traffic data
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Traffic");
-                console.log("******************************************");
-               
-            })
-            
-            // Urban area "images" pull
-            $.ajax({
-                url:`${urbanURL+"images"}`,
-                method:"GET"
-            }).then( function(response) {
-
-                heroImg = response.photos[0].image.web; 
-                $(".hero-image").css("background-image", `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${heroImg})`);
-            })
-            
-            
-            // Urban area "salaries" pull
-            $.ajax({
-                url:`${urbanURL+"salaries"}`,
-                method:"GET"
-            }).then( function(response) {
-
-                // SALARY PANEL
-
-                // Grab salary data
-                var salaryData = response.salaries;
-                
-                // Create an option for each job title
-                var dropdown = $("#dropdown1")
-
-                for (i in salaryData) {
-                    // Create option
-                    var newLink = $("<a>",{"data-salary-index":i}).text(salaryData[i].job.title);
-                    // Append to list element
-                    var newListEl = $("<li>").append(newLink);
-                    // Append list element to list
-                    dropdown.append(newListEl);
-                }
-
-                // Dropdown reponds to clicking one of the options
-                dropdown.on("click", function(event) {
-
-                    // Only fire if we're clicking on a link icon
-                    if ( event.target.matches("a") ) {
-
-                        // Get the data index from the target element
-                        var sIndex = event.target.dataset.salaryIndex;
-
-                        // Parse salary data for 25th %ile
-                        var salary25 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_25);
-                        salary25 = insertCommasIntoNumbers(salary25);
-
-                        // Update display
-                        $(".salary-25").text("$" + salary25);
-                        
-                        // Parse salary data for 50th %ile
-                        var salary50 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_50);
-                        salary50 = insertCommasIntoNumbers(salary50);
-
-                        // Update display
-                        $(".salary-50").text("$" + salary50);
-                        
-                        // Parse salary data for 75th %ile
-                        var salary75 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_75);
-                        salary75 = insertCommasIntoNumbers(salary75);
-
-                        // Update display
-                        $(".salary-75").text("$" + salary75);
-                    };
-                });
-            })
-            
-            // Urban area "scores" pull
-            $.ajax({
-                url:`${urbanURL+"scores"}`,
-                method:"GET"
-            }).then( function(response) {
-                
-                console.log("******************************************");
-                console.log("URBAN AREA / SCORES");
-                console.log("******************************************");
-                console.log(response);
-            })
-        })
-    })
-}
-
-
-
-
-
-//select which search bar runs AJAX request
-if (searchBarActive = false){
-    //function to initiate 'results' page search bar using 'Enter' key
-searchBarResults.addEventListener('keypress', function(e){
-    if(e.key === 'Enter' && searchBarResults.value){
-        searchCitiesResults();
-        console.log(nav-bar-results);
-    }
-});
-} else {
 //function to initiate search using 'Enter' key
 searchBar.addEventListener('keypress', function(e){
     if(e.key === 'Enter' && searchBar.value) {
@@ -551,14 +356,11 @@ searchBar.addEventListener('keypress', function(e){
         // Toggle which page is visible
         document.querySelector(".start-page-wrap").classList.toggle("hide");
         document.querySelector(".results-page-wrap").classList.toggle("hide");
-        
-
         // Search
         searchCities();
 
     }
 });
-}
 
 
 //function to abbreviate state
