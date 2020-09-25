@@ -355,10 +355,8 @@ function searchCities(cityName) {
                 console.log(response);
 
                 // Update the Basic Info Summary
-                console.log(response.summary)
                 var res = response.summary.split("</p>");
                 $("#city-summary").html(res[0] + "</p>");
-                // console.log((response.summary).contents().find('p:first').text())
             })
         
         // ----------------------------------------- wx api ----------------------------------------------------------
