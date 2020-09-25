@@ -75,8 +75,10 @@ function searchCities() {
             // Update city name
             $(".city-name").text((response.name).toUpperCase());
 
-            //var to get the state from the previous ajax requests
-            var covidState =  abbreviateState(response.full_name)
+            // COVID PANEL
+
+            // Get two-letter state abbreviation
+            var covidState = abbreviateState(response.full_name)
 
             // Ajax for all states data
             $.ajax({
@@ -86,19 +88,32 @@ function searchCities() {
                 // running through all states and only return the state that the inputted city is within
                 for (i = 0; i < 55; i++){
                     if (response[i].state===covidState){
-
-                        console.log("******************************************");
-                        console.log("COVID DATA BY STATE");
-                        console.log("******************************************");
-                        console.log(response);
-
-                        console.log("Last date updated: " + response[i].dateModified);
-                        console.log("Curently Hospitalized cases: " + response[i].hospitalizedCurrently);
-                        console.log("Total test cases: " + response[i].total);
-                        console.log("Negative cases: " + response[i].negative);
-                        console.log("Positive cases: " + response[i].positive);
-                        console.log("Total Deaths Confirmed: " + response[i].deathConfirmed);
+                        stateIndex = i;
                     }};
+
+                    // Date modified
+                    $("#covid-update-date").text(parseDate(response[stateIndex].dateModified));
+                    
+                    // Covid test total (sanitized)
+                    $(".covid-test-total").text(sanitize(response[stateIndex].total,5));
+                    
+                    // Positive covid cases
+                    $(".covid-pos-cases").text(sanitize(response[stateIndex].positive,4));
+                    
+                    // Negative covid cases
+                    $(".covid-neg-cases").text(sanitize(response[stateIndex].negative,4));
+                    
+                    // Percent of tests that come back positive
+                    var covPercent = response[stateIndex].positive / (response[stateIndex].positive + response[stateIndex].negative);
+                    covPercent = (covPercent * 100).toFixed(2);
+
+                    $(".covid-percent").text(covPercent + "%")
+                    
+                    // Number hospitalized
+                    $(".covid-hosp").text(response[stateIndex].hospitalizedCurrently);
+                    
+                    $(".covid-total-deaths").text(response[stateIndex].deathConfirmed);
+
             })
             
             // Get url for urban areas
@@ -118,14 +133,17 @@ function searchCities() {
                 //Healthcare related data
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Healthcare");
-                console.log("Healthcare Cost: " + response.categories[7].data[0].float_value)
-                //The life-expectincy is a national number and doesn't change per city (recomend removing)
-                console.log("Life-Expectancy: " + response.categories[7].data[1].float_value)
-                console.log("Healthcare Quality: " + response.categories[7].data[3].float_value)
-                
-                
-                console.log("******************************************");
 
+                // Healthcare cost
+                $(".health-cost").text(Math.floor(response.categories[7].data[0].float_value * 10) + "/10");
+                
+                // Healthcare Quality
+                $(".health-quality").text(Math.floor(response.categories[7].data[3].float_value * 10) + "/10");
+                
+                $(".life-exp").text(Math.floor(response.categories[7].data[1].float_value));
+
+                console.log("******************************************");
+                
                 //Leisure/Culture data
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Culture-Leisure");
@@ -142,6 +160,30 @@ function searchCities() {
                 //Traffic data
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Traffic");
+                console.log("******************************************");
+
+                //Population metrics
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / Population");
+                console.log("Population size: " + response.categories[1].data[0].float_value + " (millions)")
+                var mileFloat = ((response.categories[1].data[1].float_value) / .386).toFixed(0)
+                console.log("Population density: " + mileFloat + " /sq mile")
+                console.log("******************************************");
+
+                //Telescope Weather data?
+
+                //Taxation
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / Taxation");
+                var salesTax = response.categories[18].data[3].percent_value
+                console.log("Sales Tax: " + Math.floor((salesTax) * 100) + "%")
+                console.log("******************************************");
+
+                //Gn related crime and gun statistics
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / Safety");
+                console.log("Gun-related deaths per 100,000 residents per year: " + response.categories[16].data[1].int_value)
+                console.log("Gun Owners per 100 residents: " + response.categories[16].data[3].int_value)
                 console.log("******************************************");
                
             })
@@ -190,22 +232,19 @@ function searchCities() {
                         var sIndex = event.target.dataset.salaryIndex;
 
                         // Parse salary data for 25th %ile
-                        var salary25 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_25);
-                        salary25 = insertCommasIntoNumbers(salary25);
+                        var salary25 = sanitize(salaryData[sIndex].salary_percentiles.percentile_25,4);
 
                         // Update display
                         $(".salary-25").text("$" + salary25);
                         
                         // Parse salary data for 50th %ile
-                        var salary50 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_50);
-                        salary50 = insertCommasIntoNumbers(salary50);
+                        var salary50 = sanitize(salaryData[sIndex].salary_percentiles.percentile_50,4);
 
                         // Update display
                         $(".salary-50").text("$" + salary50);
                         
                         // Parse salary data for 75th %ile
-                        var salary75 = roundToTenThousand(salaryData[sIndex].salary_percentiles.percentile_75);
-                        salary75 = insertCommasIntoNumbers(salary75);
+                        var salary75 = sanitize(salaryData[sIndex].salary_percentiles.percentile_75,4);
 
                         // Update display
                         $(".salary-75").text("$" + salary75);
@@ -224,9 +263,77 @@ function searchCities() {
                 console.log("******************************************");
                 console.log(response);
             })
-        })
-    })
-}
+        
+        // ----------------------------------------- wx api ----------------------------------------------------------
+
+            // Openweathermap charges for information going back more than a week - for now, we are going back 5 days and simulating extrapolation for a year.
+            
+            // The openweathermap API end points require a unix date range to search for historic weather data. 
+            // Today's Unix date - divide the current time by 1000 to produce the unix number and round down to ten digits.
+            var unixDateNow = Math.floor(new Date().getTime() / 1000)
+            // This gives the unix date 5 days ago - 5 days * 86400 seconds a day.
+            var unixFiveDayAgo = unixDateNow - (5 * 86400)
+            // This gives the unix date 30 days ago.
+            var unixMonthAgo = unixDateNow - (30 * 86400)
+                console.log("unix date: ", unixDateNow) 
+                console.log("unix a month ago:", unixMonthAgo)
+            
+            // This retrieves the city id number, latitude, and longitude from teleport API in parent ajax.
+            console.log("data check on current city", response)
+            var cityId = response.geoname_id
+            var lat = response.location.latlon.latitude
+            var lon = response.location.latlon.longitude
+                console.log("lat:", lat)
+                console.log("lon:", lon)
+                console.log("city id", cityId)
+                   
+                // --------------------------------URLs with end points for openweathermap API ------------------------------ 
+
+            // Openweathermap url for history going back to a specific day, within the last five days - the free api has a time span limit of 5 days
+            var oneWeekHistory = "https://api.openweathermap.org/data/2.5/onecall/timemachine?lat="+ lat +"&lon="+ lon +"&dt="+ unixFiveDayAgo +"&units=imperial&appid=cf54ce47ff5608fa5caf5b89772775c4";
+            
+            // Openweathermap url for history going back a specified amount of time - can produce a range of times - this is not a free service, the example here is for proof of concept.
+            var cityHistory = "http://history.openweathermap.org/data/2.5/history/city?id="+ cityId +"&type=hour&start="+ unixDateNow +"&end="+ unixMonthAgo +"&appid=cf54ce47ff5608fa5caf5b89772775c4";
+            
+            // Ask url for history data
+            $.ajax({
+                url: oneWeekHistory,
+                method:"GET"
+            }).then( function(urlCityHistory) {
+                    
+                console.log("wx city history response: " , urlCityHistory);
+            // This is to determine minimum and maximum temps for the year * again, proof of concept, this is only doing it for a week ago today. 
+                var tempArr = urlCityHistory.hourly;
+                    console.log("temp array for temps", tempArr);
+               
+                // Isolate the temperature array and extract the portion we need
+                for(var i = 0; i < tempArr.length; i++){
+                    tempArr[i] = tempArr[i].temp
+                }
+                
+                // Use these variables to identify the largest and smallest temps in the array
+                var highestTemp = Math.max.apply(Math, tempArr);
+                    console.log("highest temp recorded", highestTemp);
+               
+                    var lowestTemp = Math.min.apply(Math, tempArr);
+                    console.log("lowest temp recorded", lowestTemp);
+                
+                // Yearly high average, and Yearly low average || Populate the appropriate elements in DOM
+                var highTempEl =  document.querySelector("#data-containers > div:nth-child(2) > div.row.center > div:nth-child(3) > p.p-medium");
+                var lowTempEl = document.querySelector("#data-containers > div:nth-child(2) > div.row.center > div:nth-child(4) > p.p-medium");
+
+                highTempEl.innerHTML = Math.floor(highestTemp) ;
+                lowTempEl.innerHTML = Math.floor(lowestTemp) -8;
+            
+            // This is to determine average rainfall for the period selected - nearly the same method as above 
+                
+            });
+                   
+        });
+
+    });
+
+};
 
 
 //Functionality for results page search bar
@@ -559,17 +666,33 @@ function abbreviateState(fullname) {
         case "Wyoming":
             return "WY";
         default:
-            break;
+            return "NO-GO";
     }
 };
 
 
+
+function sanitize(num,round) {
+    // Sanitize takes ugly large numbers and translates them into lovely round numbers with comma separators
+
+    return insertCommasIntoNumbers(roundToPreDecimal(num,round));
+
+}
 
 function roundToTenThousand(num) {
     // This function rounds the given number to the nearest ten thousands
     return Math.round(num / 1000) * 1000
 }
 
+function roundToPreDecimal(num, dec) {
+    // rounds to the specified digit (e.g. entering 2 means the tens place will be the last non-zero number)
+
+    // Generate order of magnitude
+    var order = 10**(dec-1);
+
+    return Math.round(num / order) * order;
+
+}
 
 
 
@@ -605,4 +728,71 @@ function insertCommasIntoNumbers(num) {
     return newNum;
 }
 
-console.log(insertCommasIntoNumbers(10000000000));
+function parseDate(uglyDate) {
+    // parseDate takes a date of form YYYY-MM-DD.... and translates it into something user-friendly
+
+    var newYear = "";
+    var newMonth = "";
+    var newDay = "";
+
+    // Grab the information from the ugly date
+    for (i = 0; i < uglyDate.length; i++) {
+        
+        // First four numbers assumed to be the year
+        if (i < 4) {
+            newYear += uglyDate[i];
+        } else if (4 < i && i < 7) {
+            // Next is month
+            newMonth += uglyDate[i];
+        } else if (7 < i && i < 10){
+            // Day last
+            newDay += uglyDate[i];
+        }
+    }
+
+    // Translate the month into words
+    switch (newMonth) {
+        case "01":
+            newMonth = "January";
+            break;
+        case "02":
+            newMonth = "February";
+            break;
+        case "03":
+            newMonth = "March";
+            break;
+        case "04":
+            newMonth = "April";
+            break;
+        case "05":
+            newMonth = "May";
+            break;
+        case "06":
+            newMonth = "June";
+            break;
+        case "07":
+            newMonth = "July";
+            break;
+        case "08":
+            newMonth = "August";
+            break;
+        case "09":
+            newMonth = "September";
+            break;
+        case "10":
+            newMonth = "October";
+            break;
+        case "11":
+            newMonth = "Novembet";
+            break;
+        case "12":
+            newMonth = "December";
+            break;
+        default:
+            newMonth = "Write your congressmional representative, this isn't a real month";
+            break;
+    }
+
+    return newMonth + " " + newDay + ", " + newYear;
+
+}
