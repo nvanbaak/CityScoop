@@ -80,8 +80,10 @@ function searchCities() {
             // Update city name
             $(".city-name").text((response.name).toUpperCase());
 
-            //var to get the state from the previous ajax requests
-            var covidState =  abbreviateState(response.full_name)
+            // COVID PANEL
+
+            // Get two-letter state abbreviation
+            var covidState = abbreviateState(response.full_name)
 
             // Ajax for all states data
             $.ajax({
@@ -98,6 +100,11 @@ function searchCities() {
                         console.log(response);
 
                         console.log("Last date updated: " + response[i].dateModified);
+                        $("#covid-update-time").text()
+
+
+
+
                         console.log("Curently Hospitalized cases: " + response[i].hospitalizedCurrently);
                         console.log("Total test cases: " + response[i].total);
                         console.log("Negative cases: " + response[i].negative);
@@ -346,17 +353,21 @@ function abbreviateState(fullname) {
         case "Wyoming":
             return "WY";
         default:
-            break;
+            return "NO-GO";
     }
+}
+
+function sanitize(num) {
+    // Sanitize takes ugly large numbers and translates them into lovely round numbers with comma separators
+
+    return insertCommasIntoNumbers(roundToTenThousand(num));
+
 }
 
 function roundToTenThousand(num) {
     // This function rounds the given number to the nearest ten thousands
     return Math.round(num / 1000) * 1000
 }
-
-
-
 
 function insertCommasIntoNumbers(num) {
     // This function takes a number and inserts commas every three digits
@@ -389,5 +400,3 @@ function insertCommasIntoNumbers(num) {
     // Return number
     return newNum;
 }
-
-console.log(insertCommasIntoNumbers(10000000000));
