@@ -83,9 +83,38 @@ input{
     transition: all .6s;
 }
 
+/* added 'results' to search bar ID  */
+#nav-bar-results{
+    margin-top: 7px;
+    background: seashell;
+    font-size: 2rem;
+    width: 100%;
+    outline: none;
+    padding-left: 15px;
+    border: none;
+    border-radius: 15px;
+    transition: all .6s;
+}
+
 .icon{
     width: 60px;
     height: 60px;
+    background: rgb(70, 197, 236);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    color: #ffffff;
+    cursor: pointer;
+    transform: translateX(-30px) rotate(-45deg);
+}
+
+/* Icon for results page  */
+.nav-results{
+    margin-top: 7px;
+    width: 50px;
+    height: 50px;
     background: rgb(70, 197, 236);
     border-radius: 50%;
     display: flex;
@@ -120,7 +149,7 @@ Results Containers Styling
  =========================================*/
 
  .results-container{
-     padding: 0 50px 20px 50px;
+     padding: 0 25px 20px 25px;
  }
 
  .container-lightGray {
@@ -139,9 +168,35 @@ Results Containers Styling
  .p-small {
     font-size: .5em;
  }
+
  .p-medium {
-    font-size: 5em;
+    font-size: 4em;
  }
+
  .p-large {
-    font-size: 3em;
+    font-size: 4em;
+ }
+
+ .collapsible-header {
+     background-color: white;
+     font-size: larger;
+ }
+
+ .collapsible-header:hover {
+     background-color: lightgrey;
+     font: white;
+     font-weight: bold;
+ }
+
+ .covid-header {
+     color: red;
+     font-weight: bold;
+ }
+
+ /* =========================================
+FOOTER STYLING
+ =========================================*/
+
+ .page-footer {
+     background-color: #252525;
  }
