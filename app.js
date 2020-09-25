@@ -247,8 +247,9 @@ function searchCities(cityName) {
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Safety");
                 console.log("Gun-related deaths per 100,000 residents per year: " + response.categories[16].data[1].int_value)
-                console.log("Gun Owners per 100 residents: " + response.categories[16].data[3].int_value)
-                console.log("******************************************");
+
+                $(".gun-own").text(response.categories[16].data[3].int_value);
+                
 
                 //Cost of living statistics
                 console.log("******************************************");
