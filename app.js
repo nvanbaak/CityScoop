@@ -177,14 +177,16 @@ function searchCities() {
                 console.log("Population density: " + mileFloat + " /sq mile")
                 console.log("******************************************");
 
-                //Telescope Weather data?
+                // Telescope Weather data?
 
-                //Taxation
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Taxation");
+                // Rent
+                $(".rent-low").text(response.categories[8].data[2]);
+                $(".rent-med").text(response.categories[8].data[1]);
+                $(".rent-high").text(response.categories[8].data[0]);
+
+                // Taxation
                 var salesTax = response.categories[18].data[3].percent_value
-                console.log("Sales Tax: " + Math.floor((salesTax) * 100) + "%")
-                console.log("******************************************");
+                $(".income-tax").text("Sales Tax: " + Math.floor((salesTax) * 100) + "%")
 
                 //Gn related crime and gun statistics
                 console.log("******************************************");
