@@ -320,7 +320,7 @@ function searchCities(cityName) {
                     dropdown.append(newListEl);
                 }
 
-                // Dropdown reponds to clicking one of the options
+                // Dropdown responds to clicking one of the options
                 dropdown.on("click", function(event) {
 
                     // Only fire if we're clicking on a link icon
@@ -351,10 +351,48 @@ function searchCities(cityName) {
             })
             
             // Urban area "scores" pull
+
             $.ajax({
                 url:`${urbanURL+"scores"}`,
                 method:"GET"
             }).then( function(response) {
+            //Job & Salary update
+            //get ID of Job & Salary score
+            let jobSalaryScore = document.getElementById('salary-score');
+            //set job and salary value on DOM
+            jobSalaryScore.textContent = 'N/A'
+
+            //education score update
+            //get ID of education score
+            let educationScore = document.getElementById('education-score');
+            //set education value on DOM
+            educationScore.textContent = response.categories[9].score_out_of_10.toFixed(1);
+
+            //cost of living score update
+            //get ID of cost of living score
+            let costOfLiving = document.getElementById('cost-of-living-score');
+            //set cost of living value on DOM
+            costOfLiving.textContent = response.categories[1].score_out_of_10.toFixed(1);
+
+            //health score update
+            //get ID of health score
+            let healthScore = document.getElementById('health-score');
+            //set education value on DOM
+            healthScore.textContent = response.categories[8].score_out_of_10.toFixed(1);
+
+            //weather score update
+            //get ID of weather score
+            let weatherScore = document.getElementById('weather-score');
+            //set education value on DOM
+            weatherScore.textContent = 'N/A'
+
+            //culture and leisure score update
+            //get ID of culture score
+            let cultureScore = document.getElementById('culture-score');
+            //set education value on DOM
+            cultureScore.textContent = response.categories[14].score_out_of_10.toFixed(1);
+
+
                 
                 console.log("******************************************");
                 console.log("URBAN AREA / SCORES");
