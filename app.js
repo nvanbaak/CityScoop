@@ -93,24 +93,39 @@ function searchCities() {
                 // running through all states and only return the state that the inputted city is within
                 for (i = 0; i < 55; i++){
                     if (response[i].state===covidState){
-
-                        console.log("******************************************");
-                        console.log("COVID DATA BY STATE");
-                        console.log("******************************************");
-                        console.log(response);
-
-                        console.log("Last date updated: " + response[i].dateModified);
-                        $("#covid-update-time").text()
-
-
-
-
-                        console.log("Curently Hospitalized cases: " + response[i].hospitalizedCurrently);
-                        console.log("Total test cases: " + response[i].total);
-                        console.log("Negative cases: " + response[i].negative);
-                        console.log("Positive cases: " + response[i].positive);
-                        console.log("Total Deaths Confirmed: " + response[i].deathConfirmed);
+                        stateIndex = i;
                     }};
+
+                    console.log("Last date updated: " + response[i].dateModified);
+                    // Date modified
+                    $("#covid-update-date").text(parseDate(response[stateIndex].dateModified));
+
+                    // console.log("******************************************");
+                    // console.log("COVID DATA BY STATE");
+                    // console.log("******************************************");
+                    // console.log(response);
+
+                    
+
+                    // console.log("Total test cases: " + response[i].total);
+                    // $(".covid-test-total").text(response[i].total);
+                    
+                    // console.log("Positive cases: " + response[i].positive);
+                    // $(".covid-pos-cases").text(response[i].positive);
+                    
+                    // console.log("Negative cases: " + response[i].negative);
+                    // $(".covid-neg-cases").text(response[i].negative);
+                    
+                    // console.log("Curently Hospitalized cases: " + response[i].hospitalizedCurrently);
+                    // $(".covid-hosp").text(response[i].hospitalizedCurrently);
+                    
+                    // var covPercent = response[i].positive / (response[i].positive + response[i].negative);
+                    // covPercent = Math.floor(covPercent / 100);
+
+                    // $(".covid-percent").text(covPercent + "%")
+
+                    // console.log("Total Deaths Confirmed: " + response[i].deathConfirmed);
+                    // $(".covid-total-deaths").text(response[i].deathConfirmed);
             })
             
             // Get url for urban areas
@@ -402,7 +417,7 @@ function insertCommasIntoNumbers(num) {
 }
 
 function parseDate(uglyDate) {
-    // parseDate takes a date of numericalform YYYYMMDD and translates it into something user-friendly
+    // parseDate takes a date of form YYYY-MM-DD.... and translates it into something user-friendly
 
     var newYear = "";
     var newMonth = "";
@@ -414,10 +429,10 @@ function parseDate(uglyDate) {
         // First four numbers assumed to be the year
         if (i < 4) {
             newYear += uglyDate[i];
-        } else if (i < 6) {
+        } else if (4 < i && i < 7) {
             // Next is month
             newMonth += uglyDate[i];
-        } else {
+        } else if (7 < i && i < 10){
             // Day last
             newDay += uglyDate[i];
         }
