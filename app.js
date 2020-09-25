@@ -105,35 +105,21 @@ function searchCities() {
                     // Positive covid cases
                     $(".covid-pos-cases").text(sanitize(response[stateIndex].positive,4));
                     
-                    console.log("Negative cases: " + response[stateIndex].negative);
+                    // Negative covid cases
                     $(".covid-neg-cases").text(sanitize(response[stateIndex].negative,4));
                     
-                    
-                    
-                    
-                    
-                    
-                    
-                    // console.log("******************************************");
-                    // console.log("COVID DATA BY STATE");
-                    // console.log("******************************************");
-                    // console.log(response);
+                    // Percent of tests that come back positive
+                    var covPercent = response[stateIndex].positive / (response[stateIndex].positive + response[stateIndex].negative);
+                    covPercent = (covPercent * 100).toFixed(2);
 
+                    $(".covid-percent").text(covPercent + "%")
                     
+                    // Number hospitalized
+                    $(".covid-hosp").text(response[stateIndex].hospitalizedCurrently);
+                    
+                    console.log("Total Deaths Confirmed: " + response[stateIndex].deathConfirmed);
+                    $(".covid-total-deaths").text(response[stateIndex].deathConfirmed);
 
-                    
-                    
-                    
-                    // console.log("Curently Hospitalized cases: " + response[i].hospitalizedCurrently);
-                    // $(".covid-hosp").text(response[i].hospitalizedCurrently);
-                    
-                    // var covPercent = response[i].positive / (response[i].positive + response[i].negative);
-                    // covPercent = Math.floor(covPercent / 100);
-
-                    // $(".covid-percent").text(covPercent + "%")
-
-                    // console.log("Total Deaths Confirmed: " + response[i].deathConfirmed);
-                    // $(".covid-total-deaths").text(response[i].deathConfirmed);
             })
             
             // Get url for urban areas
