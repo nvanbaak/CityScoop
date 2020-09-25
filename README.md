@@ -17,3 +17,4 @@ Response objects are stored under the following variable names:
 * *uaScores* // json with score data for city
 * *weatherCityHistory* // Weather history for selected city
 * *highLowTemps* // Highest and lowest temps for city this year
+                
