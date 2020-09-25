@@ -4,6 +4,17 @@ const iconResults = document.querySelector('.nav-results');
 const searchBar = document.getElementById('search-bar');
 const searchBarResults = document.getElementById('nav-bar-results');
 
+// Debug variables
+var cityMain; // Top-level json with city name, population, and lat/lon
+var covidJSON; // Json containing covid data for the chosen state
+var uaDetails; // Urban Area "details" json
+var uaImages; // json containing free-to-use image links for city
+var uaSalary; // json with salary data for city
+var uaScores; // json with score data for city
+var weatherCityHistory; // Weather history for selected city
+var highLowTemps; // Highest and lowest temps for city this year
+
+
 // This variable toggles the search button behavior
 var searchBarActive = false;
 
@@ -95,10 +106,8 @@ function searchCities(cityName) {
             method:"GET"
         }).then( function(response) {
     
-            console.log("******************************************");
-            console.log("CITY");
-            console.log("******************************************");
-            console.log(response);
+            // Store response in debug variable
+            cityMain = response;
             
             // Update city name
             $(".city-name").text((response.name).toUpperCase());
@@ -120,7 +129,11 @@ function searchCities(cityName) {
                 for (i = 0; i < 55; i++){
                     if (response[i].state===covidState){
                         stateIndex = i;
-                    }};
+                    }
+                }
+                
+                // Store covid data in debug variable
+                covidObj = response[stateIndex];
 
                 // If we got a valid state code
                 if (stateIndex >= 0) {
@@ -183,10 +196,8 @@ function searchCities(cityName) {
                 method:"GET"
             }).then( function(response) {
                 
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS");
-                console.log("******************************************");
-                console.log(response);
+                // Save json to debug variable
+                uaDetails = response;
 
                 // Healthcare related data
 
@@ -220,10 +231,6 @@ function searchCities(cityName) {
 
                 $(".cult-zoos").text(response.categories[4].data[17].int_value)
 
-                // Traffic data
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Traffic");
-                console.log("******************************************");
 
                 // Population metrics
                 console.log("******************************************");
@@ -246,17 +253,13 @@ function searchCities(cityName) {
                     $(".sales-tax").text(Math.floor((salesTax) * 100) + "%")
                 }
 
-                // Gun related crime and gun statistics
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Safety");
+                // Crime and gun statistics
 
                 $(".gun-death").text(Math.floor(response.categories[16].data[1].int_value));
 
                 $(".gun-own").text(Math.floor(response.categories[16].data[3].int_value));
                 
                 $(".crime-rate").text(Math.floor(response.categories[16].data[0].float_value * 10) + "/10");
-
-
 
 
                 // Climate stats
@@ -292,6 +295,9 @@ function searchCities(cityName) {
                 method:"GET"
             }).then( function(response) {
 
+                // Save to debug variable
+                uaImages = response;
+
                 heroImg = response.photos[0].image.web; 
                 $(".hero-image").css("background-image", `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${heroImg})`);
             })
@@ -302,6 +308,9 @@ function searchCities(cityName) {
                 url:`${urbanURL+"salaries"}`,
                 method:"GET"
             }).then( function(response) {
+
+                // Save to debug variable
+                uaSalary = response;
 
                 // SALARY PANEL
 
@@ -356,10 +365,8 @@ function searchCities(cityName) {
                 method:"GET"
             }).then( function(response) {
                 
-                console.log("******************************************");
-                console.log("URBAN AREA / SCORES");
-                console.log("******************************************");
-                console.log(response);
+                // Save to debug variable
+                uaScores = response;
 
                 // Update the Basic Info Summary
                 console.log(response.summary)
@@ -406,11 +413,8 @@ function searchCities(cityName) {
                 method:"GET"
             }).then( function(urlCityHistoryMain) {
             
-            console.log("******************************************");
-            console.log("Open Weather Map API / City weather history data / main");
-            console.log("Main City Weather History  Data Branch: ", urlCityHistoryMain);
-            console.log("******************************************");
-            });
+                // Save to debug variable
+                weatherCityHistory = urlCityHistoryMain;
             
             // High / Low temp history 
             $.ajax({
@@ -435,12 +439,11 @@ function searchCities(cityName) {
                 $(".average-high-temp").text(Math.floor(highestTemp));
                 $(".average-low-temp").text(Math.floor(lowestTemp) -8);
                           
-             
-            console.log("******************************************");
-            console.log("Openeathermap data / average year high&low");
-            console.log("Year average high temp: ", Math.floor(highestTemp));
-            console.log("year average low temp: ", Math.floor(lowestTemp) -8);
-            console.log("******************************************");
+                // Save to debug variable
+                highLowTemps = {
+                    high:Math.floor(highestTemp),
+                    low:Math.floor(lowestTemp) -8
+                }
                 
             });
                    
