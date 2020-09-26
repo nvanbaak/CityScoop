@@ -261,12 +261,9 @@ function searchCities(cityName) {
                 $(".average-clear-days").text(response.categories[2].data[1].float_value);
                 
                 // Population metrics
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Population");
-                console.log("Population size: " + response.categories[1].data[0].float_value + " (millions)")
-                var mileFloat = ((response.categories[1].data[1].float_value) / .386).toFixed(0)
-                console.log("Population density: " + mileFloat + " /sq mile")
-                console.log("******************************************");
+                var populationSize = (cityMain.population)
+                $(".popSize").text("POPULATION: " + populationSize);
+
                 
                 // Leisure/Culture data
                 $(".culture-art").text(response.categories[4].data[1].int_value);
