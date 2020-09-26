@@ -203,68 +203,26 @@ function searchCities(cityName) {
                 // Save json to debug variable
                 uaDetails = response;
 
-                console.log(response)
-
-                // Healthcare related data
-                $(".health-cost").text(Math.floor(response.categories[7].data[0].float_value * 10) + "/10");
-                $(".health-quality").text(Math.floor(response.categories[7].data[3].float_value * 10) + "/10");
-                $(".life-exp").text(Math.floor(response.categories[7].data[1].float_value));
-                
-                // Leisure/Culture data
-                $(".culture-art").text(response.categories[4].data[1].int_value);
-                $(".culture-movies").text(response.categories[4].data[3].int_value);
-                $(".culture-concerts").text(response.categories[4].data[7].int_value);
-                $(".cult-hist").text(response.categories[4].data[9].int_value);
-                $(".cult-museums").text(response.categories[4].data[11].int_value);
-                $(".cult-perform").text(response.categories[4].data[13].int_value);
-                $(".cult-sports").text(response.categories[4].data[15].int_value);
-                $(".cult-zoos").text(response.categories[4].data[17].int_value)
-
-                // Population metrics
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Population");
-                console.log("Population size: " + response.categories[1].data[0].float_value + " (millions)")
-                var mileFloat = ((response.categories[1].data[1].float_value) / .386).toFixed(0)
-                console.log("Population density: " + mileFloat + " /sq mile")
-                console.log("******************************************");
-
-                // Rent
-                $(".rent-low").text("$" + sanitize(response.categories[8].data[2].currency_dollar_value,2));
-                $(".rent-med").text("$" + sanitize(response.categories[8].data[1].currency_dollar_value,2));
-                $(".rent-high").text("$" + sanitize(response.categories[8].data[0].currency_dollar_value,2));
-
-                // Taxation
-                var salesTax = response.categories[18].data[3].percent_value;
-                if (salesTax) {
-                    $(".sales-tax").text(Math.floor((salesTax) * 100) + "%")
-                }
-
-                // Crime and gun statistics
-                $(".gun-death").text(Math.floor(response.categories[16].data[1].int_value));
-                $(".gun-own").text(Math.floor(response.categories[16].data[3].int_value)); 
-                $(".crime-rate").text(Math.floor(response.categories[16].data[0].float_value * 10) + "/10");
-
-                // Climate stats
-                $(".average-day-length").text(response.categories[2].data[0].float_value);
-                $(".average-clear-days").text(response.categories[2].data[1].float_value);
+                console.log(response);
 
                 //Education Statistics 
-                $(".math-high").text(Math.floor((response.categories[6].data[1].percent_value) * 100) + "%")
-                $(".math-low").text(Math.floor((response.categories[6].data[2].percent_value) * 100) + "%")
-                $(".math-mean").text((response.categories[6].data[3].float_value).toFixed(0))
-                $(".reading-high").text(Math.floor((response.categories[6].data[4].percent_value) * 100) + "%")
-                $(".reading-low").text(Math.floor((response.categories[6].data[5].percent_value) * 100) + "%")
-                $(".reading-mean").text((response.categories[6].data[6].float_value).toFixed(0))
-                $(".science-high").text(Math.floor((response.categories[6].data[7].percent_value) * 100) + "%")
-                $(".science-low").text(Math.floor((response.categories[6].data[8].percent_value) * 100) + "%")
-                $(".science-mean").text((response.categories[6].data[9].float_value).toFixed(0))
-                $(".math-ranking").text(response.categories[6].data[10].int_value)
-                $(".reading-ranking").text(response.categories[6].data[13].int_value)
-                $(".science-ranking").text(response.categories[6].data[14].int_value)
-                $(".happy-students").text(Math.floor((response.categories[6].data[0].percent_value) * 100) + "%")
-                $(".university-ranking").text(response.categories[6].data[17].int_value)
-                $(".university").text(response.categories[6].data[16].string_value)
-
+                $(".math-high").text(Math.floor((response.categories[6].data[1].percent_value) * 100) + "%");
+                $(".math-low").text(Math.floor((response.categories[6].data[2].percent_value) * 100) + "%");
+                $(".math-mean").text((response.categories[6].data[3].float_value).toFixed(0));
+                $(".reading-high").text(Math.floor((response.categories[6].data[4].percent_value) * 100) + "%");
+                $(".reading-low").text(Math.floor((response.categories[6].data[5].percent_value) * 100) + "%");
+                $(".reading-mean").text((response.categories[6].data[6].float_value).toFixed(0));
+                $(".science-high").text(Math.floor((response.categories[6].data[7].percent_value) * 100) + "%");
+                $(".science-low").text(Math.floor((response.categories[6].data[8].percent_value) * 100) + "%");
+                $(".science-mean").text((response.categories[6].data[9].float_value).toFixed(0));
+                $(".math-ranking").text(response.categories[6].data[10].int_value);
+                $(".reading-ranking").text(response.categories[6].data[13].int_value);
+                $(".science-ranking").text(response.categories[6].data[14].int_value);
+                $(".happy-students").text(Math.floor((response.categories[6].data[0].percent_value) * 100) + "%");
+                //University Data
+                $(".university-ranking").text(response.categories[6].data[17].int_value);
+                $(".university").text(response.categories[6].data[16].string_value);
+                
                 //Cost of living statistics
                 var applePound = ((response.categories[3].data[1].currency_dollar_value) * .45).toFixed(2)
                 var taxiCost = (response.categories[3].data[9].currency_dollar_value / 0.621).toFixed(2);
@@ -278,6 +236,48 @@ function searchCities(cityName) {
                 $(".gym-cost").text("$" + response.categories[3].data[5].currency_dollar_value);
                 $(".publicTransport-cost").text("$" + response.categories[3].data[7].currency_dollar_value);
                 $(".taxi-cost").text("$" + taxiCost);
+                // Rent
+                $(".rent-low").text("$" + sanitize(response.categories[8].data[2].currency_dollar_value,2));
+                $(".rent-med").text("$" + sanitize(response.categories[8].data[1].currency_dollar_value,2));
+                $(".rent-high").text("$" + sanitize(response.categories[8].data[0].currency_dollar_value,2));
+                // Taxation
+                var salesTax = response.categories[18].data[3].percent_value;
+                if (salesTax) {
+                    $(".sales-tax").text(Math.floor((salesTax) * 100) + "%");
+                }
+                
+                // Healthcare related data
+                $(".health-cost").text(Math.floor(response.categories[7].data[0].float_value * 10) + "/10");
+                $(".health-quality").text(Math.floor(response.categories[7].data[3].float_value * 10) + "/10");
+                $(".life-exp").text(Math.floor(response.categories[7].data[1].float_value));
+                
+                // Crime and gun statistics
+                $(".gun-death").text(Math.floor(response.categories[16].data[1].int_value));
+                $(".gun-own").text(Math.floor(response.categories[16].data[3].int_value)); 
+                $(".crime-rate").text(Math.floor(response.categories[16].data[0].float_value * 10) + "/10");               
+                
+                // Climate stats
+                $(".average-day-length").text(response.categories[2].data[0].float_value);
+                $(".average-clear-days").text(response.categories[2].data[1].float_value);
+                
+                // Population metrics
+                console.log("******************************************");
+                console.log("URBAN AREA / DETAILS / Population");
+                console.log("Population size: " + response.categories[1].data[0].float_value + " (millions)")
+                var mileFloat = ((response.categories[1].data[1].float_value) / .386).toFixed(0)
+                console.log("Population density: " + mileFloat + " /sq mile")
+                console.log("******************************************");
+                
+                // Leisure/Culture data
+                $(".culture-art").text(response.categories[4].data[1].int_value);
+                $(".culture-movies").text(response.categories[4].data[3].int_value);
+                $(".culture-concerts").text(response.categories[4].data[7].int_value);
+                $(".cult-hist").text(response.categories[4].data[9].int_value);
+                $(".cult-museums").text(response.categories[4].data[11].int_value);
+                $(".cult-perform").text(response.categories[4].data[13].int_value);
+                $(".cult-sports").text(response.categories[4].data[15].int_value);
+                $(".cult-zoos").text(response.categories[4].data[17].int_value);
+                
             })
             
             // Urban area "images" pull
