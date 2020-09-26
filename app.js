@@ -394,7 +394,7 @@ function searchCities(cityName) {
                 //get ID of weather score
                 let weatherScore = $('#weather-score');
                 //set weather score value on DOM
-                weatherScore.text(response.categories[7].score_out_of_10.toFixed(1));
+                weatherScore.text(response.categories[16].score_out_of_10.toFixed(1));
                 weatherScore.addClass(applyScoreFormatting(weatherScore, response.categories[16].score_out_of_10.toFixed(1)));
 
                 //culture and leisure score update
