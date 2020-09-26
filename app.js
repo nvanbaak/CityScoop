@@ -340,6 +340,9 @@ function searchCities(cityName) {
 
                         // Update display
                         $(".salary-75").text("$" + salary75);
+
+                        // Update dropdown text
+                        $("#dropdown-text").text(salaryData[sIndex].job.title)
                     };
                 });
             })
