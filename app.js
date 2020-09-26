@@ -339,8 +339,8 @@ function searchCities(cityName) {
                 //get ID of Job & Salary score
                 let jobSalaryScore = $('#salary-score');
                 //set job and salary value on DOM
-                jobSalaryScore.text('N/A');
-                jobSalaryScore.addClass(applyScoreFormatting(jobSalaryScore, 'NA'));
+                jobSalaryScore.text(response.categories[11].score_out_of_10.toFixed(1));
+                jobSalaryScore.addClass(applyScoreFormatting(educationScore, response.categories[11].score_out_of_10.toFixed(1)));
 
 
                 //education score update
@@ -375,8 +375,8 @@ function searchCities(cityName) {
                 //get ID of weather score
                 let weatherScore = $('#weather-score');
                 //set weather score value on DOM
-                weatherScore.text("NA");
-                weatherScore.addClass(applyScoreFormatting(weatherScore, "NA"));
+                weatherScore.text(response.categories[7].score_out_of_10.toFixed(1));
+                weatherScore.addClass(applyScoreFormatting(safetyScore, response.categories[16].score_out_of_10.toFixed(1)));
 
                 //culture and leisure score update
                 //get ID of culture score
