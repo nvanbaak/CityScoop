@@ -56,6 +56,14 @@ HERO IMAGE STYLING
   word-wrap: break-word;
 }
 
+.hero-population {
+    font-family: 'Anton', sans-serif;
+    padding-top: 0;
+    text-align: center;
+    color: white;
+  word-wrap: break-word;
+}
+
 /* =========================================
 SEARCH BAR STYLING & Logo
  =========================================*/
@@ -220,6 +228,16 @@ span.badge {
      background-color: #cf1717;
      color: white;
  }
+
+  /* =========================================
+SALARY BUTTON STYLING
+ =========================================*/
+/* #dropdown-text {
+    width: 200px;
+    white-space: normal;
+    word-wrap: break-word;
+} */
+
 
  /* =========================================
 FOOTER STYLING
