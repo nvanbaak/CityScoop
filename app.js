@@ -340,7 +340,7 @@ function searchCities(cityName) {
                 let jobSalaryScore = $('#salary-score');
                 //set job and salary value on DOM
                 jobSalaryScore.text(response.categories[11].score_out_of_10.toFixed(1));
-                jobSalaryScore.addClass(applyScoreFormatting(educationScore, response.categories[11].score_out_of_10.toFixed(1)));
+                jobSalaryScore.addClass(applyScoreFormatting(jobSalaryScore, response.categories[11].score_out_of_10.toFixed(1)));
 
 
                 //education score update
@@ -376,7 +376,7 @@ function searchCities(cityName) {
                 let weatherScore = $('#weather-score');
                 //set weather score value on DOM
                 weatherScore.text(response.categories[7].score_out_of_10.toFixed(1));
-                weatherScore.addClass(applyScoreFormatting(safetyScore, response.categories[16].score_out_of_10.toFixed(1)));
+                weatherScore.addClass(applyScoreFormatting(weatherScore, response.categories[16].score_out_of_10.toFixed(1)));
 
                 //culture and leisure score update
                 //get ID of culture score
@@ -393,20 +393,7 @@ function searchCities(cityName) {
                 var res = response.summary.split("</p>");
                 $("#city-summary").html(res[0] + "</p>");
 
-                // Apply Formatting Class to Score Elements Function
-                function applyScoreFormatting(element, score){
-                    element.removeClass("badge-red badge-green badge-yellow")
-                    
-                    switch (true) {
-                        case score < 3:
-                            return "badge-red";
-                        case score < 7:
-                            return "badge-yellow";
-                        case score <= 10:
-                            return "badge-green";
-                        default: "badge-red";
-                    }
-                }
+                
             })
         
         // ----------------------------------------- wx api ----------------------------------------------------------
@@ -495,8 +482,20 @@ function searchCities(cityName) {
 
 
 
-
-
+// Apply Formatting Class to Score Elements Function
+function applyScoreFormatting(element, score){
+    element.removeClass("badge-red badge-green badge-yellow")
+    
+    switch (true) {
+        case score < 3:
+            return "badge-red";
+        case score < 7:
+            return "badge-yellow";
+        case score <= 10:
+            return "badge-green";
+        default: "badge-red";
+    }
+}
 
 //function to abbreviate state
 function abbreviateState(fullname) {
