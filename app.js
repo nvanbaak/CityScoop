@@ -90,6 +90,12 @@ function searchCities(cityName) {
     // Create query URL
     var queryURL = "https://api.teleport.org/api/cities/?search=" + cityName;
     
+    // Reset all data output windows
+    $(".display-output").text("NA");
+    // Job dropdown has a different starting text
+    $("#dropdown-text").text("Select a Job Title");
+
+
     // Use query URL to make first AJAX request
     $.ajax({
         url:queryURL,
@@ -498,7 +504,8 @@ function searchCities(cityName) {
 };
 
 
-
+function resetSearch() {
+}
 
 
 // Apply Formatting Class to Score Elements Function
