@@ -197,42 +197,22 @@ function searchCities(cityName) {
                 // Save json to debug variable
                 uaDetails = response;
 
-                // Healthcare related data
+                console.log(response)
 
-                // Healthcare cost
+                // Healthcare related data
                 $(".health-cost").text(Math.floor(response.categories[7].data[0].float_value * 10) + "/10");
-                
-                // Healthcare Quality
                 $(".health-quality").text(Math.floor(response.categories[7].data[3].float_value * 10) + "/10");
-                
-                // Life Expectancy
                 $(".life-exp").text(Math.floor(response.categories[7].data[1].float_value));
                 
                 // Leisure/Culture data
-
-                // Number of art galleries
                 $(".culture-art").text(response.categories[4].data[1].int_value);
-                
-                // Number of cinemas
                 $(".culture-movies").text(response.categories[4].data[3].int_value);
-                
-                // Number of concerts
                 $(".culture-concerts").text(response.categories[4].data[7].int_value);
-
                 $(".cult-hist").text(response.categories[4].data[9].int_value);
-
                 $(".cult-museums").text(response.categories[4].data[11].int_value);
-
                 $(".cult-perform").text(response.categories[4].data[13].int_value);
-
                 $(".cult-sports").text(response.categories[4].data[15].int_value);
-
                 $(".cult-zoos").text(response.categories[4].data[17].int_value)
-
-                // Traffic data
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Traffic");
-                console.log("******************************************");
 
                 // Population metrics
                 console.log("******************************************");
@@ -241,8 +221,6 @@ function searchCities(cityName) {
                 var mileFloat = ((response.categories[1].data[1].float_value) / .386).toFixed(0)
                 console.log("Population density: " + mileFloat + " /sq mile")
                 console.log("******************************************");
-
-                // Telescope Weather data?
 
                 // Rent
                 $(".rent-low").text("$" + sanitize(response.categories[8].data[2].currency_dollar_value,2));
@@ -256,29 +234,19 @@ function searchCities(cityName) {
                 }
 
                 // Crime and gun statistics
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Safety");
-
                 $(".gun-death").text(Math.floor(response.categories[16].data[1].int_value));
-
-                $(".gun-own").text(Math.floor(response.categories[16].data[3].int_value));
-                
+                $(".gun-own").text(Math.floor(response.categories[16].data[3].int_value)); 
                 $(".crime-rate").text(Math.floor(response.categories[16].data[0].float_value * 10) + "/10");
 
                 // Climate stats
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / CLIMATE ");
-                console.log("Climate",  response.categories[2]);
-                console.log("Average day length " + response.categories[2].data[0].float_value);
-                console.log("Average number of clear days " + response.categories[2].data[1].float_value);
-                console.log("******************************************");
-
                 $(".average-day-length").text(response.categories[2].data[0].float_value);
                 $(".average-clear-days").text(response.categories[2].data[1].float_value);
 
 
                 //Cost of living statistics
                 var applePound = ((response.categories[3].data[1].currency_dollar_value) * .45).toFixed(2)
+                var taxiCost = (response.categories[3].data[9].currency_dollar_value / 0.621).toFixed(2);
+
                 $(".apple-cost").text("$" + applePound);
                 $(".loaf-cost").text("$" + response.categories[3].data[2].currency_dollar_value.toFixed(2));
                 $(".beer-cost").text("$" + response.categories[3].data[6].currency_dollar_value.toFixed(2));
@@ -287,8 +255,6 @@ function searchCities(cityName) {
                 $(".movieTicket-cost").text("$" + response.categories[3].data[4].currency_dollar_value.toFixed(2));
                 $(".gym-cost").text("$" + response.categories[3].data[5].currency_dollar_value);
                 $(".publicTransport-cost").text("$" + response.categories[3].data[7].currency_dollar_value);
-
-                var taxiCost = (response.categories[3].data[9].currency_dollar_value / 0.621).toFixed(2);
                 $(".taxi-cost").text("$" + taxiCost);
             })
             
