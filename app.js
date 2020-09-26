@@ -4,6 +4,15 @@ const iconResults = document.querySelector('.nav-results');
 const searchBar = document.getElementById('search-bar');
 const searchBarResults = document.getElementById('nav-bar-results');
 
+// Debug variables
+var cityMain; // Top-level json with city name, population, and lat/lon
+var covidJSON; // Json containing covid data for the chosen state
+var uaDetails; // Urban Area "details" json
+var uaImages; // json containing free-to-use image links for city
+var uaSalary; // json with salary data for city
+var uaScores; // json with score data for city
+var weatherCityHistory; // Weather history for selected city
+
 // This variable toggles the search button behavior
 var searchBarActive = false;
 
@@ -81,6 +90,12 @@ function searchCities(cityName) {
     // Create query URL
     var queryURL = "https://api.teleport.org/api/cities/?search=" + cityName;
     
+    // Reset all data output windows
+    $(".display-output").text("NA");
+    // Job dropdown has a different starting text
+    $("#dropdown-text").text("Select a Job Title");
+
+
     // Use query URL to make first AJAX request
     $.ajax({
         url:queryURL,
@@ -95,10 +110,8 @@ function searchCities(cityName) {
             method:"GET"
         }).then( function(response) {
     
-            console.log("******************************************");
-            console.log("CITY");
-            console.log("******************************************");
-            console.log(response);
+            // Store response in debug variable
+            cityMain = response;
             
             // Update city name
             $(".city-name").text((response.name).toUpperCase());
@@ -107,6 +120,7 @@ function searchCities(cityName) {
 
             // Get two-letter state abbreviation
             var covidState = abbreviateState(response.full_name)
+
 
             // Ajax for all states data
             $.ajax({
@@ -119,7 +133,11 @@ function searchCities(cityName) {
                 for (i = 0; i < 55; i++){
                     if (response[i].state===covidState){
                         stateIndex = i;
-                    }};
+                    }
+                }
+                
+                // Store covid data in debug variable
+                covidObj = response[stateIndex];
 
                 // If we got a valid state code
                 if (stateIndex >= 0) {
@@ -182,48 +200,66 @@ function searchCities(cityName) {
                 method:"GET"
             }).then( function(response) {
                 
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS");
-                console.log("******************************************");
+                // Save json to debug variable
+                uaDetails = response;
+
                 console.log(response);
 
-                // Healthcare related data
+                //Education Statistics 
+                $(".math-high").text(Math.floor((response.categories[6].data[1].percent_value) * 100) + "%");
+                $(".math-low").text(Math.floor((response.categories[6].data[2].percent_value) * 100) + "%");
+                $(".math-mean").text((response.categories[6].data[3].float_value).toFixed(0));
+                $(".reading-high").text(Math.floor((response.categories[6].data[4].percent_value) * 100) + "%");
+                $(".reading-low").text(Math.floor((response.categories[6].data[5].percent_value) * 100) + "%");
+                $(".reading-mean").text((response.categories[6].data[6].float_value).toFixed(0));
+                $(".science-high").text(Math.floor((response.categories[6].data[7].percent_value) * 100) + "%");
+                $(".science-low").text(Math.floor((response.categories[6].data[8].percent_value) * 100) + "%");
+                $(".science-mean").text((response.categories[6].data[9].float_value).toFixed(0));
+                $(".math-ranking").text(response.categories[6].data[10].int_value);
+                $(".reading-ranking").text(response.categories[6].data[13].int_value);
+                $(".science-ranking").text(response.categories[6].data[14].int_value);
+                $(".happy-students").text(Math.floor((response.categories[6].data[0].percent_value) * 100) + "%");
+                //University Data
+                $(".university-ranking").text(response.categories[6].data[17].int_value);
+                $(".university").text(response.categories[6].data[16].string_value);
+                
+                //Cost of living statistics
+                var applePound = ((response.categories[3].data[1].currency_dollar_value) * .45).toFixed(2)
+                var taxiCost = (response.categories[3].data[9].currency_dollar_value / 0.621).toFixed(2);
 
-                // Healthcare cost
+                $(".apple-cost").text("$" + applePound);
+                $(".loaf-cost").text("$" + response.categories[3].data[2].currency_dollar_value.toFixed(2));
+                $(".beer-cost").text("$" + response.categories[3].data[6].currency_dollar_value.toFixed(2));
+                $(".cappuccino-cost").text("$" + response.categories[3].data[3].currency_dollar_value.toFixed(2));
+                $(".restuarant-cost").text("$" + response.categories[3].data[8].currency_dollar_value.toFixed(2));
+                $(".movieTicket-cost").text("$" + response.categories[3].data[4].currency_dollar_value.toFixed(2));
+                $(".gym-cost").text("$" + response.categories[3].data[5].currency_dollar_value);
+                $(".publicTransport-cost").text("$" + response.categories[3].data[7].currency_dollar_value);
+                $(".taxi-cost").text("$" + taxiCost);
+                // Rent
+                $(".rent-low").text("$" + sanitize(response.categories[8].data[2].currency_dollar_value,2));
+                $(".rent-med").text("$" + sanitize(response.categories[8].data[1].currency_dollar_value,2));
+                $(".rent-high").text("$" + sanitize(response.categories[8].data[0].currency_dollar_value,2));
+                // Taxation
+                var salesTax = response.categories[18].data[3].percent_value;
+                if (salesTax) {
+                    $(".sales-tax").text(Math.floor((salesTax) * 100) + "%");
+                }
+                
+                // Healthcare related data
                 $(".health-cost").text(Math.floor(response.categories[7].data[0].float_value * 10) + "/10");
-                
-                // Healthcare Quality
                 $(".health-quality").text(Math.floor(response.categories[7].data[3].float_value * 10) + "/10");
-                
-                // Life Expectancy
                 $(".life-exp").text(Math.floor(response.categories[7].data[1].float_value));
                 
-                // Leisure/Culture data
-
-                // Number of art galleries
-                $(".culture-art").text(response.categories[4].data[1].int_value);
+                // Crime and gun statistics
+                $(".gun-death").text(Math.floor(response.categories[16].data[1].int_value));
+                $(".gun-own").text(Math.floor(response.categories[16].data[3].int_value)); 
+                $(".crime-rate").text(Math.floor(response.categories[16].data[0].float_value * 10) + "/10");               
                 
-                // Number of cinemas
-                $(".culture-movies").text(response.categories[4].data[3].int_value);
+                // Climate stats
+                $(".average-day-length").text(response.categories[2].data[0].float_value);
+                $(".average-clear-days").text(response.categories[2].data[1].float_value);
                 
-                // Number of concerts
-                $(".culture-concerts").text(response.categories[4].data[7].int_value);
-
-                $(".cult-hist").text(response.categories[4].data[9].int_value);
-
-                $(".cult-museums").text(response.categories[4].data[11].int_value);
-
-                $(".cult-perform").text(response.categories[4].data[13].int_value);
-
-                $(".cult-sports").text(response.categories[4].data[15].int_value);
-
-                $(".cult-zoos").text(response.categories[4].data[17].int_value)
-
-                // Traffic data
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Traffic");
-                console.log("******************************************");
-
                 // Population metrics
                 console.log("******************************************");
                 console.log("URBAN AREA / DETAILS / Population");
@@ -231,51 +267,17 @@ function searchCities(cityName) {
                 var mileFloat = ((response.categories[1].data[1].float_value) / .386).toFixed(0)
                 console.log("Population density: " + mileFloat + " /sq mile")
                 console.log("******************************************");
-
-                // Telescope Weather data?
-
-                // Rent
-                $(".rent-low").text("$" + sanitize(response.categories[8].data[2].currency_dollar_value,2));
-                $(".rent-med").text("$" + sanitize(response.categories[8].data[1].currency_dollar_value,2));
-                $(".rent-high").text("$" + sanitize(response.categories[8].data[0].currency_dollar_value,2));
-
-                // Taxation
-                var salesTax = response.categories[18].data[3].percent_value
-                $(".income-tax").text(Math.floor((salesTax) * 100) + "%")
-
-                // Gun related crime and gun statistics
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / Safety");
-                console.log("Gun-related deaths per 100,000 residents per year: " + response.categories[16].data[1].int_value)
-                console.log("Gun Owners per 100 residents: " + response.categories[16].data[3].int_value)
-                console.log("******************************************");
-
-
-
-                // Climate stats
-                console.log("******************************************");
-                console.log("URBAN AREA / DETAILS / CLIMATE ");
-                console.log("Climate",  response.categories[2]);
-                console.log("Average day length " + response.categories[2].data[0].float_value);
-                console.log("Average number of clear days " + response.categories[2].data[1].float_value);
-                console.log("******************************************");
-
-                $(".average-day-length").text(response.categories[2].data[0].float_value);
-                $(".average-clear-days").text(response.categories[2].data[1].float_value);
-
-
-                //Cost of living statistics
-                var applePound = ((response.categories[3].data[1].currency_dollar_value) * .45).toFixed(2)
-                $(".apple-cost").text(applePound);
-                $(".loaf-cost").text(response.categories[3].data[2].currency_dollar_value);
-                $(".beer-cost").text(response.categories[3].data[6].currency_dollar_value);
-                $(".cappuccino-cost").text(response.categories[3].data[3].currency_dollar_value);
-                $(".restuarant-cost").text(response.categories[3].data[10].currency_dollar_value);
-                $(".movieTicket-cost").text(response.categories[3].data[4].currency_dollar_value);
-                $(".gym-cost").text(response.categories[3].data[5].currency_dollar_value);
-                $(".publicTransport-cost").text(response.categories[3].data[7].currency_dollar_value);
-                $(".taxi-cost").text(response.categories[3].data[9].currency_dollar_value);
-
+                
+                // Leisure/Culture data
+                $(".culture-art").text(response.categories[4].data[1].int_value);
+                $(".culture-movies").text(response.categories[4].data[3].int_value);
+                $(".culture-concerts").text(response.categories[4].data[7].int_value);
+                $(".cult-hist").text(response.categories[4].data[9].int_value);
+                $(".cult-museums").text(response.categories[4].data[11].int_value);
+                $(".cult-perform").text(response.categories[4].data[13].int_value);
+                $(".cult-sports").text(response.categories[4].data[15].int_value);
+                $(".cult-zoos").text(response.categories[4].data[17].int_value);
+                
             })
             
             // Urban area "images" pull
@@ -283,6 +285,9 @@ function searchCities(cityName) {
                 url:`${urbanURL+"images"}`,
                 method:"GET"
             }).then( function(response) {
+
+                // Save to debug variable
+                uaImages = response;
 
                 heroImg = response.photos[0].image.web; 
                 $(".hero-image").css("background-image", `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${heroImg})`);
@@ -294,6 +299,9 @@ function searchCities(cityName) {
                 url:`${urbanURL+"salaries"}`,
                 method:"GET"
             }).then( function(response) {
+
+                // Save to debug variable
+                uaSalary = response;
 
                 // SALARY PANEL
 
@@ -312,7 +320,7 @@ function searchCities(cityName) {
                     dropdown.append(newListEl);
                 }
 
-                // Dropdown reponds to clicking one of the options
+                // Dropdown responds to clicking one of the options
                 dropdown.on("click", function(event) {
 
                     // Only fire if we're clicking on a link icon
@@ -338,20 +346,79 @@ function searchCities(cityName) {
 
                         // Update display
                         $(".salary-75").text("$" + salary75);
+
+                        // Update dropdown text
+                        $("#dropdown-text").text(salaryData[sIndex].job.title)
                     };
                 });
             })
             
             // Urban area "scores" pull
+
             $.ajax({
                 url:`${urbanURL+"scores"}`,
                 method:"GET"
             }).then( function(response) {
                 
-                console.log("******************************************");
-                console.log("URBAN AREA / SCORES");
-                console.log("******************************************");
-                console.log(response);
+                //Job & Salary update
+                //get ID of Job & Salary score
+                let jobSalaryScore = $('#salary-score');
+                //set job and salary value on DOM
+                jobSalaryScore.text(response.categories[11].score_out_of_10.toFixed(1));
+                jobSalaryScore.addClass(applyScoreFormatting(jobSalaryScore, response.categories[11].score_out_of_10.toFixed(1)));
+
+
+                //education score update
+                //get ID of education score
+                let educationScore = $('#education-score');
+                //set education value on DOM
+                educationScore.text(response.categories[9].score_out_of_10.toFixed(1));
+                educationScore.addClass(applyScoreFormatting(educationScore, response.categories[9].score_out_of_10.toFixed(1)));
+
+                //cost of living score update
+                //get ID of cost of living score
+                let costOfLiving = $('#cost-of-living-score');
+                //set cost of living value on DOM
+                costOfLiving.text(response.categories[1].score_out_of_10.toFixed(1));
+                costOfLiving.addClass(applyScoreFormatting(costOfLiving, response.categories[1].score_out_of_10.toFixed(1)));
+
+                //health score update
+                //get ID of health score
+                let healthScore = $('#health-score');
+                //set education value on DOM
+                healthScore.text(response.categories[8].score_out_of_10.toFixed(1));
+                healthScore.addClass(applyScoreFormatting(healthScore, response.categories[8].score_out_of_10.toFixed(1)));
+
+                //Safety score update
+                //get ID of Safety score
+                let safetyScore = $('#safety-score');
+                //set weather score value on DOM
+                safetyScore.text(response.categories[7].score_out_of_10.toFixed(1));
+                safetyScore.addClass(applyScoreFormatting(safetyScore, response.categories[7].score_out_of_10.toFixed(1)));
+
+                //weather score update
+                //get ID of weather score
+                let weatherScore = $('#weather-score');
+                //set weather score value on DOM
+                weatherScore.text(response.categories[16].score_out_of_10.toFixed(1));
+                weatherScore.addClass(applyScoreFormatting(weatherScore, response.categories[16].score_out_of_10.toFixed(1)));
+
+                //culture and leisure score update
+                //get ID of culture score
+                let cultureScore = $('#culture-score');
+                //set education value on DOM
+                cultureScore.text(response.categories[14].score_out_of_10.toFixed(1));
+                cultureScore.addClass(applyScoreFormatting(cultureScore, response.categories[14].score_out_of_10.toFixed(1)));
+
+                
+                // Save to debug variable
+                uaScores = response;
+
+                // Update the Basic Info Summary
+                var res = response.summary.split("</p>");
+                $("#city-summary").html(res[0] + "</p>");
+
+                
             })
         
         // ----------------------------------------- wx api ----------------------------------------------------------
@@ -384,18 +451,16 @@ function searchCities(cityName) {
             var cityHistory = "http://history.openweathermap.org/data/2.5/history/city?id="+ cityId +"&type=hour&start="+ unixDateNow +"&end="+ unixMonthAgo +"&appid=cf54ce47ff5608fa5caf5b89772775c4";
             
             // Ask url for history data
-
             $.ajax({
                 url: oneWeekHistory,
                 method:"GET"
             }).then( function(urlCityHistoryMain) {
             
-            console.log("******************************************");
-            console.log("Open Weather Map API / City weather history data / main");
-            console.log("Main City Weather History  Data Branch: ", urlCityHistoryMain);
-            console.log("******************************************");
+                // Save to debug variable
+                weatherCityHistory = urlCityHistoryMain;
+
             });
-            
+
             // High / Low temp history 
             $.ajax({
                 url: oneWeekHistory,
@@ -419,12 +484,11 @@ function searchCities(cityName) {
                 $(".average-high-temp").text(Math.floor(highestTemp));
                 $(".average-low-temp").text(Math.floor(lowestTemp) -8);
                           
-             
-            console.log("******************************************");
-            console.log("Openeathermap data / average year high&low");
-            console.log("Year average high temp: ", Math.floor(highestTemp));
-            console.log("year average low temp: ", Math.floor(lowestTemp) -8);
-            console.log("******************************************");
+                // Save to debug variable
+                highLowTemps = {
+                    high:highestTemp,
+                    low:lowestTemp
+                }
                 
             });
                    
@@ -433,6 +497,26 @@ function searchCities(cityName) {
     });
 
 };
+
+
+function resetSearch() {
+}
+
+
+// Apply Formatting Class to Score Elements Function
+function applyScoreFormatting(element, score){
+    element.removeClass("badge-red badge-green badge-yellow")
+    
+    switch (true) {
+        case score < 3:
+            return "badge-red";
+        case score < 7:
+            return "badge-yellow";
+        case score <= 10:
+            return "badge-green";
+        default: "badge-red";
+    }
+}
 
 //function to abbreviate state
 function abbreviateState(fullname) {

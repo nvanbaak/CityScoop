@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col s12 center-align brand">
                 <!-- Input bar -->
-                <input type="text place" placeholder="find a city" id="search-bar">
+                <input type="text place" placeholder="Find a City" id="search-bar">
 
                 <!-- Search icon -->
                 <div class="search-area">
@@ -57,7 +57,7 @@
                     <div class="row">
                         <div class="col s12 center-align brand">
                             <!-- Input bar -->
-                            <input class="active" type="text place" placeholder="find a city" id="nav-bar-results"> <!-- added 'results' to ID -->
+                            <input class="active" type="text place" placeholder="Find a City" id="nav-bar-results"> <!-- added 'results' to ID -->
             
                             <!-- Search icon -->
                             <div class="search-area">
@@ -88,12 +88,7 @@
                             <h2>BASIC INFO</h2>
                             <hr>
                             <br>
-                            <p class="flow-text"><em>"[URBAN AREA / SCORES.summary] Seattle, Washington, is among the
-                                    top cities with a
-                                    <b>free business environment</b>.
-                                    According to our city rankings, this is a good place to live with high ratings in
-                                    <b>startups</b>, <b>venture capital</b> and <b>environmental quality"</b></em>.
-                            </p>
+                            <p id="city-summary" class="flow-text"></p>
                         </div>
                     </div>
 
@@ -106,7 +101,7 @@
                                     (badge-red & white-text): 0 < x < 3, 
                                     (badge-yellow & black-text): 3 <= x < 7, 
                                     (badge-green & white-text): 7 <= x <= 10) -->
-                                <span id="salary-score" class="badge badge-yellow black-text hide-on-small-only">4.5 / 10</span>
+                                <span id="salary-score" class="badge black-text hide-on-small-only">4.5 / 10</span>
                             </div>
                             <!-- Sample Specific Info Container. Use  -->
                             <div class="container-fluid  container-white center collapsible-body">
@@ -128,8 +123,7 @@
                                 <br>
 
                                 <!-- Job Title Dropdown Trigger -->
-                                <a class='dropdown-trigger btn center' href='#' data-target='dropdown1'>Select a Job
-                                    Title</a>
+                                <a class='dropdown-trigger btn center' href='#' data-target='dropdown1' id=dropdown-text>Select a Job Title</a>
 
                                 <!-- Job Title Dropdown Structure -->
                                 <ul id='dropdown1' class='dropdown-content'>
@@ -141,15 +135,15 @@
                                 <!-- Percentile Data -->
                                 <div class="row center">
                                     <div class="col s12 m4">
-                                        <p class="p-medium salary-25">NA</p>
+                                        <p class="p-medium salary-25 display-output">NA</p>
                                         <p class="">25th %</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium salary-50">NA</p>
+                                        <p class="p-medium salary-50 display-output">NA</p>
                                         <p class="">50th %</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium salary-75">NA</p>
+                                        <p class="p-medium salary-75 display-output">NA</p>
                                         <p class="">75th %</p>
                                     </div>
                                 </div>
@@ -163,7 +157,7 @@
                                     (badge-red & white-text): 0 < x < 3, 
                                     (badge-yellow & black-text): 3 <= x < 7, 
                                     (badge-green & white-text): 7 <= x <= 10) -->
-                                <span id="education-score" class="badge badge-green white-text hide-on-small-only">7.2 / 10</span>
+                                <span id="education-score" class="badge hide-on-small-only">7.2 / 10</span>
                             </div>
                             <!-- Sample Specific Info Container. Use  -->
                             <div class="container-fluid  container-white collapsible-body">
@@ -181,21 +175,75 @@
                                 <br>
 
                                 <div class="row center">
-                                    <div class="col s12 m3">
-                                        <p class="p-medium">9900</p>
-                                        <p class="">STUDENTS</p>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium math-high display-output"></p>
+                                        <p class="">HIGHEST MATH SCORES IN PISA TEST</p>
                                     </div>
-                                    <div class="col s12 m3">
-                                        <p class="p-medium">1400</p>
-                                        <p class="">AVG SAT</p>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium math-low display-output"></p>
+                                        <p class="">LOWEST MATH SCORES IN PISA TEST</p>
                                     </div>
-                                    <div class="col s12 m3">
-                                        <p class="p-medium">92%</p>
-                                        <p class="">COLLEGE ACCEPTANCE RATE</p>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium math-mean display-output"></p>
+                                        <p class="">MATH MEAN SCORE (COUNTRY)</p>
                                     </div>
-                                    <div class="col s12 m3">
-                                        <p class="p-medium">08%</p>
-                                        <p class="">DROP OUT</p>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium reading-high display-output"></p>
+                                        <p class="">HIGHEST READING SCORES IN PISA TEST</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium reading-low display-output"></p>
+                                        <p class="">LOWEST READING SCORES IN PISA TEST</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium reading-mean display-output"></p>
+                                        <p class="">READING MEAN SCORE(COUNTRY)</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium science-high display-output"></p>
+                                        <p class="">HIGHEST SCIENCE SCORES IN PISA TEST</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium science-low display-output"></p>
+                                        <p class="">LOWEST SCIENCE SCORES IN PISA TEST</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium science-mean display-output"></p>
+                                        <p class="">SCIENCE MEAN SCORE(COUNTRY)</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium math-ranking display-output"></p>
+                                        <p class="">PISA MATH RANKING (HIGHSCHOOL)</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium reading-ranking display-output"></p>
+                                        <p class="">PISA READING RANKING (HIGHSCHOOL)</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium science-ranking display-output"></p>
+                                        <p class="">PISA SCIENCE RANKING (HIGHSCHOOL)</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium happy-students display-output"></p>
+                                        <p class="">HAPPY STUDENTS</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium university-ranking display-output"></p>
+                                        <p class="university"></p>
+                                    </div>
+                                </div>
+                                <div class="row center">
+                                    <div class="col s12 m12">
+                                        <H4>TOP UNIVERSITY WITHIN URBAN AREA</H4>
+                                        <hr>
+                                    </div>
+                                    <div class="col s12 m6">
+                                        <p class="p-medium university display-output"></p>
+                                        <p class=""></p>
+                                    </div>
+                                    <div class="col s12 m6">
+                                        <p class="p-medium university-ranking display-output"></p>
+                                        <p class="">UNIVERSITY RANKING</p>
                                     </div>
                                 </div>
                             </div>
@@ -208,7 +256,7 @@
                                     (badge-red & white-text): 0 < x < 3, 
                                     (badge-yellow & black-text): 3 <= x < 7, 
                                     (badge-green & white-text): 7 <= x <= 10) -->
-                                <span id="cost-of-living-score" class="badge badge-red white-text hide-on-small-only">2.5 / 10</span>                            
+                                <span id="cost-of-living-score" class="badge hide-on-small-only">2.5 / 10</span>                            
                             </div>
                             <!-- Sample Specific Info Container. Use  -->
                             <div class="container-fluid  container-white collapsible-body">
@@ -224,40 +272,40 @@
                                         <hr>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium apple-cost">...</p>
+                                        <p class="p-medium apple-cost display-output">NA</p>
                                         <p class="">A POUND OF APPLES</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium loaf-cost">...</p>
+                                        <p class="p-medium loaf-cost display-output">NA</p>
                                         <p class="">A LOAF OF BREAD</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium beer-cost">...</p>
+                                        <p class="p-medium beer-cost display-output">NA</p>
                                         <p class="">BEER</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium cappuccino-cost"></p>
+                                        <p class="p-medium cappuccino-cost display-output">NA</p>
                                         <p class="">CAPPUCCINO</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium restuarant-cost"></p>
+                                        <p class="p-medium restuarant-cost display-output">NA</p>
                                         <p class="">MEAL AT A RESTUARANT</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium movieTicket-cost"></p>
+                                        <p class="p-medium movieTicket-cost display-output">NA</p>
                                         <p class="">MOVIE TICKET</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium gym-cost"></p>
+                                        <p class="p-medium gym-cost display-output">NA</p>
                                         <p class="">MONTHLY GYM MEMBERSHIP</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium publicTransport-cost"></p>
+                                        <p class="p-medium publicTransport-cost display-output">NA</p>
                                         <p class="">MONTHLY PUBLIC TRANSPORT</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium taxi-cost"></p>
-                                        <p class="">TAXI FARE</p>
+                                        <p class="p-medium taxi-cost display-output">NA</p>
+                                        <p class="">TAXI FARE (5m)</p>
                                     </div>
                                 </div>
                                 <div class="row center">
@@ -266,39 +314,39 @@
                                         <hr>
                                     </div>
                                     <div class="col s12 m3">
-                                        <p class="p-medium rent-low"></p>
+                                        <p class="p-medium rent-low display-output">NA</p>
                                         <p class="">RENT (SMALL APT)</p>
                                     </div>
                                     <div class="col s12 m3">
-                                        <p class="p-medium rent-med"></p>
+                                        <p class="p-medium rent-med display-output">NA</p>
                                         <p class="">RENT (MED APT)</p>
                                     </div>
                                     <div class="col s12 m3">
-                                        <p class="p-medium rent-high"></p>
+                                        <p class="p-medium rent-high display-output">NA</p>
                                         <p class="">RENT (LG APT)</p>
                                     </div>
                                     <div class="col s12 m3">
-                                        <p class="p-medium income-tax"></p>
+                                        <p class="p-medium sales-tax display-output">NA</p>
                                         <p class="">SALES TAX</p>
                                     </div>
                                 </div>
                             </div>
                         </li>
 
-                        <!-- HEALTH & SAFETY COLLAPSIBLE DIV -->
+                        <!-- HEALTHCARE COLLAPSIBLE DIV -->
                         <li>
                             <div class="collapsible-header"><i class="material-icons">local_hospital</i>HEALTHCARE<span class="covid-header"> +COVID-19</span>
                                 <!-- BADGE ICON (BACKEND: scale is as follows: 
                                     (badge-red & white-text): 0 < x < 3, 
                                     (badge-yellow & black-text): 3 <= x < 7, 
                                     (badge-green & white-text): 7 <= x <= 10) -->
-                                <span id="health-score" class="badge badge-yellow black-text hide-on-small-only">5 / 10</span>
+                                <span id="health-score" class="badge hide-on-small-only">5 / 10</span>
                             </div>
                             <!-- Sample Specific Info Container. Use  -->
                             <div class="container-fluid  container-white collapsible-body">
                                 <div class="row">
                                     <div class="col s12 center">
-                                        <h3>HEALTH & SAFETY</h3>
+                                        <h3>HEALTHCARE</h3>
                                         <hr>
                                     </div>
                                 </div>
@@ -315,15 +363,15 @@
                                         <hr>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium health-cost">...</p>
+                                        <p class="p-medium health-cost display-output">...</p>
                                         <p class="">COST RATING</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium health-quality">...</p>
+                                        <p class="p-medium health-quality display-output">...</p>
                                         <p class="">QUALITY RATING</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium life-exp">...</p>
+                                        <p class="p-medium life-exp display-output">...</p>
                                         <p class="">LIFE EXPECTANCY (COUNTRY)</p>
                                     </div>
                                 </div>
@@ -334,28 +382,68 @@
                                         <P>LAST UPDATED: <span id="covid-update-date">recently</span></P>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium covid-test-total">NA</p>
+                                        <p class="p-medium covid-test-total display-output">NA</p>
                                         <p class="">TOTAL TESTS</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium covid-pos-cases">NA</p>
+                                        <p class="p-medium covid-pos-cases display-output">NA</p>
                                         <p class="">TOTAL POSITIVE CASES</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium  covid-neg-cases">NA</p>
+                                        <p class="p-medium  covid-neg-cases display-output">NA</p>
                                         <p class="">TOTAL NEGATIVE CASES</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium covid-percent">NA</p>
+                                        <p class="p-medium covid-percent display-output">NA</p>
                                         <p class="">% POSITIVE CASES</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium covid-hosp">NA</p>
+                                        <p class="p-medium covid-hosp display-output">NA</p>
                                         <p class="">CURRENTLY HOSPITALIZED</p>
                                     </div>
                                     <div class="col s12 m4">
-                                        <p class="p-medium covid-total-deaths">NA</p>
+                                        <p class="p-medium covid-total-deaths display-output">NA</p>
                                         <p class="">TOTAL DEATHS</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- SAFETY COLLAPSIBLE DIV -->
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">lock</i>SAFETY
+                                <!-- BADGE ICON (BACKEND: scale is as follows: 
+                                    (badge-red & white-text): 0 < x < 3, 
+                                    (badge-yellow & black-text): 3 <= x < 7, 
+                                    (badge-green & white-text): 7 <= x <= 10) -->
+                                <span id="safety-score" class="badge hide-on-small-only">5 / 10</span>
+                            </div>
+                            <!-- Sample Specific Info Container. Use  -->
+                            <div class="container-fluid  container-white collapsible-body">
+                                <div class="row">
+                                    <div class="col s12 center">
+                                        <h3>SAFETY</h3>
+                                        <hr>
+                                    </div>
+                                </div>
+
+                                <!-- Safety Info Descriptive Text -->
+                                <p class="flow-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                                    sint, in tempore tenetur quidem inventore quas saepe voluptatum quam distinctio unde
+                                    quod magni facere doloribus obcaecati perferendis ipsam atque sit?</p>
+                                <br>
+                                <div class="row center">
+                                    <div class="col s12 m4">
+                                        <p class="p-medium gun-own display-output">NA</p>
+                                        <p class="">GUNS / 100 RESIDENTS</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium gun-death display-output">NA</p>
+                                        <p class="">GUN DEATHS / 100k RESIDENTS</p>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <p class="p-medium crime-rate display-output">NA</p>
+                                        <p class="">CRIME RATE</p>
                                     </div>
                                 </div>
                             </div>
@@ -368,7 +456,7 @@
                                     (badge-red & white-text): 0 < x < 3, 
                                     (badge-yellow & black-text): 3 <= x < 7, 
                                     (badge-green & white-text): 7 <= x <= 10) -->
-                                    <span id="weather-score" class="badge badge-red white-text hide-on-small-only">1 / 10</span>                            
+                                    <span id="weather-score" class="badge hide-on-small-only">1 / 10</span>                            
                             </div>
                             <!-- Sample Specific Info Container -->
                             <div class="container-fluid  container-white collapsible-body">
@@ -387,19 +475,19 @@
 
                                 <div class="row center">
                                     <div class="col s12 m3">
-                                        <p class="p-medium average-day-length">12</p>
+                                        <p class="p-medium average-day-length display-output">12</p>
                                         <p class="">AVG DAY LENGTH (Hours)</p>
                                     </div>
                                     <div class="col s12 m3">
-                                        <p class="p-medium average-clear-days">56</p>
+                                        <p class="p-medium average-clear-days display-output">56</p>
                                         <p class="">AVG NUMBER OF CLEAR DAYS PER YEAR</p>
                                     </div>
                                     <div class="col s12 m3">
-                                        <p class="p-medium average-high-temp"></p>
+                                        <p class="p-medium average-high-temp display-output"></p>
                                         <p class="">AVERAGE HIGH TEMP</p>
                                     </div>
                                     <div class="col s12 m3">
-                                        <p class="p-medium average-low-temp"></p>
+                                        <p class="p-medium average-low-temp display-output"></p>
                                         <p class="">AVERAGE LOW TEMP</p>
                                     </div>
                                 </div>
@@ -413,7 +501,7 @@
                                     (badge-red & white-text): 0 < x < 3, 
                                     (badge-yellow & black-text): 3 <= x < 7, 
                                     (badge-green & white-text): 7 <= x <= 10) -->
-                                    <span id="culture-score" class="badge badge-green white-text hide-on-small-only">9.2 / 10</span>                            
+                                    <span id="culture-score" class="badge hide-on-small-only">9.2 / 10</span>                            
                             </div>
                             <!-- Sample Specific Info Container. Use  -->
                             <div class="container-fluid  container-white collapsible-body">
@@ -427,35 +515,35 @@
 
                                 <div class="row center">
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium culture-art"></p>
+                                        <p class="p-medium culture-art display-output"></p>
                                         <p class="">ART GALLERIES</p>
                                     </div>
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium culture-movies"></p>
+                                        <p class="p-medium culture-movies display-output"></p>
                                         <p class="">CINEMAS</p>
                                     </div>
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium culture-concerts"></p>
+                                        <p class="p-medium culture-concerts display-output"></p>
                                         <p class="">CONCERTS / YEAR</p>
                                     </div>
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium cult-hist"></p>
+                                        <p class="p-medium cult-hist display-output"></p>
                                         <p class="">HISTORICAL SITES</p>
                                     </div>
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium cult-museums"></p>
+                                        <p class="p-medium cult-museums display-output"></p>
                                         <p class="">MUSEUMS</p>
                                     </div>
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium cult-perform"></p>
+                                        <p class="p-medium cult-perform display-output"></p>
                                         <p class="">PERFORMING ARTS</p>
                                     </div>
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium cult-sports"></p>
+                                        <p class="p-medium cult-sports display-output"></p>
                                         <p class="">SPORTS VENUES</p>
                                     </div>
                                     <div class="col s12 m6 l3">
-                                        <p class="p-medium cult-zoos"></p>
+                                        <p class="p-medium cult-zoos "></p>
                                         <p class="">ZOOS</p>
                                     </div>
                                 </div>
