@@ -334,42 +334,56 @@ function searchCities(cityName) {
                 url:`${urbanURL+"scores"}`,
                 method:"GET"
             }).then( function(response) {
-            //Job & Salary update
-            //get ID of Job & Salary score
-            let jobSalaryScore = document.getElementById('salary-score');
-            //set job and salary value on DOM
-            jobSalaryScore.textContent = 'N/A'
+                
+                //Job & Salary update
+                //get ID of Job & Salary score
+                let jobSalaryScore = $('#salary-score');
+                //set job and salary value on DOM
+                jobSalaryScore.text('N/A');
+                jobSalaryScore.addClass(applyScoreFormatting(jobSalaryScore, 'NA'));
 
-            //education score update
-            //get ID of education score
-            let educationScore = document.getElementById('education-score');
-            //set education value on DOM
-            educationScore.textContent = response.categories[9].score_out_of_10.toFixed(1);
 
-            //cost of living score update
-            //get ID of cost of living score
-            let costOfLiving = document.getElementById('cost-of-living-score');
-            //set cost of living value on DOM
-            costOfLiving.textContent = response.categories[1].score_out_of_10.toFixed(1);
+                //education score update
+                //get ID of education score
+                let educationScore = $('#education-score');
+                //set education value on DOM
+                educationScore.text(response.categories[9].score_out_of_10.toFixed(1));
+                educationScore.addClass(applyScoreFormatting(educationScore, response.categories[9].score_out_of_10.toFixed(1)));
 
-            //health score update
-            //get ID of health score
-            let healthScore = document.getElementById('health-score');
-            //set education value on DOM
-            healthScore.textContent = response.categories[8].score_out_of_10.toFixed(1);
+                //cost of living score update
+                //get ID of cost of living score
+                let costOfLiving = $('#cost-of-living-score');
+                //set cost of living value on DOM
+                costOfLiving.text(response.categories[1].score_out_of_10.toFixed(1));
+                costOfLiving.addClass(applyScoreFormatting(costOfLiving, response.categories[1].score_out_of_10.toFixed(1)));
 
-            //weather score update
-            //get ID of weather score
-            let weatherScore = document.getElementById('weather-score');
-            //set education value on DOM
-            weatherScore.textContent = 'N/A'
+                //health score update
+                //get ID of health score
+                let healthScore = $('#health-score');
+                //set education value on DOM
+                healthScore.text(response.categories[8].score_out_of_10.toFixed(1));
+                healthScore.addClass(applyScoreFormatting(healthScore, response.categories[8].score_out_of_10.toFixed(1)));
 
-            //culture and leisure score update
-            //get ID of culture score
-            let cultureScore = document.getElementById('culture-score');
-            //set education value on DOM
-            cultureScore.textContent = response.categories[14].score_out_of_10.toFixed(1);
+                //Safety score update
+                //get ID of Safety score
+                let safetyScore = $('#safety-score');
+                //set weather score value on DOM
+                safetyScore.text(response.categories[7].score_out_of_10.toFixed(1));
+                safetyScore.addClass(applyScoreFormatting(safetyScore, response.categories[7].score_out_of_10.toFixed(1)));
 
+                //weather score update
+                //get ID of weather score
+                let weatherScore = $('#weather-score');
+                //set weather score value on DOM
+                weatherScore.text("NA");
+                weatherScore.addClass(applyScoreFormatting(weatherScore, "NA"));
+
+                //culture and leisure score update
+                //get ID of culture score
+                let cultureScore = $('#culture-score');
+                //set education value on DOM
+                cultureScore.text(response.categories[14].score_out_of_10.toFixed(1));
+                cultureScore.addClass(applyScoreFormatting(cultureScore, response.categories[14].score_out_of_10.toFixed(1)));
 
                 
                 // Save to debug variable
@@ -378,6 +392,21 @@ function searchCities(cityName) {
                 // Update the Basic Info Summary
                 var res = response.summary.split("</p>");
                 $("#city-summary").html(res[0] + "</p>");
+
+                // Apply Formatting Class to Score Elements Function
+                function applyScoreFormatting(element, score){
+                    element.removeClass("badge-red badge-green badge-yellow")
+                    
+                    switch (true) {
+                        case score < 3:
+                            return "badge-red";
+                        case score < 7:
+                            return "badge-yellow";
+                        case score <= 10:
+                            return "badge-green";
+                        default: "badge-red";
+                    }
+                }
             })
         
         // ----------------------------------------- wx api ----------------------------------------------------------
