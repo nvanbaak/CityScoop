@@ -423,23 +423,21 @@ function searchCities(cityName) {
             // Openweathermap charges for information going back more than a week - for now, we are going back 5 days and simulating extrapolation for a year.
             
             // The openweathermap API end points require a unix date range to search for historic weather data. 
+            
             // Today's Unix date - divide the current time by 1000 to produce the unix number and round down to ten digits.
             var unixDateNow = Math.floor(new Date().getTime() / 1000);
+            
             // This gives the unix date 5 days ago - 5 days * 86400 seconds a day.
             var unixFiveDayAgo = unixDateNow - (5 * 86400);
+            
             // This gives the unix date 30 days ago.
             var unixMonthAgo = unixDateNow - (30 * 86400);
-               //console.log("unix date: ", unixDateNow);
-               //console.log("unix a month ago:", unixMonthAgo);
-            
+
             // This retrieves the city id number, latitude, and longitude from teleport API in parent ajax.
-            //console.log("data check on current city", response);
             var cityId = response.geoname_id;
             var lat = response.location.latlon.latitude;
             var lon = response.location.latlon.longitude;
-                //console.log("lat:", lat);
-                //console.log("lon:", lon);
-                //console.log("city id", cityId);
+               
                    
                 // --------------------------------URLs with end points for openweathermap API ------------------------------ 
 
@@ -450,7 +448,6 @@ function searchCities(cityName) {
             var cityHistory = "http://history.openweathermap.org/data/2.5/history/city?id="+ cityId +"&type=hour&start="+ unixDateNow +"&end="+ unixMonthAgo +"&appid=cf54ce47ff5608fa5caf5b89772775c4";
             
             // Ask url for history data
-
             $.ajax({
                 url: oneWeekHistory,
                 method:"GET"
@@ -461,15 +458,13 @@ function searchCities(cityName) {
 
             });
 
-
-            
             // High / Low temp history 
             $.ajax({
                 url: oneWeekHistory,
                 method:"GET"
             }).then( function(urlCityHistory) {
                     
-                //console.log("wx city history response: " , urlCityHistory);
+                
             // This is to determine minimum and maximum temps for the year * again, proof of concept, this is only doing it for a week ago today. 
                 var tempArr = urlCityHistory.hourly;
           
