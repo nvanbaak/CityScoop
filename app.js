@@ -242,6 +242,22 @@ function searchCities(cityName) {
                 $(".average-day-length").text(response.categories[2].data[0].float_value);
                 $(".average-clear-days").text(response.categories[2].data[1].float_value);
 
+                //Education Statistics 
+                $(".math-high").text(Math.floor((response.categories[6].data[1].percent_value) * 100) + "%")
+                $(".math-low").text(Math.floor((response.categories[6].data[2].percent_value) * 100) + "%")
+                $(".math-mean").text((response.categories[6].data[3].float_value).toFixed(0))
+                $(".reading-high").text(Math.floor((response.categories[6].data[4].percent_value) * 100) + "%")
+                $(".reading-low").text(Math.floor((response.categories[6].data[5].percent_value) * 100) + "%")
+                $(".reading-mean").text((response.categories[6].data[6].float_value).toFixed(0))
+                $(".science-high").text(Math.floor((response.categories[6].data[7].percent_value) * 100) + "%")
+                $(".science-low").text(Math.floor((response.categories[6].data[8].percent_value) * 100) + "%")
+                $(".science-mean").text((response.categories[6].data[9].float_value).toFixed(0))
+                $(".math-ranking").text(response.categories[6].data[10].int_value)
+                $(".reading-ranking").text(response.categories[6].data[13].int_value)
+                $(".science-ranking").text(response.categories[6].data[14].int_value)
+                $(".happy-students").text(Math.floor((response.categories[6].data[0].percent_value) * 100) + "%")
+                $(".university-ranking").text(response.categories[6].data[17].int_value)
+                $(".university").text(response.categories[6].data[16].string_value)
 
                 //Cost of living statistics
                 var applePound = ((response.categories[3].data[1].currency_dollar_value) * .45).toFixed(2)
