@@ -26,7 +26,7 @@ cityScoop provides the user a means to make informed decisions on a move to move
   - Chris Sisson - Frontend Development https://github.com/chrisasison
   - Nikolai Van Baak - Project Manager, Backend Development
   - Dexter Sage - Back End Development https://github.com/Advent24
-  - Jack Solaro - Frontend Development
+  - Jack Solaro - Frontend Development https://github.com/jacksolaro
 
 
 ### Awards: "Peoples Choice", "Best Presentation"
