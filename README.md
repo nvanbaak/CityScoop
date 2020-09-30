@@ -7,9 +7,9 @@
 
 cityScoop is an application that allows its users to consolidate information of various locations around the world. The application's functionality pulls its information from three APIs:
 
-Teleport
-Openweathermap
-CovidTracking
+  - Teleport
+  - Openweathermap
+  - CovidTracking
 
 The user will input a desired location by (city) and the application will populate the following information:
 
@@ -20,6 +20,11 @@ The user will input a desired location by (city) and the application will popula
 Each of the statistics listed above recieves a general score out of 10, in relation to other locations around the world. This score can be found on the far right side of the listed criteria.
 
 cityScoop provides the user a means to make informed decisions on a move to move basis.
+
+Contributers:
+Daniel Yoder
+Chris Sisson 
+Nikolai Van 
 
 
 
