@@ -1,6 +1,6 @@
 # CityScoop
 
-##"One search to get it all"
+## "One search to get it all"
 
 > https://dyoder838.github.io/CityScoop/
 
@@ -21,7 +21,7 @@ Each of the statistics listed above recieves a general score out of 10, in relat
 
 cityScoop provides the user a means to make informed decisions on a move to move basis.
 
-###Contributers:
+### Contributers:
   - Daniel Yoder - Git Master, Backend Development
   - Chris Sisson - Frontend Development
   - Nikolai Van Baak - Project Manager, Backend Development
@@ -29,7 +29,7 @@ cityScoop provides the user a means to make informed decisions on a move to move
   - Jack Solaro - Frontend Development
 
 
-###Awards: "Peoples Choice", "Best Presentation"
+### Awards: "Peoples Choice", "Best Presentation"
 
 
 
