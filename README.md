@@ -2,7 +2,7 @@
 
 ## "One search to get it all"
 
-> https://dyoder838.github.io/CityScoop/
+> https://nvanbaak.github.io/CityScoop/
 
 
 CityScoop is an application that allows its users to consolidate information of various locations around the world. The application's functionality pulls its information from three APIs:
@@ -22,9 +22,9 @@ Each of the statistics listed above recieves a general score out of 10, in relat
 cityScoop provides the user a means to make informed decisions on a move to move basis.
 
 ### Contributers:
+  - Nikolai Van Baak - Project Manager, Backend Development https://github.com/nvanbaak
   - Daniel Yoder - Git Master, Backend Development
   - Chris Sisson - Frontend Development https://github.com/chrisasison
-  - Nikolai Van Baak - Project Manager, Backend Development https://github.com/nvanbaak
   - Dexter Sage - Back End Development https://github.com/Advent24
   - Jack Solaro - Frontend Development https://github.com/jacksolaro
 
